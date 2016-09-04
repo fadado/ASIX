@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ca" lang="ca">
+	<head>
+		<title>Consultar i actualitzar la base de dades</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<style type="text/css">body{font-family: sans-serif;}</style>
+	</head>
+	<body>
+		<!-- title -->
+		<h1>Consultar i actualitzar la base de dades</h1>
+		<p>MP9UF1A3T2</p>	<!-- id -->
+		<!-- description -->
+		<p>Consulta i actualització de la base de dades</p>
+
+		<!-- body -->
+
+		<h2>Abstracció procedural</h2>
+		<p>Entenem per <dfn>abstracció procedural</dfn> la tècnica de programació en la que definim nous procediments, situats en un mòdul auxiliar, que proporcionen serveis a altres mòduls. L&rsquo;objectiu és amagar dins d&rsquo;aquest mòdul detalls d&rsquo;implementació, exportant tan sols els procediments que formin part de la interfície pública del mòdul.</p>
+
+		<p>Una de les primeres aplicacions del CGI varen ser els <i>llibres de visites</i>, pàgines on els visitants podien deixar comentaris i llegir els fets per altres visitants. És evident que les entrades del llibre s&rsquo;han d&rsquo;emmagatzemar en una base de dades, i per facilitar la gestió d&rsquo;aquestes dades hem definit el mòdul <a href="aux/book.py">book</a> que exporta aquestes funcions:</p>
+		<ul>
+			<li><code>open()</code></li>
+			<li><code>close()</code></li>
+			<li><code>insert(<i>user_name</i>, <i>user_email</i>, <i>text</i>)</code></li>
+			<li><code>keys(start=<i>0</i>, size=<i>-1</i>)</code></li>
+			<li><code>reversed(start=<i>-1</i>, size=<i>-1</i>)</code></li>
+			<li><code>record(<i>key</i>)</code></li>
+			<li><code>reccount()</code></li>
+		</ul>
+		<p>En el mòdul <a href="aux/book.py">book</a> disposes de la documentació d&rsquo;aquestes funcions i un exemple del seu funcionament.</p>
+
+		<h2>Enllaços recomanats</h2>
+		<ul>
+			<li>Mòdul <code>shelve</code> en <cite>The Python Standard Library</cite></li>
+			<li>Wikipedia <a href="http://ca.wikipedia.org/wiki/Abstracci%C3%B3_(inform%C3%A0tica)">Abstracció</a></li>
+		</ul>
+
+		<h2>Pràctiques</h2>
+		<p>En tots els scrips demanats (a executar en el terminal: no CGI) cal d&rsquo;importar el mòdul que accedeix a la base de dades.</p>
+		<ul>
+			<li>Estudia el mòdul <a href="aux/book.py">book</a>.</li>
+			<li>Usa interactivament <code>book.insert</code> per afegir registres a la base de dades.</li>
+			<li>Estudia els exemples d&rsquo;iteradors presentats en el fitxer <a href="aux/iter_book.py">iter_book.py</a>.</li>
+			<li>Fes un script que mostri les entrades del llibre en un determinat dia (rebut com argument de l&rsquo;script).</li>
+			<li>Fes un script que mostri les entrades del llibre d&rsquo;un determinat usuari (rebut com argument de l&rsquo;script).</li>
+			<li>Fes un script que mostri <i>M</i> entrades del llibre a partir de l&rsquo;entrada <i>N</i>.</li>
+			<li>Fes un script que mostri en ordre invers <i>M</i> entrades del llibre a partir de l&rsquo;entrada <i>N</i>.</li>
+		</ul>
+
+	</body>
+</html>
+<!--
+vim:sw=2:ts=2:nowrap
+-->

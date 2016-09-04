@@ -1,0 +1,13 @@
+<html xmlns:py="http://genshi.edgewall.org/" lang="en">
+  <body py:with="g_it = globals().iteritems(); l_it = locals().iteritems()">
+    <h1>Genshi environments</h1>
+    <h2>Globals</h2>
+    <ul>
+	    <li py:for="(k,v) in g_it">${k} = ${v}</li>
+    </ul>
+    <h2>Locals</h2>
+    <ul>
+	    <li py:for="(k,v) in l_it">${k} = ${v}</li>
+    </ul>
+  </body>
+</html>

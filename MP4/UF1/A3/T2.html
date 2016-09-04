@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ca" lang="ca">
+	<head>
+		<title>Utilitzar documentació interactiva</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<style type="text/css">body{font-family: sans-serif;}</style>
+	</head>
+	<body>
+		<!-- title -->
+		<h1>Utilitzar documentació interactiva</h1>
+		<p>MP4UF1A3T2</p>	<!-- id -->
+		<!-- description -->
+		<p>Estudi del vocabulari HTML en base a la documentació en línia</p>
+
+		<!-- body -->
+
+		<h2>Documentació del vocabulari HTML</h2>
+		<ul>
+			<li>El DTD de qualsevol vocabulari XML serveix com descripció formal pels programes i com a documentació per a les persones.</li>
+			<li>Normalment cal completar el DTD amb un document de referència, per us exclusiu de les persones.</li>
+			<li>El document oficial del <a href="http://www.w3c.org">W3C</a> es massa formal.</li>
+			<li>El document creat pel <a href="http://htmlhelp.com/">Web Design Group</a> és rigorós però simple.</li>
+			<li>Cal fugir de les documentacions de Microsoft (en ocasions presents en documents &ldquo;contaminats&rdquo; d&rsquo;altres).</li>
+		</ul>
+
+		<h2>Orientacions per l&rsquo;estudi del vocabulari HTML</h2>
+		<ul>
+			<li>El document HTML es divideix en dos grans blocs: element <code>head</code>, amb diversa metainformació, i l&rsquo;element <code>body</code>, amb el document a mostrar.</li>
+			<li>Els elements interior a l&rsquo;element <code>body</code> son de tipus <em>bloc</em> o <em>inline</em>.</li>
+			<li>Els elements de tipus bloc introdueixen sempre un nou paràgraf, amb salt de línia.</li>
+			<li>Els elements de tipus inline determinen característiques del text.</li>
+		</ul>
+
+		<h2 id="ASPECTES">Aspectes a seguir però als que no obliga el DTD</h2>
+		<p>Els elements des de &lt;h1&gt; fins a &lt;h6&gt; serveixen per estructurar el text en seccions i subseccions, però com que no s&rsquo;escriuen niuats uns dins dels altres, som nosaltres els que amb disciplina hem de seguir aquestes normes:</p>
+		<ul>
+			<li>És costum usar un sol element &lt;h1&gt; en cada document, amb els mateix text que l&rsquo;element &lt;title&gt;, però res impedeix en el DTD fer-ho de forma diferent.</li>
+			<li>Un element &lt;h2&gt; ha d&rsquo;estar precedit d&rsquo;un element &lt;h1&gt;, l&rsquo;element &lt;h3&gt; de l&rsquo;element &lt;h2&gt;, etc. No hem fer &ldquo;salts&rdquo;.</li>
+			<li>Tot el text que hi ha a continuació d&rsquo;un d&rsquo;aquests elements, fins arribar a un de nivell igual o superior, està <em>conceptualment</em> dins seu.</li>
+			<li>Mai triem aquests elements per com es <em>mostren</em> visualment, sinó pel seu paper en organitzar la jerarquia conceptual del text.</li>
+		</ul>
+
+		<h2>Enllaços recomanats</h2>
+		<ul>
+			<li><a name="HTMLHELP" href="http://htmlhelp.com/">WDG HTML Help</a></li>
+			<li><a href="http://htmlhelp.com/distribution/wdghtml40.tar.gz">WDG HTML 4.0 Reference</a> (<a href="aux/wdghtml40.tar.gz">local</a>)</li>
+			<li><a href="http://www.cheat-sheets.org/saved-copy/htmlcheatsheet.pdf">XHTML Cheat Sheet</a> (<a href="aux/htmlcheatsheet.pdf">local</a>)</li>
+		</ul>
+		<p><strong>Molt important:</strong> porta impresa a classe la <cite>XHTML Cheat Sheet</cite>.</p>
+
+		<h2>Pràctiques I</h2>
+		<p>Pràctiques sobre la documentació del WDG.</p>
+		<ul>
+			<li>Instal·la (com administrador) a <code>/usr/local/doc</code> la referència HTML del WDG.</li>
+			<li>En la secció de bookmarks del navegador fes una carpeta de nom <cite>Biblioteca</cite> per documentacions locals.</li>
+			<li>Recorda adaptar mentalment a XHTML el que digui la documentació (feta originalment per HTML), i amaga sempre els elements no estrictes.</li>
+			<li>Estudia el possible contingut de l&rsquo;element <code>head</code>, i millora si cal la plantilla que tens per crear nous fitxers HTML.</li>
+		</ul>
+
+		<h2>Pràctiques II</h2>
+		<p>Creació de documents XHTML.</p>
+		<ul>
+			<li>En tot moment consulta la documentació (local) del <a href="http://htmlhelp.com/">WDG HTML Help</a></li>
+			<li>En base a la <a href="T1.html#TEMPLATE">plantilla</a> creada en dies anteriors crea un nou document XHTML.</li>
+			<li>Per validar el teu document has de fer servir aquesta ordre: <code>xmllint --noout --valid</code>.</li>
+			<li>Com a text pel teu document fes servir fragments en <a href="http://lipsum.com/">llatí</a>. D&rsquo;aquesta forma no et distreurà el significat del text (tradicionalment els grafistes ho fan així).</li>
+			<li>En aquest document construeix l&rsquo;estructura general del mateix segons el DTD del XHTML estricte i  en base als elements <code>h1</code>, <code>h2</code>, <code>h3</code>, <code>p</code>, <code>ul</code>, <code>ol</code>, <code>ul</code> i <code>dl</code>.</li>
+			<li>Respecta les <a href="#ASPECTES">recomanacions</a> d&rsquo;estil comentades més amunt.</li>
+			<li>Afegeix al teu document enllaços interns i externs com ara aquests:
+				<ol>
+					<li>Al peu de la pàgina un enllaç al seu <a href="#">inici</a>.</li>
+					<li>Un <a href="#ASPECTES">enllaç</a> a un element de la mateixa pàgina identificat pel seu atribut <code>id</code>.</li>
+					<li>Un <a href="#HTMLHELP">enllaç</a> a un element <code>a</code> de la mateixa pàgina identificat pel seu atribut <code>name</code>.</li>
+					<li>Un <a href="T1.html">enllaç</a> a una pàgina diferent situada en el mateix directori.</li>
+					<li>Un <a href="T1.html#TEMPLATE">enllaç</a> a una secció d&rsquo;una pàgina diferent situada en el mateix directori.</li>
+					<li>Un <a href="http://informatica.escoladeltreball.org/ASIX/MP4/">enllaç</a> a una pàgina qualsevol d&rsquo;Internet.</li>
+				</ol>
+			</li>
+		</ul>
+
+	</body>
+</html>
+<!--
+vim:sw=2:ts=2:nowrap
+-->

@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ca" lang="ca">
+	<head>
+		<title>Configurar l&rsquo;entorn de treball</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<style type="text/css">body{font-family: sans-serif;}</style>
+	</head>
+	<body>
+		<!-- title -->
+		<h1>Configurar l&rsquo;entorn de treball</h1>
+		<p>MP9UF2A2T1</p>	<!-- id -->
+		<!-- description -->
+		<p>Organització i processament de documents</p>
+
+		<!-- body -->
+
+		<h2>Com ho fa <cite>Docker</cite>?</h2>
+		<p><cite>Docker</cite> ens proporciona un bon exemple de com gestionar documentació. Per una banda, els documents original s&rsquo;escriuen amb <cite>MarkDown</cite>, tal com pots comprovar en el <a href="https://github.com/docker/docker/tree/master/docs/reference/commandline">repositori de <cite>GitHub</cite></a> on resideixen. Per altra banda aquests documents, transformats a HTML, es publiquen en la <a href="https://docs.docker.com/engine/reference/commandline/cli/">web de <cite>Docker</cite></a>. En les pràctiques a realitzar veurem com això es pot fer.</p>
+
+		<h2>Us de <cite>GitLab</cite> com a repositori remot</h2>
+		<p>Els diversos fitxers a usar en aquesta activitat han de residir en un repositori de <cite>Git</cite>, del qual farem una còpia remota a <cite>GitLab</cite>. Les ordres de <cite>Git</cite> que et caldrà usar són aquestes:</p>
+		<ul>
+			<li><code>git clone</code></li>
+			<li><code>git status</code></li>
+			<li><code>git log</code></li>
+			<li><code>git push</code></li>
+			<li><code>git pull</code></li>
+			<li><code>git remote</code></li>
+		</ul>
+
+		<h2>Enllaços recomanats</h2>
+		<ul>
+			<li><a href="https://gitlab.com/">GitLab</a></li>
+			<li><a href="aux/git-cheat-sheet.pdf">Xuleta de <cite>Git</cite></a> (local)</li>
+			<li>Moltes altres <a href="https://goo.gl/wgcGYR">xuletes</a> de <cite>Git</cite></li>
+		</ul>
+
+		<h2>Pràctiques</h2>
+		<ul>
+			<li>Crea un compte a <cite>GitLab</cite>.</li>
+			<li>Crea una clau amb <code>ssh-keygen</code> i usa-la per configurar l&rsquo;accés a <cite>GitLab</cite>.</li>
+			<li>Crea un directori per aquest projecte i puja&rsquo;l a <cite>GitLab</cite> (ho pots fer en ordre invers si vols: crea un nou repositori a <cite>GitLab</cite> i clona&rsquo;l). Edita apropiadament el fitxer <code>README.md</code>.</li>
+			<li>Còpia dos o tres documents del <a href="https://github.com/docker/docker/tree/master/docs/reference/commandline">repositori de <cite>Docker</cite></a> en aquest directori i posa&rsquo;ls sota el control de <cite>Git</cite>.</li>
+		</ul>
+
+
+	</body>
+</html>
+<!--
+vim:sw=2:ts=2:nowrap
+-->

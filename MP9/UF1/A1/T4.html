@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ca" lang="ca">
+	<head>
+		<title>Programar scripts en l&rsquo;estil del CGI</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<style type="text/css">body{font-family: sans-serif;}</style>
+	</head>
+	<body>
+		<!-- title -->
+		<h1>Programar scripts en l&rsquo;estil del <cite>CGI</cite></h1>
+		<p>MP9UF1A1T4</p>	<!-- id -->
+		<!-- description -->
+		<p>Usos tradicionals del Common Gateway Interface</p>
+
+		<!-- body -->
+
+		<h2>El Common Gateway Interface</h2>
+		<p>Alguns usos típics del <cite>CGI</cite> són:</p>
+		<ul>
+			<li>Processat de formularis</li>
+			<li><i>Banners</i> i enllaços publicitaris</li>
+			<li>Generació dinàmica de dades, com ara comptadors de visites</li>
+		</ul>
+
+		<h2><i>Percent encoding (URL encoding)</i></h2>
+		<p>La cadena de caràcters que en les URLs segueix al caràcter <code>'?'</code>, coneguda com <i>query string</i>, està codificada segons les següents convencions:</p>
+		<ul>
+			<li>El seu tipus MIME és <code>application/x-www-form-urlencoded</code></li>
+			<li>Els espais en blanc són substituïts pel caràcter <code>'+'</code></li>
+			<li>Els caràcters amb codi superior a 128, i alguns caràcters ASCII com els següents es codifiquen en hexadecimal precedits del caràcter de percentatge:
+
+			<table cellpadding="6px" border="1" style="margin: 1em; border:1px solid #C0C0C0; border-collapse:collapse;">
+				<caption style="font-weight: bold;">Caràcters comuns després de ser codificats</caption>
+				<tr>
+					<td><code>&lt;</code></td>
+					<td><code>&gt;</code></td>
+					<td><code>~</code></td>
+					<td><code>.</code></td>
+					<td><code>"</code></td>
+					<td><code>{</code></td>
+					<td><code>}</code></td>
+					<td><code>|</code></td>
+					<td><code>\</code></td>
+					<td><code>+</code></td>
+					<td><code>-</code></td>
+					<td><code>`</code></td>
+					<td><code>_</code></td>
+					<td><code>^</code></td>
+					<td><code>%</code></td>
+					<td>espai</td>
+				</tr>
+				<tr>
+					<td><code>%3C</code></td>
+					<td><code>%3E</code></td>
+					<td><code>%7E</code></td>
+					<td><code>%2E</code></td>
+					<td><code>%22</code></td>
+					<td><code>%7B</code></td>
+					<td><code>%7D</code></td>
+					<td><code>%7C</code></td>
+					<td><code>%5C</code></td>
+					<td><code>%2B</code></td>
+					<td><code>%2D</code></td>
+					<td><code>%60</code></td>
+					<td><code>%5F</code></td>
+					<td><code>%5E</code></td>
+					<td><code>%25</code></td>
+					<td><code>%20</code></td>
+				</tr>
+			</table>
+			</li>
+			<li>La cadena codifica un diccionari organitzant-lo com una llista de parelles <i>clau=valor</i> separades pel caràcter <code>'&amp;'</code></li>
+			<li>Segons el protocol <cite>CGI</cite> la cadena queda, sense descodificar, en la variable <code>QUERY_STRING</code>. De moment, quan sigui necessari, la pots convertir a diccionari amb codi similar a aquest:
+<pre>
+import urllib, os
+
+def parse(s):
+    """Parse the url-encoded string s returning a dictionary.
+    Caveat: does not support duplicated keys, etc.
+    """
+    if s == "": return {}
+    pairs = s.split("&amp;")
+    pairs = [(k, urllib.unquote_plus(v))
+              for (k, v) in [s.split("=", 1) for s in pairs]]
+    return dict(pairs)
+
+form = parse(os.environ["QUERY_STRING"])</pre>
+			</li>
+		</ul>
+
+		<h2>Pseudocapçaleres CGI</h2>
+		<p>A banda de les capçaleres HTTP legítimes que un script CGI pugui escriure en la seva sortida estàndard, i que el servidor web reenviarà al client que ha fet la petició, també disposem de dues falses capçaleres que en realitat serveixen com a instruccions pel servidor web:</p>
+		<ul>
+			<li><code><b>Status</b></code>: definirà el contingut de la primera línia de la resposta HTTP (per defecte <code>200 Ok</code>).</li>
+			<li><code><b>Location</b></code>: farà que el servidor generi una resposta de tipus <code>300</code> amb la capçalera també copiada en la resposta.</li>
+		</ul>
+
+		<h2>Enllaços recomanats</h2>
+		<p>A mes a mes dels presentats en l&rsquo;activitat dedicada a l&rsquo;organització de la documentació:</p>
+		<ul>
+			<li><a href="http://en.wikipedia.org/wiki/Common_Gateway_Interface">Common Gateway Interface</a> a la Wikipedia</li>
+			<li><a href="http://en.wikipedia.org/wiki/Percent-encoding">Percent encoding</a> a la Wikipedia</li> 
+		</ul>
+
+		<h2>Pràctiques I</h2>
+		<p><strong>Important</strong>: visualitza permanentment els complements de <cite>Firefox</cite> <cite>All-In-One Sidebar</cite> i <cite>Live HTTP  headers</cite> per poder estudiar les capçaleres HTTP intercanviades entre client i servidor.</p>
+		<ul>
+			<li>Fes un script de nom <code>daus</code> que en ser visitat retorni el resultat de simular una tirada de daus (usa el mòdul de Python <code>random</code> per obtenir valors a l&rsquo;atzar).</li>
+			<li>Fes un script de nom <code>salta</code> que en ser visitat redirigeixi a una URL triada a l&rsquo;atzar d&rsquo;una llista (has de redirigir amb la capçalera escrita per l&rsquo;script <code>Location: <i>URL</i></code>). Quin tipus de resposta  de redirecció ha fet el servidor?</li>
+			<li>Fes un script de nom <code>calcula</code> que en ser visitat amb una  <i>query string</i> amb la forma <code>?N=<i>nombre</i>&amp;M=<i>nombre</i>&amp;OP=<i>operació</i></code> retorni el resultat d&rsquo;aplicar l&rsquo;operació <code>OP</code> (suma, resta, multiplicació o divisió codificades amb un sol caràcter) als nombres <code>N</code> i <code>M</code>.</li>
+			<li>En un script de nom <code>query.py</code> millora la funció <code>parse</code> per que suporti noms de camps repetits. No deixis d&rsquo;afegir comentaris justificant les teves decisions i codi de prova, i observa que tan sols has de modificar la darrera línia de codi de la funció.</li>
+			<li>Millora la funció <code>parse</code> per que, una vegada tallada la cadena pels ampersands, verifiqui aquests aspectes: cap bocí és la cadena buida; tots els bocins contenen un caràcter <code>'='</code>. Si fracasen els tests cal acabar amb <code>raise ValueError('Bad query string')</code>.</li>
+			<li>Substitueix en la funció <code>parse</code> la crida a <code>urllib.unquote_plus</code> per la funció <code>decode</code> desenvolupada a classe.</li>
+		</ul>
+
+		<h2>Pràctiques II</h2>
+		<ul>
+			<li>En un script de nom <code>count.py</code> implementa un comptador de visites (a emmagatzemar en un fitxer a <code>/var/tmp</code>): la resposta ha d&rsquo;informar de les vegades que s&rsquo;ha visitat la URL.</li>
+			<li>Fa anys van ser populars els <a href="http://es.wikipedia.org/wiki/Anillo_web">Webrings</a>. Fes un script que en ser visitat amb una  <i>query string</i> amb la forma <code style="white-space: nowrap;">?visita=<i>direcció</i></code> (on <i>direcció</i> pot ser <code>esquerra</code>, <code>dreta</code> o <code>atzar</code> utilitzi el valor de la capçalera HTTP <code>Referer</code> (excepte en el cas de la redirecció a l&rsquo;atzar) per decidir	a quina pàgina redirigir al visitant de l&rsquo;anell web. L&rsquo;anell el pots representar en una simple llista que has d&rsquo;imaginar <em>circular</em> (posició en la llista anterior a <code>0</code>: <code>len(llista)-1</code>; posició posterior en la llista a  <code>len(llista)-1</code>: <code>0</code>; en altres casos simplement incrementar o decrementar la posició en <code>1</code>).
+				<br />Pseudocodi del programa:
+				<ol>
+					<li>Si no es rep la capçalera HTTP <code>Referer</code> redirigir a una URL a l&rsquo;atzar de l&rsquo;anell.</li>
+					<li>Si els valors extrets de la <i>query string</i> no són correctes retornar un missatge d&rsquo;error.</li>
+					<li>En cas contrari i si es demana visitar una pàgina a l&rsquo;atzar, redirigir apropiadament.</li>
+					<li>En cas contrari buscar la URL de la capçalera HTTP <code>Referer</code> en la llista i&hellip;:</li>
+					<li>&hellip; si no es troba retornar un missatge d&rsquo;error</li>
+					<li>&hellip; en cas contrari redirigir a la URL anterior o posterior segons s&rsquo;hagi demanat.</li>
+				</ol>
+				Pensa que necessitaràs dos o més pàgines HTML estàtiques per poder provar el sistema d&rsquo;anell web.<br />
+				Es recomana definir funcions auxiliars per les parts del codi que no han de conèixer res sobre el <cite>CGI</cite>, com ara per buscar dins la llista circular, i provar aquestes funcions en un mòdul separat abans de fer l&rsquo;script <cite>CGI</cite>.
+			</li>
+			<li>Implementa un script per gestionar <a href="http://es.wikipedia.org/wiki/Banner">Web banners</a> (consulta també la Wikipedia <a href="http://en.wikipedia.org/wiki/Web_banner">anglesa</a>).</li>
+		</ul>
+
+	</body>
+</html>
+<!--
+vim:sw=2:ts=2:nowrap
+-->

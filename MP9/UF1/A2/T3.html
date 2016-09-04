@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ca" lang="ca">
+	<head>
+		<title>Crear formularis HTML</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<style type="text/css">body{font-family: sans-serif;}</style>
+	</head>
+	<body>
+		<!-- title -->
+		<h1>Crear formularis HTML</h1>
+		<p>MP9UF1A2T3</p>	<!-- id -->
+		<!-- description -->
+		<p>Recollida de dades en pàgines (dinàmiques) HTML</p>
+
+		<!-- body -->
+
+		<h2>Mòduls <code>cgi</code> i <code>cgitb</code> de <cite>Python</cite></h2>
+		<p>Per aquestes pràctiques usarem encara la funció <code>parse</code> feta a classe, i no el mòdul <code>cgi</code> de <cite>Python</cite>. De totes formes, el mòdul <code>cgitb</code> segueix ajudant a depurar els scripts.</p>
+
+		<p>Per ajudar a la depuració dels scripts usarem aquest codi:
+			<pre><code>import cgitb; cgitb.enable()</code></pre>
+			Una vegada depurats els error es convenient comentar aquesta línia.
+		</p>
+
+		<h2>Formularis HTML</h2>
+		<p>En crear formularis amb HTML cal tenir presents els següents aspectes:</p>
+		<ul>
+			<li>L&rsquo;atribut <code>action</code> de l&rsquo;element <code>form</code> conté el nom de l&rsquo;script que processarà el formulari.</li>
+			<li>Es recomana fer servir el mètode <code>post</code>, en lletres minúscules (atribut <code>method</code> de l&rsquo;element <code>form</code>).</li>
+			<li>Els boton bàsics per enviar o netejar el formulari es fan amb elements <code>input</code> de tipus <code>submit</code> o <code>reset</code>.</li>
+		</ul>
+
+		<h2>Processament de formularis</h2>
+		<p>Treballarem, per processar els formularis, amb la tècnica que anomenarem <b>GET/POST</b>: la <i>pàgina d&rsquo;entrada</i> és el script CGI (que no te per que tenir extensió); aquest retorna com a resposta el formulari (plantilla) o el resultat de processar-lo, segons el mètode usat en la petició sigui <code>GET</code> o <code>POST</code> o hi hagi errors en les dades.</p>
+		<p>Observa que el mètode serà <code>GET</code> si anem al formulari clicant en un enllaç normal, i serà <code>POST</code> en clicar els botons del formulari (cosa que forçarem amb l'atribut <code>method</code> del formulari). Aquestes són totes les situacions possibles:</p>
+		<ul>
+			<li>El mètode és <code>GET</code>: cal mostrar per primera vegada, si cal amb valors per defecte pels seus camps (l&rsquo;usuari ha clicat en una pàgina per anar al formulari).</li>
+			<li>El mètode és <code>POST</code>: cal validar i processar el formulari (l&rsquo;usuari ha clicat en el botó del formulari)&hellip;
+			<ul>
+				<li>&hellip; si el formulari no valida s&rsquo;ha de tornar a presentar aquest a l&rsquo;usuari, amb missatge d&rsquo;error,</li>
+				<li>&hellip; si el formulari valida correctament s&rsquo;ha de processar, retornant el resultar d&rsquo;expandir una nova plantilla o, alternativament, redirigir a una nova pàgina.</li>
+			</ul>
+			</li>
+		</ul>
+		<p><strong>Important</strong>: per l&rsquo;usuari <i>existeix</i> una sola pàgina!</p>
+		<p>Aques és l&rsquo;aspecte general de tots els scripts:</p>
+
+		<pre>
+import os, sys
+
+from genshi.template import TemplateLoader
+
+########################################################################
+# Creació resposta
+########################################################################
+
+def pagina(template, environment):
+    # template: nom fitxer XML
+    # environment: diccionari de valors a usar per la plantilla
+
+    path = ["./", "/opt/templates"] # directoris on cercar plantilles
+
+    loader = TemplateLoader(path)
+
+    template = loader.load(template)
+
+    stream = template.generate(**environment) # pasem entorn a plantilla
+
+    sys.stdout.write("Content-Type: text/html\r\n\r\n")
+    sys.stdout.write(stream.render(encoding="UTF-8"))
+
+########################################################################
+# Càlcul i definició variables
+########################################################################
+
+entorn = {
+    'A': ...,
+    'B': ...,
+    'C': ...,
+    ...
+}
+
+plantila = "nom-plantilla.html"
+
+########################################################################
+# Processament petició
+########################################################################
+
+if os.environ['REQUEST_METHOD'] == 'GET':
+    # si esperem query string (cal disposar de la funció parse):
+    #?form = parse(os.environ['QUERY_STRING'])
+    # si cal modificar entorn:
+    # ...
+    # i finalment mostrar el formulari per primera vegada:
+    pagina(plantilla, entorn)
+else:
+    # si esperem dades (cal disposar de la funció parse):
+    form = parse(sys.stdin.read(int(os.environ['CONTENT_LENGTH'])))
+    # validar form:
+    # ...
+    # si ok acabar (redirigir o respondre...)
+    # ...
+    # else 
+    #   modificar entorn si cal
+    #   ...
+    # i finalment mostrar el formulari de nou:
+         pagina(plantilla, entorn)
+
+sys.exit(0) </pre>
+
+		<h2>Enllaços recomanats</h2>
+		<ul>
+			<li>En la documentació local de Genshi: <a href="file:///usr/share/doc/python-genshi/doc/xml-templates.html">Genshi XML Template Language</a>.</li>
+		</ul>
+
+		<h2>Pràctiques</h2>
+		<p>Sempre utilitzant la tècnica <b>GET/POST</b>, implementa aquests formularis com una pàgina dinàmica, usant en cada cas un script més una plantilla.</p>
+		<ol>
+			<li>Fes un formulari que demani dos nombres. El formulari ha de ser processat retornant finalment com a simple text el resultat de sumar els dos nombres. Gestiona els casos d&rsquo;error més evidents (nombres absents o malformats), presentant reiteradament el formulari fins que l&rsquo;usuari els superi tots.</li>
+			<li>Fes un formulari que, en ser processat, si algun dels camps del formulari està buit es torni a torni a mostrar  però conservant els valors dels camps que sí tenien contingut correcte. En rebre tots els camps correctament cal retornar una resposta mostrant els valors rebuts (en una primera versió retorna una simple cadena de text). Estructura general de l&rsquo;script:
+			<ol>
+				<li>Si el mètode és <code>GET</code>&hellip;</li>
+				<li>&hellip;retornar el resultat de cridar a la plantilla.</li>
+				<li>Si el mètode és <code>POST</code>&hellip;</li>
+				<li>&hellip;verificar que hem rebut els camps obligatoris</li>
+				<li>&nbsp;&nbsp;&nbsp;&nbsp;&hellip;i si no els hem rebut tornar a cridar a la plantilla conservant els valors del camps que sí hem rebut</li>
+				<li>&nbsp;&nbsp;&nbsp;&nbsp;&hellip;i si els hem rebut tots retornar resultat (simple text o pàgina)</li>
+			</ol>
+			</li>
+		</ol>
+
+		</body>
+		</html>
+		<!--
+vim:sw=2:ts=2:nowrap
+-->

@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ca" lang="ca">
+	<head>
+		<title>Gestionar les connexions a la base de dades</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<style type="text/css">body{font-family: sans-serif;}</style>
+	</head>
+	<body>
+		<!-- title -->
+		<h1>Gestionar les connexions a la base de dades</h1>
+		<p>MP9UF1A3T1</p>	<!-- id -->
+		<!-- description -->
+		<p>Persistència de dades entre diferents connexions.</p>
+
+		<!-- body -->
+
+		<h2>Persistència de dades amb <cite>Python</cite></h2>
+		<p>La forma més senzilla amb Python de desar qualsevol tipus d&rsquo;objecte en disc, a fi de recuperar les dades en futures execucions del mateix programa, és amb el mòdul <code>shelve</code>. De forma &ldquo;màgica&rdquo; podem desar cadenes, nombres, llistes, diccionaris&hellip; i tractar les dades en disc com si es tractés d&rsquo;un simple diccionari en memòria RAM. Aquest és un exemple de com usar aquest peculiar tipus de diccionari:</p>
+		<pre>
+&gt;&gt;&gt; d = shelve.open("/var/tmp/d.db", writeback=True)
+&gt;&gt;&gt; d["a"]=range(10)
+&gt;&gt;&gt; d["b"]=range(10)
+&gt;&gt;&gt; d["a"].insert(0, 77)
+&gt;&gt;&gt; d.close()
+# en el que podria ser una nova sessió de treball
+&gt;&gt;&gt; d = shelve.open("/var/tmp/d.db", writeback=True)
+&gt;&gt;&gt; d["a"]
+[77, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</pre>
+
+		<h2>Directoris temporals privats</h2>
+		<p>Recentment Fedora ha incorporat el concepte de <cite>directoris temporals privats</cite>, el que provoca que per defecte alguns serveix no usin els directoris temporals habituals. Per fer que el servidor Web recuperi els directoris tradicional cal fer això:</p>
+		<ul>
+			<li>Copiar <code>/usr/lib/systemd/system/httpd.service</code> a <code>/etc/systemd/system</code>.</li>
+			<li>Editar <code>/etc/systemd/system/httpd.service</code> deixan&rsquo;t la directiva <code>PrivateTmp=false</code> com aquí es mostra.</li>
+			<li>Executar les ordres:
+			<pre>
+	# systemctl --system daemon-reload
+	# systemctl restart httpd.service</pre>
+			</li>
+		</ul>
+		<p>Alternativament podriem no usar <code>/var/tmp</code> i substituir en tot el codi aquesta ruta per una diferent, d&rsquo;un directori creat per nosaltres amb permisos apropiats per l&rsquo;usuari <code>apache</code>.</p>
+
+		<h2>Sessions</h2>
+		<p>Una de les aplicacions més comuns de les bases de dades en disc és ajudar a implementar el concepte de <i>sessió</i>. El protocol HTTP es diu que és <i>stateless</i> (sense estat): això vol dir que no hi ha cap forma de relacionar una petició amb altres peticions anteriors, ni compartir per tant dades entre diferents pàgines. Combinant les galetes amb una base de dades és possible superar aquesta limitació, permetent compartir dades entre diferents pàgines. L&rsquo;objectiu és fer això de la forma més transparent possible, i per això hem creat en una nova versió del mòdul <a href="aux/session.py">session.py</a> la funció <code>load</code>, de la que copiem a continuació un fragment:</p>
+
+		<pre>_SESSIONS = "/var/tmp/sessions"
+def load():
+  ...
+  cookies = request_cookies()
+  if cookies is not None and "SID" in cookies:
+    file_name = _SESSIONS + "/" + cookies["SID"] + ".db"
+    data = shelve.open(file_name, writeback=True)
+    atexit.register(data.close)
+    return data
+  else:
+    sid = uniqueID()
+    file_name = _SESSIONS + "/" + sid + ".db"
+    data = shelve.open(file_name, writeback=True)
+    atexit.register(data.close)
+    data["SID"] = sid
+    return data</pre>
+
+		<p>Aquesta funció retorna un diccionari <i>màgic</i>, que cada vegada que es torni a executar l&rsquo;script, pel mateix usuari i navegador, estarà disponible pel seus us. En el moment en que l&rsquo;usuari tanqui totes les finestres del navegador el diccionari deixarà d&rsquo;estar disponible. Tens un exemple de com fer servir aquest mòdul en l&rsquo;script <a href="aux/session-pages.py">session-pages.py</a>.</p>
+
+		<h2>Enllaços recomanats</h2>
+		<ul>
+			<li>Mòdul <code>shelve</code> en <cite>The Python Standard Library</cite></li>
+		</ul>
+
+		<h2>Pràctiques</h2>
+		<ul>
+			<li>Prova el CGI <a href="aux/session-pages.py">session-pages.py</a>.</li>
+			<li>Fes un script CGI que conservi la data d&rsquo;inici de la sessió i la de la darrera visita.</li>
+			<li>Amb una galeta de nom <code>PID</code> implementa una base de dades per conservar dades d&rsquo;un usuari entre diferents sessions (per exemple, per 3 mesos).</li>
+			<li>Fes un script del shell per executar amb <code>cron</code> que faci net de les sessions caducades (sense us en un cert temps). Fes això sense que calgui usar el compte de l&rsquo;administrador.</li>
+		</ul>
+
+	</body>
+</html>
+<!--
+vim:sw=2:ts=2:nowrap
+-->

@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ca" lang="ca">
+	<head>
+		<title>Configurar l&rsquo;entorn de treball</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<style type="text/css">body{font-family: sans-serif;}</style>
+	</head>
+	<body>
+		<!-- title -->
+		<h1>Configurar l&rsquo;entorn de treball</h1>
+		<p>MP9UF2A3T1</p>	<!-- id -->
+		<!-- description -->
+		<p>Configuració de GitHub</p>
+
+		<!-- body -->
+
+		<h2>Rèplica de repositoris simultàniament a GitLab i GitHub</h2>
+		<p>El repositori de <cite>Git</cite> que ja tens replicat a <cite>GitLab</cite>, també ara el replicarem a <cite>GitHub</cite>. Les ordres de <cite>Git</cite> que et caldrà usar, per la configuració inicial, són aquestes (consulta la seva documentació):</p>
+		<ul>
+			<li><code>git remote add...</code></li>
+			<li><code>git push...</code></li>
+			<li><code>git remote -v</code></li>
+		</ul>
+		<p>Ara el teu repositori local tindrà dos <i>remotes</i>, pel que en les ordres anteriors hi haurà ocasions en les que li hauràs de dir quin usar.</p>
+
+		<h2>Enllaços recomanats</h2>
+		<ul>
+			<li><a href="https://github.com/">GitHub</a></li>
+		</ul>
+
+		<h2>Pràctiques</h2>
+		<p>Aquesta pràctica continua configurant i millorant el teu repositori de preparació de documents: no has de fer cap de nou! Recorda que el repositori consta de diversos documents <cite>MarkDown</cite>, una plantilla de <cite>Pandoc</cite> i un script per generar els documents XHTML.</p>
+		<ul>
+			<li>Crea un compte a <cite>GitHub</cite>.</li>
+			<li>Aprofita la clau que has fet anteriorment amb <code>ssh-keygen</code> i usa-la per configurar l&rsquo;accés a <cite>GitHub</cite>.</li>
+			<li>Crea un nou repositori a <cite>GitHub</cite>, sense inicialitzar-lo de cap forma, i afegeix un nou <i>remote</i> al teu repositori local amb ordres similars a aquestes
+			<pre><code>	git remote add GITHUB git@github.com:USERNAME/REPO.git
+	git push -u GITHUB master</code></pre></li>
+			<li>Executada en el directori del repositori, que fa aquesta ordre?
+			<pre><code>	for r in $(git remote); do git push $r master; done</code></pre></li>
+		</ul>
+
+	</body>
+</html>
+<!--
+vim:sw=2:ts=2:nowrap
+-->

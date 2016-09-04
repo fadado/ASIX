@@ -1,0 +1,67 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ca" lang="ca">
+	<head>
+		<title>Editar continguts amb MarkDown</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<style type="text/css">body{font-family: sans-serif;}</style>
+	</head>
+	<body>
+		<!-- title -->
+		<h1>Editar continguts amb <cite>MarkDown</cite></h1>
+		<p>MP9UF2A1T1</p>	<!-- id -->
+		<!-- description -->
+		<p>Edició de continguts amb MarkDown</p>
+
+		<!-- body -->
+
+		<h2>Us de simple text amb convencions estructurals</h2>
+		<p>Una alternativa pels autors que han de crear documents XHTML o <cite>DocBook</cite> i volen concentrar-se en els continguts i no haver de pensar en el marcat són els sistemes fonamentats en crear simple text però amb convencions estructurals. Alguns dels més coneguts són aquests:</p>
+
+		<ul>
+			<li><a href="http://daringfireball.net/projects/markdown/syntax">Markdown</a></li>
+			<li><a href="http://www.methods.co.nz/asciidoc/">AsciiDoc</a></li>
+			<li><a href="http://docutils.sourceforge.net/rst.html">reStructuredText</a></li>
+			<li><a href="http://johnmacfarlane.net/pandoc/README.html">Pandoc</a></li>
+		</ul>
+
+		<p>El més senzill i popular d&rsquo;aquests sistemes és <cite>Markdown</cite>, que es pot resumir en una sola pàgina com ara aquestes:</p>
+		<ul>
+			<li><a href="http://packetlife.net/media/library/16/Markdown.pdf">packetlife.net</a> (<a href="aux/Markdown-1.pdf">local</a>)</li>
+			<li><a href="http://stationinthemetro.com/wp-content/uploads/2013/04/Markdown_Cheat_Sheet_v1-1.pdf">Mark Boszko</a> (<a href="aux/Markdown-2.pdf">local</a>)</li>
+		</ul>
+		<p>Atenció: existeixen moltes variants de <cite>Markdown</cite>, que afegeixen diferents tipus d&rsquo;ampliacions (com ara la utilitzada a <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet">GitHub</a>); nosaltres treballarem sempre que poguem amb la versió original, la més simple de totes.
+		Una important influència en el disseny de <cite>Markdown</cite> la va proporcionar <a href="http://www.aaronsw.com/weblog/001189">Aaron Swartz</a>, famós hacker i <a href="http://www.aaronsw.com/">activista</a> per les llibertats a Internet.</p>
+		<p>Per convertir fitxers <cite>Markdown</cite> a XHTML existeix moltes eines. La més completa és <a href="http://johnmacfarlane.net/pandoc/README.html">Pandoc</a>, i és la que farem servir.</p>
+
+
+		<h2>Pràctiques</h2>
+		<ol>
+				<li>Instal·la el paquet <code>pandoc</code>:
+				<pre><code>	MANAGER=yum
+	which dnf &gt;/dev/null 2&gt;&amp;1 &amp;&amp; MANAGER=dnf
+	sudo $MANAGER -y install pandoc texlive</code></pre>
+				</li>
+				<li>Utilitzant <code>pandoc</code> converteix qualsevol exemple de MarkDown a HTML, PDF, ODT, etc.</li>
+				<li>Instal·la <code>git</code>:
+				<pre><code>	MANAGER=yum
+	which dnf &gt;/dev/null 2&gt;&amp;1 &amp;&amp; MANAGER=dnf
+	sudo $MANAGER -y install git gitg meld</code></pre>
+				</li>
+				<li>Explora el repositori de <cite>GitHub</cite> <a href="https://github.com/fadado/gitet">fadado/gitet</a>. En particular, fes una còpia local tal com s&rsquo;indica més avall i visita la presentació sobre <cite>MarkDown</cite> del directori <code>slides</code>.</li>
+				<li>Explora el repositori de <cite>GitHub</cite> <a href="https://github.com/fadado/literate">fadado/literate</a>.</li>
+		</ol>
+
+		<p>Per tenir còpies locals dels repositoris de <cite>Git</cite> mencionats has de instal·lar <code>git</code> i clonar els repositoris:</p>
+		<pre><code>	mkdir ~/GitHub	# per exemple
+	cd ~/GitHub
+	git clone https://github.com/fadado/gitet.git
+	git clone https://github.com/fadado/literate.git</code></pre>
+
+		<p>Explorar els repositoris ho pots fer a <cite>GitHub</cite>, i en les còpies locals amb <code>gitg</code>, l&rsquo;explorador de fitxers del sistema, etc.</p>
+
+	</body>
+</html>
+<!--
+vim:sw=2:ts=2:nowrap
+-->

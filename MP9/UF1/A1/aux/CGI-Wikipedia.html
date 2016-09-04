@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="es" dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Interfaz de entrada común - Wikipedia, la enciclopedia libre</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<style type="text/css" media="all">a.new,#quickbar a.new{color:#ba0000}
+
+/* cache key: eswiki:resourceloader:filter:minify-css:3:f2a9127573a22335c2a9102b208c73e7 */</style><link rel="stylesheet" href="http://bits.wikimedia.org/es.wikipedia.org/load.php?debug=false&amp;lang=es&amp;modules=user&amp;only=styles&amp;printable=1&amp;skin=vector&amp;version=19700101T000001Z" type="text/css" media="all" />
+
+<body class="mediawiki ltr ns-0 ns-subject page-Interfaz_de_entrada_común skin-vector">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<!-- content -->
+		<div id="content">
+			<a id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
+						<!-- sitenotice -->
+			<div id="siteNotice"><!-- centralNotice loads here --></div>
+			<!-- /sitenotice -->
+						<!-- firstHeading -->
+			<h1 id="firstHeading" class="firstHeading">Interfaz de entrada común</h1>
+			<!-- /firstHeading -->
+			<!-- bodyContent -->
+			<div id="bodyContent">
+				<!-- tagline -->
+				<div id="siteSub">De Wikipedia, la enciclopedia libre</div>
+				<!-- /tagline -->
+				<!-- subtitle -->
+				<div id="contentSub"></div>
+				<!-- /subtitle -->
+																<!-- jumpto -->
+				<div id="jump-to-nav">
+					Saltar a <a href="#mw-head">navegación</a>,
+					<a href="#p-search">búsqueda</a>
+				</div>
+				<!-- /jumpto -->
+								<!-- bodytext -->
+				<p><b>Interfaz de entrada común</b> (en <a href="/wiki/Idioma_ingl%C3%A9s" title="Idioma inglés">inglés</a> <i>Common Gateway Interface</i>, abreviado <b>CGI</b>) es una importante tecnología de la <a href="/wiki/World_Wide_Web">World Wide Web</a> que permite a un cliente (<a href="/wiki/Navegador_web">navegador web</a>) solicitar datos de un programa ejecutado en un <a href="/wiki/Servidor_web">servidor web</a>. CGI especifica un <a href="/wiki/Norma_(tecnolog%C3%ADa)" title="Norma (tecnología)">estándar</a> para transferir datos entre el cliente y el programa. Es un mecanismo de comunicación entre el servidor web y una aplicación externa cuyo resultado final de la ejecución son objetos <a href="/wiki/MIME" class="mw-redirect" title="MIME">MIME</a>. Las aplicaciones que se ejecutan en el servidor reciben el nombre de CGIs.</p>
+<p>Las aplicaciones CGI fueron una de las primeras prácticas de crear <a href="/wiki/Contenido_din%C3%A1mico">contenido dinámico</a> para las <a href="/wiki/P%C3%A1gina_web" title="Página web">páginas web</a>. En una aplicación CGI, el <a href="/wiki/Servidor">servidor</a> web pasa las solicitudes del <a href="/wiki/Cliente_(inform%C3%A1tica)" title="Cliente (informática)">cliente</a> a un programa externo. Este programa puede estar escrito en cualquier lenguaje que soporte el servidor, aunque por razones de portabilidad se suelen usar <a href="/wiki/Lenguaje_interpretado" title="Lenguaje interpretado" class="mw-redirect">lenguajes de script</a>. La salida de dicho programa es enviada al cliente en lugar del archivo estático tradicional.</p>
+<p>CGI ha hecho posible la implementación de funciones nuevas y variadas en las páginas web, de tal manera que esta interfaz rápidamente se volvió un estándar, siendo implementada en todo tipo de servidores web.</p>
+<table id="toc" class="toc">
+<tr>
+<td>
+<div id="toctitle">
+<h2>Contenido</h2>
+</div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Forma_de_actuaci.C3.B3n_de_CGI"><span class="tocnumber">1</span> <span class="toctext">Forma de actuación de CGI</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Programaci.C3.B3n_de_un_CGI"><span class="tocnumber">2</span> <span class="toctext">Programación de un CGI</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Intercambio_de_informaci.C3.B3n:_Variables_de_entorno"><span class="tocnumber">3</span> <span class="toctext">Intercambio de información: Variables de entorno</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Tipos_habituales_de_CGIs"><span class="tocnumber">4</span> <span class="toctext">Tipos habituales de CGIs</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Escenario_de_activaci.C3.B3n_de_un_CGI"><span class="tocnumber">5</span> <span class="toctext">Escenario de activación de un CGI</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#V.C3.A9ase_tambi.C3.A9n"><span class="tocnumber">6</span> <span class="toctext">Véase también</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#Bibliograf.C3.ADa"><span class="tocnumber">7</span> <span class="toctext">Bibliografía</span></a></li>
+<li class="toclevel-1 tocsection-8"><a href="#Enlaces_externos"><span class="tocnumber">8</span> <span class="toctext">Enlaces externos</span></a></li>
+</ul>
+</td>
+</tr>
+</table>
+<h2><span class="mw-headline" id="Forma_de_actuaci.C3.B3n_de_CGI">Forma de actuación de CGI</span></h2>
+<p>A continuación se describe la forma de actuación de un CGI de forma esquemática:</p>
+<ol>
+<li>En primera instancia, el servidor recibe una petición (el cliente ha activado un <a href="/wiki/URL" class="mw-redirect" title="URL">URL</a> que contiene el CGI), y comprueba si se trata de una invocación de un CGI.</li>
+<li>Posteriormente, el servidor prepara el entorno para ejecutar la aplicación. Esta información procede mayoritariamente del cliente.</li>
+<li>Seguidamente, el servidor ejecuta la aplicación, capturando su <a href="/w/index.php?title=Salida_est%C3%A1ndar&amp;action=edit&amp;redlink=1" class="new" title="Salida estándar (aún no redactado)">salida estándar</a>.</li>
+<li>A continuación, la aplicación realiza su función: como consecuencia de su actividad se va generando un objeto <a href="/wiki/MIME" class="mw-redirect" title="MIME">MIME</a> que la aplicación escribe en su salida estándar.</li>
+<li>Finalmente, cuando la aplicación finaliza, el servidor envía la información producida, junto con información propia, al cliente, que se encontraba en estado de espera. Es responsabilidad de la aplicación anunciar el tipo de objeto MIME que se genera (campo CONTENT_TYPE).</li>
+</ol>
+<h2><span class="mw-headline" id="Programaci.C3.B3n_de_un_CGI">Programación de un CGI</span></h2>
+<p>Un programa CGI puede ser escrito en cualquier lenguaje de programación que produzca un fichero ejecutable. Entre los lenguajes más habituales se encuentran: <a href="/wiki/Lenguaje_de_programaci%C3%B3n_C" title="Lenguaje de programación C" class="mw-redirect">C</a>, <a href="/wiki/C%2B%2B">C++</a>, <a href="/wiki/Perl">Perl</a>, <a href="/wiki/Lenguaje_de_programaci%C3%B3n_Java" title="Lenguaje de programación Java" class="mw-redirect">Java</a>, <a href="/wiki/Visual_Basic">Visual Basic</a>... No obstante, debido a que el CGI recibe los parámetros en forma de texto será útil un lenguaje que permita realizar manipulaciones de las cadenas de caracteres de una forma sencilla, como por ejemplo Perl. Perl es un lenguaje interpretado que permite manipulaciones sencillas de ficheros y textos, así como la extracción y manipulación de cadenas de caracteres, unidas a unas búsquedas rápidas y fáciles.</p>
+<h2><span class="mw-headline" id="Intercambio_de_informaci.C3.B3n:_Variables_de_entorno">Intercambio de información: Variables de entorno</span></h2>
+<p>Variables de entorno que se intercambian de cliente a CGI:</p>
+<ol>
+<li><b>QUERY_STRING</b>: Es la cadena de entrada del CGI cuando se utiliza el método GET sustituyendo algunos símbolos especiales por otros. Cada elemento se envía como una pareja Variable=Valor. Si se utiliza el método POST esta variable de entorno está vacía.</li>
+<li><b>CONTENT_TYPE</b>: Tipo MIME de los datos enviados al CGI mediante POST. Con GET está vacía. Un valor típico para esta variable es: <i>Application/X-www-form-urlencoded</i>.</li>
+<li><b>CONTENT_LENGTH</b>: Longitud en bytes de los datos enviados al CGI utilizando el método POST. Con GET está vacía.</li>
+<li><b>PATH_INFO</b>: Información adicional de la ruta (el "path") tal y como llega al servidor en el URL.</li>
+<li><b>REQUEST_METHOD</b>: Nombre del método (GET o POST) utilizado para invocar al CGI.</li>
+<li><b>SCRIPT_NAME</b>: Nombre del CGI invocado.</li>
+<li><b>SERVER_PORT</b>: Puerto por el que el servidor recibe la conexión.</li>
+<li><b>SERVER_PROTOCOL</b>: Nombre y versión del protocolo en uso. (Ej.: <i>HTTP/1.0 o 1.1</i>)</li>
+</ol>
+<p>Variables de entorno que se intercambian de servidor a CGI:</p>
+<ol>
+<li><b>SERVER_SOFTWARE</b>: Nombre y versión del software servidor de www.</li>
+<li><b>SERVER_NAME</b>: Nombre del servidor.</li>
+<li><b>GATEWAY_INTERFACE</b>: Nombre y versión de la interfaz de comunicación entre servidor y aplicaciones CGI/1.12</li>
+</ol>
+<h2><span class="mw-headline" id="Tipos_habituales_de_CGIs">Tipos habituales de CGIs</span></h2>
+<ol>
+<li><b>Contador de accesos</b>: Cuenta el número de veces que se ha solicitado una página determinada. Se guarda el valor en un fichero. Cada vez que se invoca se incrementa, para su posterior visualización.</li>
+<li><b>Buscador</b>: Localiza páginas que contengan los términos especificados. Utiliza una tabla que enumera las palabras y para cada una especifica las páginas dónde se encuentra.</li>
+<li><b>Correo</b>: Obtiene información estructurada del usuario.</li>
+<li><b>Contribuciones</b>: Permite añadir enlaces o anotaciones a una página, indicando la procedencia de la adición.</li>
+<li><b>Estadísticas de uso</b>: Presenta información sobre los acontecimientos producidos en el servidor de WWW. El servidor mantiene un registro (log) de los acontecimientos que se han producido.</li>
+<li><b>Administración remota del servidor</b>: Permite interactuar con el servidor desde WWW. Invoca los programas que controlan o modifican el comportamiento del servidor.</li>
+</ol>
+<h2><span class="mw-headline" id="Escenario_de_activaci.C3.B3n_de_un_CGI">Escenario de activación de un CGI</span></h2>
+<ol>
+<li><b>Situación inicial:</b> El cliente solicita la invocación de un CGI, bien de manera involuntaria (se envía únicamente información de cabecera) o bien de forma explícita (formulario). En el formulario hay parejas del tipo variable=valor. El método de http especificado en el formulario puede ser GET o POST.<br />
+En el servidor en cambio, el fichero de configuración especifica un directorio cgi-bin con capacidad para ejecutar programas. Puede haber otros ficheros y otros programas a los que puede acceder tanto el servidor como sus CGIs.</li>
+<li><b>El cliente pulsa el botón de tipo SUBMIT en el formulario:</b> Dependiendo del método se construye un mensaje que contiene la información del formulario en la cabecera (para GET) o en el cuerpo del mensaje (para POST). El mensaje se envía al servidor, añadiendo información propia del cliente que el propio navegador conoce. El cliente queda a la espera de recibir un objeto MIME como respuesta del servidor.</li>
+<li><b>El servidor recibe el mensaje de petición o pone en marcha el programa CGI:</b> El servidor compara la información del mensaje con la que conoce de su fichero de configuración, determinando así la validez de la petición. En realidad el servidor se pregunta: ¿Existe esta URL? ¿Se tienen todos los permisos?.<br />
+Prepara el entorno añadiendo información propia a la comunicada por el navegador del cliente. Si es GET, la información procedente del formulario (parejas variable=valor) se definen en QUERY_STRING. El servidor posteriormente pone en funcionamiento el CGI. Si se trata de POST, la información se coloca en la entrada estándar del CGI. Finalmente se inicia la ejecución del CGI y el servidor espera a que ésta acabe.</li>
+<li><b>Ejecución del CGI:</b> El CGI accede a las variables de entorno. Comprueba o adapta el funcionamiento según el método GET o POST establecido en REQUEST_METHOD: si se tratara de GET, la información estará en QUERY_STRING, mientras que si se trata de POST, se tomará la entrada estándar.</li>
+</ol>
+<p>Se construye un objeto MIME que se enviará al cliente. La primera escritura deberá anunciar el tipo de objeto: CONTENT_TYPE: tipo/subtipo.</p>
+<ol>
+<li><b>El servidor vuelve al trabajo:</b> El servidor añade a su respuesta del CGI una cabecera indicando su tamaño (CONTENT_LENGTH).</li>
+<li><b>El cliente recibe la respuesta:</b> Interpretación de la respuesta. Visualización con el navegador.</li>
+</ol>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ca" lang="ca">
+	<head>
+		<title>Combinar documents XML amb XInclude</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<style type="text/css">body{font-family: sans-serif;}</style>
+	</head>
+	<body>
+		<!-- title -->
+		<h1>Combinar documents XML amb <cite>XInclude</cite></h1>
+		<p>MP4UF1A1T5</p>	<!-- id -->
+		<!-- description -->
+		<p>&ldquo;Transclusió&rdquo; de documents XML amb <cite>XInclude</cite></p>
+
+		<!-- body -->
+
+		<h2><cite>XInclude</cite></h2>
+		<ul>
+			<li>Els documents inclosos amb entitats generals externes, entre altres dificultats, no són	validables. Amb <cite>XInclude</cite> aquest problema desapareix.</li>
+			<li>Per fer servir <cite>XInclude</cite> cal declarar el seu espai de noms, en forma d&rsquo;un atribut especial: <code>xmlns:xi="http://www.w3.org/2001/XInclude"</code>. Això es pot fer en qualsevol element, encara que és habitual fer-ho en l&rsquo;element arrel.</li>
+			<li>L&rsquo;element <code>xi:include</code> permet incloure altres fitxers: <code>&lt;xi:include href="URL"/&gt;</code>.</li>
+		</ul>
+		<p>L&rsquo;ordre <code>xmllint</code>(1) por ser usada per expandir documents que facin servir <cite>XInclude</cite>.</p>
+
+		<h2>Enllaços recomanats</h2>
+		<ul>
+			<li><a href="http://en.wikipedia.org/wiki/Transclusion">Wikipedia: Transclusion</a></li>
+			<li><a href="http://www.zvon.org/xxl/XIncludeTutorial/Output/contents.html">XInclude Tutorial</a></li>
+			<li><a href="http://www.xml.com/pub/a/2002/07/31/xinclude.html">Using XInclude</a></li>
+		</ul>
+
+		<h2>Pràctiques</h2>
+		<ul>
+			<li>Practica els tutorials citats en la llista d&rsquo;enllaços.</li>
+			<li>Prenent com a base el catàleg de CDs del tutorial d&rsquo;XML, prepara un document XML que utilitzi <cite>XInclude</cite> per combinar diferents fitxers XML.</li>
+			<!--<li>(<strong>Difícil</strong>) Verifica que els documents inclosos amb entitats generals externes no poden tenir declaració de tipus de document i que la seva declaració XML no pot tenir el valor <i>standalone</i> (problemes que desapareixen en fer servir <cite>XInclude</cite>)</li>-->
+		</ul>
+
+	</body>
+</html>
+<!--
+vim:sw=2:ts=2:nowrap
+-->

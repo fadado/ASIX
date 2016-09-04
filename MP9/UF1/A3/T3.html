@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ca" lang="ca">
+	<head>
+		<title>Dissenyar la interfície d’usuari</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<style type="text/css">body{font-family: sans-serif;}</style>
+	</head>
+	<body>
+		<!-- title -->
+		<h1>Dissenyar la interfície d’usuari</h1>
+		<p>MP9UF1A3T3</p>	<!-- id -->
+		<!-- description -->
+		<p>Disseny de formularis amb HTML</p>
+
+		<!-- body -->
+
+		<h2>Llibre de visites</h2>
+		<p>Ara que disposem d&rsquo;un mòdul per gestionar la base de dades de llibre de visites ja podem implementar la pàgina web que l&rsquo;ha de mostrar. Aquesta pàgina farà servir una plantilla de <cite>Genshi</cite> i un script CGI. En crear aquests fitxers ha de tenir en compte aquests aspectes:</p>
+		<ul>
+			<li>L&rsquo;adreça (URL) de la pàgina a visitar ha de ser la del script.</li>
+			<li>Els visitants no poden saber que plantilla i script existeixen en fitxers separats.</li>
+			<li>En la pàgina a generar mostra primer les entrades del llibre de visites i al final un formulari per inserir noves entrades.</li>
+			<li>Tots els camps del formulari han de ser obligatoris.</li>
+			<li>Valida el contingut dels camps, per exemple verificant que l&rsquo;adreça de correu te el format apropiat. Per fer això et pot servir una expressió regular com la que mostra el següent exemple:
+				<pre>import re
+
+EMAIL_RE = re.compile(r"^[\S]+@[\S]+\.[\S]+$")
+
+def valid_email(email):
+    return bool(EMAIL_RE.match(email))
+				</pre>
+			</li>
+		</ul>
+
+		<h2>Enllaços recomanats</h2>
+		<ul>
+			<li>En la documentació local de <a href="file:///usr/share/doc/python-genshi-0.7/doc/xml-templates.html">Genshi</a>: <i>Genshi XML Template Language</i>.</li>
+		</ul>
+
+		<h2>Pràctiques</h2>
+		<p><b>Atenció</b>: et farà falta vigilar els permisos del fitxer de la base de dades per que tant tu com l&rsquo;usuari <code>apache</code> el pogueu modificar.</p>
+		<ul>
+			<li>Fes la versió inicial del llibre de visites: una sola pàgina (script més plantilla de <cite>Genshi</cite>) que mostri totes les entrades del llibre de visites i al final un formulari per afegir de noves.</li>
+			<li>Fes una versió <i>paginada</i> del llibre de visites (mostra 10 entrades del llibre per pàgina).</li>
+			<li>Organitza el llibre de visites en diferents pàgines: una per mostrar el contingut (paginat); una per afegir una nova entrada. Cal oferir una navegació correcta al visitant: tornar a la pàgina inicial; cancel·lar l&rsquo;edició de noves entrades; visitar les entrades <i>paginades</i>, etc.</li>
+			<li>Ofereix a l&rsquo;usuari un enllaç o botó per tornar a la pàgina original, sigui aquesta quina sigui.</li>
+		</ul>
+
+	</body>
+</html>
+<!--
+vim:sw=2:ts=2:nowrap
+-->

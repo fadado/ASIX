@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ca" lang="ca">
+	<head>
+		<title>Aplicar fulls d&rsquo;estil a documents XHTML</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<style type="text/css">body{font-family: sans-serif;}</style>
+	</head>
+	<body>
+		<!-- title -->
+		<h1>Aplicar fulls d&rsquo;estil a documents XHTML</h1>
+		<p>MP4UF1A3T5</p>	<!-- id -->
+		<!-- description -->
+		<p>Disseny de la presentació amb CSS</p>
+
+		<!-- body -->
+
+		<h2>Funció dels fulls d&rsquo;estil</h2>
+		<ul>
+			<li>Els fulls d&rsquo;estil permeten separar contingut i presentació (<a href="http://www.csszengarden.com/">http://www.csszengarden.com/</a>).</li>
+			<li>Els fulls d&rsquo;estil permeten <a href="aux/soc.png">separar responsabilitats</a> entre autor, editor i grafista.</li>
+			<li>Disposar de full d&rsquo;estil fa que el marcat HTML pugui ser purament semàntic.</li>
+		</ul>
+
+		<h2>Estructura d&rsquo;un full d&rsquo;estil CSS</h2>
+		<ul>
+			<li>Consta de 1 o més regles, i comentaris com els del llenguatge C (<code>/* &hellip; */</code>).</li>
+			<li>Cada regla consta d&rsquo;un selector i una llista de propietats.</li>
+			<li>Cada propietat consta d&rsquo;una parella nom/valor.</li>
+			<li>Exemple de regla:
+			<pre>p {
+	font-family: "Liberation serif", "Times New Roman", serif;
+	font-size: 20px;
+}</pre>
+			</li>
+		</ul>
+
+		<h2>Enllaç entre HTML i CSS</h2>
+		<ul>
+			<li>Forma preferida:
+				<pre>&lt;link rel="stylesheet" href="style.css" type="text/css"/&gt;</pre>
+			</li>
+			<li>Alternativa: element HTML <code>style</code>.</li>
+			<li>Alternativa: atribut HTML <code>style</code>.</li>
+		</ul>
+
+		<h2>Selectors principals</h2>
+		<ul>
+			<li>Un element: <code>p {&hellip;</code></li>
+			<li>Classe (atribut HTML <code>class</code>): <code>.important {&hellip;</code></li>
+			<li>Identificador únic (atribut HTML <code>id</code>): <code>#menu {&hellip;</code></li>
+			<li>Selectors agrupats: <code>p, div {&hellip;</code></li>
+			<li>Selectors contextuals: <code>em b {&hellip;</code></li>
+		</ul>
+
+		<h2>Eines d&rsquo;edició i estudi per CSS</h2>
+		<ul>
+			<li>Consola d&rsquo;errors de <cite>Firefox</cite> (<code>Ctrl+Shift+J</code>).</li>
+			<li><a href="http://getfirebug.com/">Firebug</a>, plugin per <cite>Firefox</cite>.</li>
+			<li><a href="http://jigsaw.w3.org/css-validator/">CSS Validation Service</a>.</li>
+		</ul>
+
+		<h2>Enllaços recomanats</h2>
+		<ul>
+			<li><a href="http://www.w3schools.com/css/">CSS Tutorial</a></li>
+			<li><a href="http://htmlhelp.com/distribution/wdgcss.tar.gz">WDG CSS 1 Guide</a> (<a href="aux/wdgcss.tar.gz">local</a>, <a href="http://htmlhelp.com/es/reference/css/">en espanyol</a>)</li>
+			<li><a href="http://www.explainth.at/downloads/cssquick.pdf">CSS 2.1 Quick Reference Card</a> (<a href="aux/cssquick.pdf">local</a>)</li>
+			<li><a href="http://es.lipsum.com/">Text llatí (Lorem Ipsum)</a></li>
+		</ul>
+		<p><strong>Molt important:</strong> porta impressa a classe la <cite>CSS 2.1 Quick Reference Card</cite>.</p>
+
+		<h2>Pràctiques</h2>
+		<ul>
+			<li>Instal·la a <code>/usr/local/doc</code> la guia CSS del WDG (i enllaça la pàgina principal en els <i>bookmarks</i> del nevegador).</li>
+			<li>Practica el tutorial citat en els enllaços recomanats.</li>
+			<li>En la guia del WDG estudia les seccions &ldquo;<cite>Estructura y reglas de CSS</cite>&rdquo; i &ldquo;<cite>Enlazando Hojas de estilo con HTML</cite>&rdquo;.</li>
+			<li>Instal·la <cite>Firebug</cite> i fes-lo servir per inspeccionar el codi de la web <a href="http://es.wikipedia.org/">http://es.wikipedia.org/</a>.</li>
+			<li>Crea al teu gust un full d&rsquo;estil <i>per defecte</i> (et pots inspirar en <a href="http://www.w3.org/TR/REC-CSS1/#appendix-a">Sample style sheet for HTML 2.0</a>).</li>
+			<li>Utilitza aquest <a href="http://meyerweb.com/eric/tools/css/reset/">reset stylesheet CSS</a> per anul·lar els estils per defecte del navegador abans de definir els teus. En els documents XHTML has de fer servir elements <code>link</code> separats per aquest full d&rsquo;estil i el teu propi.</li>
+			<li>Aquesta pràctica permet modificar la pantalla d&rsquo;inici de Fedora. Edita <code>/usr/share/gnome-shell/theme/gnome-shell.css</code>, concretament la regla per <code>#lockDialogGroup</code>, i verifica el resultat reiniciant la sessió del <cite>GNOME</cite>.</li>
+		</ul>
+
+	</body>
+</html>
+<!--
+vim:sw=2:ts=2:nowrap
+-->

@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ca" lang="ca">
+	<head>
+		<title>Processar formularis</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<style type="text/css">body{font-family: sans-serif;}</style>
+	</head>
+	<body>
+		<!-- title -->
+		<h1>Processar formularis</h1>
+		<p>MP4UF3A1T3</p>	<!-- id -->
+		<!-- description -->
+		<p>Programació d&rsquo;scripts</p>
+
+		<!-- body -->
+
+		<h2>Mòdul <code>cgi</code> de Python</h2>
+		<p>Per aquestes pràctiques usarem el mòdul <code>cgi</code> de Python, que facilita el processament de les dades que el script rep en les variables d&rsquo;entorn i la seva entrada estàndard. Aquest mòdul ofereix moltes funcionalitats, de les que tan sols farem ús d&rsquo;unes poques. Per començar cal usar aquestes:</p>
+
+		<ul>
+			<li>Seguim usant el servidor web com en anteriors activitats, i pots reaprofitar els formularis que ja has fet. Ara del que es tracta és de fer nous scripts per gestionar les dades del formulari.</li>
+			<li>Pots fer que els scripts sigui cridats en els formularis (atribut <code>action</code> de l&rsquo;element <code>form</code>), o fer-ho directament amb URLs com ara <code>http://localhost:8000/cgi-bin/test.py?a=1&amp;a=3&amp;b=8</code>.</li>
+			<li>Per ajudar a la depuració dels scripts usarem aquest codi:
+					<pre>import cgitb; cgitb.enable()</pre>
+			Una vegada depurats els errors comentarem aquesta línia per desactivar aquesta ajuda a la depuració.
+			</li>
+			<!--<li>Una tècnica alternativa de depuració, i que no depèn de cap mòdul, consisteix en executar aquests codi: <code>sys.stderr = sys.stdout</code>. Saps per que funciona?</li>-->
+			<li>Tots els scripts han de tenir un codi similar a aquest:
+					<pre>import cgi<br/>form = cgi.FieldStorage()</pre>
+			</li>
+			<li>L&rsquo;objecte retornat per <code>cgi.FieldStorage()</code> és similar a un diccionari, però té mètodes extra i poden faltar-li d&rsquo;altres.</li>
+			<li>Els mètodes extra d&rsquo;aquest objecte s&rsquo;agrupen en dos formes diferents de treballar:
+				<ul>
+					<li>Atribut <code>form["NOM-CAMP"].value</code> i mètode <code>form.getvalue("NOM-CAMP"[, default])</code>.</li>
+					<li>Mètodes <code>form.getfirst("NOM-CAMP"[, default])</code> i <code>form.getlist("NOM-CAMP")</code>.</li>
+				</ul>
+			</li>
+			<li>Tots els scripts han de tenir un codi similar a aquest, previ a qualsevol sortida a generar:
+				<pre>sys.stdout.write("Content-Type: text/plain; charset=UTF-8\r\n")<br/>sys.stdout.write("\r\n")</pre>
+			</li>
+		</ul>
+
+		<h2>Enllaços recomanats</h2>
+		<ul>
+			<li><a href="http://home.uchicago.edu/~gan/file/python.pdf">Python 2.5 Reference Card</a> (imprimeix en paper aquest document, i conserva una versió <a href="../../UF2/A2/aux/python-2-5.pdf">local</a>)</li>
+			<li><a href="http://rgruet.free.fr/">Python Quick Reference Card</a> (versió <a href="../../UF2/A2/aux/python-QR.pdf">local</a>)</li>
+			<li>Copia local de la <a href="file:///usr/share/doc/python-docs/html/index.html">Python v2.7 documentation</a> (paquet RPM <code>python-docs</code>)</li>
+			<li>Mòdul <code>cgi</code> en <cite>The Python Standard Library</cite></li>
+		</ul>
+
+		<h2>Pràctiques I</h2>
+		<ul>
+			<li>Còpia el fitxer <a href="aux/test.py">test.py</a> en el directori <code>cgi-bin</code> i visita&rsquo;l amb el navegador: què fa?</li>
+			<li>Visita aquest script amb alguns dels formularis realitzats anteriorment.</li>
+			<li>Estudia la documentació del mòdul <code>cgi</code>, especialment les propietats de l&rsquo;objecte retornat per <code>cgi.FieldStorage()</code>.</li>
+			<li>Prepara un formulari i modifica aquest script per explorar el serveis proporcionats per aquest object.</li>
+		</ul>
+
+		<h2>Pràctiques II</h2>
+		<p>Aquests exercicis demanen presentar diferents formularis, i han de ser processats per scripts que utilitzin el mòdul <code>cgi</code>.</p>
+		<ul>
+			<li>Calculadora de les quatre operacions bàsiques (+, &minus;, &times; i &divide;), a ser presentades en un selector desplegable: per defecte ha de fer sumes, i si no es proporcionen operands o aquests no es poden convertir al tipus <code>float</code> cal usar els valors neutres de l&rsquo;operació demanada. La resposta del script ha de ser un document HTML amb el resultat de l&rsquo;operació i un enllaç per tornar a la calculadora.</li>
+			<li>Formulari amb selector múltiple per comunitats autònomes espanyoles: cal respondre amb el <a href="http://es.wikipedia.org/wiki/Demograf%C3%ADa_de_Espa%C3%B1a#Distribuci.C3.B3n_de_la_poblaci.C3.B3n">nombre d&rsquo;habitants</a> de cada <a href="http://es.wikipedia.org/wiki/Comunidad_aut%C3%B3noma">comunitat</a> i la suma total dels mateixos (usa aquests <a href="http://es.wikipedia.org/wiki/ISO_3166-2:ES">codis</a> per identificar les comunitats en el formulari).</li>
+			<li>Formulari per fer login: si la contrasenya no és <i>correcte</i> es còpia com a resposta de nou el formulari.</li>
+			<li>Formulari per canvi de contrasenya: demanar dues vegades nova contrasenya i verificar que són iguals; en cas d&rsquo;error actuar com en el cas anterior.</li>
+		</ul>
+
+	</body>
+</html>
+<!--
+vim:sw=2:ts=2:nowrap
+-->

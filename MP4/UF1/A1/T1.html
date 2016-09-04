@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ca" lang="ca">
+	<head>
+		<title>Crear fitxers de text</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<style type="text/css">body{font-family: sans-serif;}</style>
+	</head>
+	<body>
+		<!-- title -->
+		<h1>Crear fitxers de text</h1>
+		<p>MP4UF1A1T1</p>	<!-- id -->
+		<!-- description -->
+		<p>Introducció als fitxers de text: tipus de final de línia, codificació de caràcters, etc.</p>
+
+		<!-- body -->
+
+		<h2>Codificació de text</h2>
+		<p>Els fitxers XML <strong>són</strong> fitxers de text. Caldrà per tant començar recordant i ampliant el que ja es coneix sobre aquest tema.</p>
+		<ul>
+			<li>Codificacions de caràcters més comunes: ASCII ⊆ ISO-8859-1 (latin1) ⊆ Unicode (UTF-8).</li>
+			<li>Caràcters imprimibles (32‥126, 160‥255) i de control (0‥31, 127).</li>
+			<li>Tipus de finals de línia: LF, CR, CR+LF.</li>
+			<li>Contingut de la variable d&rsquo;entorn LANG (per exemple, <code>en_US.utf8</code>).</li>
+			<li>Ordres útils: <code>dos2unix</code>(1), <code>unix2dos</code>(1), <code>iconv</code>(1), <code>convmv</code>(1), <code>strings</code>(1), <code>od</code>(1), <code>hexdump</code>(1).</li>
+		</ul>
+		<p>La convenció de mencionar ordres del shell en la forma <code>man</code>(1) indica el nom de l&rsquo;ordre i la secció del manual on està documentada. Per exemple, si ens interessa el format del fitxer d&rsquo;usuaris hem d&rsquo;escriure <code>man 5 passwd</code>.</p>
+
+		<h2>El shell com intèrpret d&rsquo;ordres</h2>
+		<ul>
+			<li>Metacaràcters: <code>|  &amp; ; ( ) &lt; &gt;</code> <i>espai tabulador</i></li>
+			<li>Expansió de paràmetres: <code>$P</code>, <code>${P}</code>, <code>$(cmd)</code>, <code>$(( expr ))</code></li>
+			<li>Escape: <code>\c</code>, <code>'c'</code>, <code>"c"</code>, <code>'$'</code>, <code>\$</code></li>
+			<li>Expansió de patrons: <code>*</code>, <code>?</code>, <code>[chr]</code>, <code>[!chr]</code>, <code>[^chr]</code> (no estàndard)</li>
+			<li>Redirecció: <code>cmd &gt; output</code>, <code>cmd &lt; input</code>, <code>&lt; input cmd &gt; output</code>, <code>&gt; fitxer</code>, <code>cmd &gt; /dev/null 2&gt;&amp;1</code>, <code>cmd 2&gt;&amp;1 | less</code></li>
+			<li>Connexió entre processos: <code>cmd1 | cmd2</code></li>
+		</ul>
+
+		<h2><strong>Eines del shell pel tractament de text</strong></h2>
+		<p>Podem classificar les ordres que podem executar en el shell en dos grans grups:</p>
+		<ul>
+			<li>Ordres per lots (<em>batch</em>), <strong>NO</strong> interactives:
+				<ul>
+					<li><code>echo</code></li>
+					<li><code>cat</code>, <code>head</code>, <code>tail</code>, <code>cut</code></li>
+					<li><code>grep</code>, <code>egrep</code>, <code>fgrep</code></li>
+				</ul>
+			</li>
+			<li>Ordres visuals, interactives
+				<ul>
+					<li><code>less</code>, <code>man</code>, <code>vim</code></li>
+					<li><code>mc</code></li>
+				</ul>
+			</li>
+		</ul>
+
+		<h2>Enllaços recomanats</h2>
+		<ul>
+			<li><a href="http://es.wikipedia.org/wiki/Categor%C3%ADa:Codificaci%C3%B3n_de_caracteres">Wikipedia: Codificación de caracteres</a></li>
+			<li><a href="http://msdn.microsoft.com/ca-es/goglobal/bb964653(en-us).aspx">Windows code pages</a></li>
+			<li><a href="http://www.uccs.edu/~ahitchco/grep/">Drew&rsquo;s Grep tutorial</a></li>
+			<li><a href="http://www.ibm.com/developerworks/aix/library/au-unixtext/">Introduction to text manipulation on UNIX-based systems</a></li>
+			<li><a href="http://www.demiurgo.org/doc/otvim.html">Otro Tutorial del VI Más</a></li>
+		</ul>
+
+		<h2>Pràctiques</h2>
+		<ul>
+			<li>Consulta les pàgines de manual ascii(7), latin1(7), utf8(7).</li>
+			<li>Compara el resultat de les ordres <code>man passwd</code> i <code>man 5 passwd</code>.</li>
+			<li>Verifica que entens tots els exemples anteriors de redirecció del shell.</li>
+			<li>Converteix un fitxer existent en el sistema a finals de línia propis de Windows.</li>
+			<li>Troba cadenes de text dins de fitxers binaris.</li>
+			<li>Converteix la codificació de fitxers de text entre les codificacions UTF-8 i latin1.</li>
+			<li>Practica els tutorials citats en la llista d&rsquo;enllaços.</li>
+		</ul>
+
+	</body>
+</html>
+<!--
+vim:sw=2:ts=2:nowrap
+-->

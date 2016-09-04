@@ -1,0 +1,329 @@
+<html>
+<head>
+<title>Notas para "El CGI Hecho Realmente F&aacute;cil"</title>
+</head>
+
+<body bgcolor="#FFF8E8" link="#0000FF" vlink="#007090" alink="#00A0FF">
+
+<a name="top"></a>
+<h1>
+<a href="http://www.eff.org/blueribbon.html"><img 
+   border=0 src="/images/blueribbon.gif"
+   height=30 width=18 alt="Blue Ribbon Campaign for Free Speech"></a>
+Notas para "El CGI Hecho Realmente F&aacute;cil"
+</h1>
+
+<table width="100%">
+<tr><td><a href="">De regreso a la P&aacute;gina Principal</a></td>
+    <td align=right><a href="/easy/">Ir a Otros Tutoriales</a></td></tr>
+</table>
+
+<hr>
+
+<ol>
+<li><a href="#samples">Programas CGI de ejemplo</a>
+<li><a href="#mailer">Script de correo CGI</a>
+<li><a href="#security">Seguridad con scripts CGI</a>
+<li><a href="#placing">Poniendo Tus Scripts en el Servidor</a>
+<li><a href="#location">Enviando un Archivo Existente como Respuesta</a>
+<li><a href="#otherenv">Otras Variables de Entorno &Uacute;tiles CGI</a>
+<li><a href="#othertypes">Regresando una Im&aacute;gen u Otra respuesta No-HTML</a>
+<li><a href="#getvspost">&#191;Cu&aacute;l es la diferencia entre GET y POST?</a>
+<li><a href="#nph">Ganando M&aacute;s Control con Scripts de Encabezado No-Analizados</a>
+</ol>
+
+
+<p><hr><p>
+
+<a name="samples"></a>
+<h2>Programas CGI de ejemplo</h2>
+
+<p>A petici&oacute;n, aqu&iacute; hay algunos programas CGI "hola, mundo" para que comiences. La versi&oacute;n simple demuestra la salida CGI solamente, y la larga desplegar&aacute; cualquier campo de entrada que le des. Ambas versiones en Perl y C est&aacute;n disponibles con fuente.
+
+<ul>
+<li>El script de s&oacute;lo salida:
+    <ul>
+    <li>Versi&oacute;n Perl: <a href="hello_s.pl.cgi">c&oacute;rrelo</a>, o
+        <a href="hello_s.pl.txt">ve la fuente</a>.
+    <li>Versi&oacute;n C: <a href="hello_s.c.cgi">c&oacute;rrelo</a>, o
+        <a href="hello_s.c.txt">ve la fuente</a>.
+    </ul>
+<li>El script de entrada y echo, llamado con dos campos de entrada. Mira al URL listado en tu navegador despu&eacute;s de correr los scripts. Modifica la &uacute;ltima parte del URL y v&eacute; qu&eacute; sucede:
+    <ul>
+    <li>Versi&oacute;n Perl: <a href="hello.pl.cgi?home=San+Francisco&favorite+flavor=chocolate">c&oacute;rrelo</a>, o
+        <a href="hello.pl.txt">ve la fuente</a>.
+    <li>Versi&oacute;n C: <a href="hello.c.cgi?home=San+Francisco&favorite+flavor=chocolate">c&oacute;rrelo</a>, o
+        <a href="hello.c.txt">ve la fuente</a>.
+    </ul>
+</ul>
+
+<p><a href="#top">De regreso al principio de la p&aacute;gina</a>
+
+<p><hr><p>
+
+<a name="mailer"></a>
+<h2>Script de correo CGI</h2>
+
+<p>Uno de los usos m&aacute;s comunes de un script CGI es enviar por correo datos a una direcci&oacute;n de email. As&iacute; que aqu&iacute; est&aacute; un simple script que hace precisamente eso, escrito en Perl, llamado <a href="mailer.pl.txt">mailer.pl</a>.
+
+<p>Haz estos cambios al script antes de ponerlo en su lugar:
+<ul>
+<li>Aseg&uacute;rate que la ruta a tu programa servidor de perl es correcta en la primera l&iacute;nea. Usualmente encuentras esto con el comando Unix
+    "<tt>which perl</tt>".
+<li>Cambia las dos variables <b>$mailprog</b> y <b>$recipient</b> para ajustarse al programa de correo de tu servidor y tu direcci&oacute;n de correo respectivamente.
+<li>... seguramente puedes incluir una salida HTML m&aacute;s imaginativa de la que yo inclu&iacute;.
+</ul>
+
+<h3>Enviando Datos de Formas por Correo sin CGI</h3>
+
+<p>Existe una forma bastante pobre de enviar por correo datos de una forma que solamente usa HTML:
+en la etiqueta <b>&lt;form&gt;</b>, fija el atributo <b>action</b> a "mailto:" URL,
+y el atributo <b>enctype</b> a "text/plain".  La mayor&iacute;a de los navegadores manejan esto correctamente, por ejemplo, enviar datos en un mensaje de correo.
+Por ejemplo, 
+
+<blockquote><pre>
+&lt;form action="mailto:me@myhost.com" enctype="text/plain"&gt;
+</pre></blockquote>
+
+<p>Existen desventajas: no puedes controlar el formato del texto enviado, y no puedes enviar una respuesta de regreso al usuario. As&iacute;mismo no todos los navegadores soportan este estilo de etiqueta <b>&lt;form&gt;</b>.
+
+<p><a href="#top">De regreso al principio de la p&aacute;gina</a>
+
+
+<p><hr><p>
+
+<a name="security"></a>
+<h2>Seguridad con Scripts CGI</h2>
+
+<p>Piensa en esto-- un script CGI es un programa que cualquiera en el mundo puede ejecutar <i>en tu m&aacute;quina</i>.  De acuerdo con esto, busca agujeros de seguridad cuando escribas tu script.
+
+<p>Sobre todo, <b>no conf&iacute;es en la entrada del usuario</b>.  En particular, no incluyas la entrada del usuario en un comando sin verificar cuidadosamente esa entrada, le permite a un hacker manejar un cami&oacute;n virtual a trav&eacute;s de tu agujero de seguridad.  
+
+<p>Digamos que tienes un programa CGI que permite al usuario ejecutar un "finger" en tu host. Ese script Perl podr&iacute;a tener una l&iacute;nea como
+<blockquote><pre>
+system "finger $username" ;
+</pre></blockquote>
+
+<p>Pero si un usuario malicioso escribe "<tt>james; rm -rf /</tt>" como nombre de usuario, 
+tu programa correr&aacute;
+<blockquote><pre>
+system "finger james; rm -rf /" ;
+</pre></blockquote>
+que borrar&aacute; tantos de tus archivos como sea posible, lo cual probablemente no es lo que quer&iacute;as. As&iacute; que verifica que el nombre de usuario sea v&aacute;lido con algo como
+<blockquote><pre>
+$username!~ /[^\w.-]/   || die "Whoa!  Buen intento amigo." ;
+</pre></blockquote>
+
+o usa una forma diferente para el comando <tt>system</tt>:
+<blockquote><pre>
+system("finger", $username) ;
+</pre></blockquote>
+
+o busca otra manera de resolver el problema.
+
+
+<p>Es f&aacute;cil para un hacker enviar <i>cualquier</i> variable de forma a tu script con cualquier valor (a&uacute;n caracteres no imprimibles). Tu seguridad no deber&iacute;a descansar en campos teniendo ciertos valores, ya sea que existan o no.
+
+<p><a href="#top">De regreso al principio de la p&aacute;gina</a>
+
+
+<p><hr><p>
+
+<a name="placing"></a>
+<h2>Poniendo tu Script en el Servidor</h2>
+
+<p>Diferentes servidores Web se configuran de manera diferente. Algunos te permiten poner scripts CGI en el mismo directorio que tus p&aacute;ginas Web, con nombres de archivo terminando con ".cgi". Otros servidores te obligan a poner todos los scripts CGI en un directorio espec&iacute;fico, usualmente llamado "cgi-bin". Tu webmaster tiene la respuesta.
+
+<p>Necesitas fijar los permisos adecuados para el archivo de programa. En Unix el servidor Web (como cualquier otro proceso) corre bajo alg&uacute;n nombre de usuario. Tu programa CGI debe ser ejecutable para ese nombre de usuario, adem&aacute;s de poder ser le&iacute;do si es un script Perl o un shell script. En Unix, fija los permisos correctos con
+"<tt>chmod&nbsp;750&nbsp;*.cgi</tt>" 
+(o "<tt>chmod&nbsp;755&nbsp;*.cgi</tt>", si tu servidor no tiene accesos de grupo a tus archivos-- intenta ambos, o pregunta a tu webmaster).
+
+<p>Si tu script no corre:
+<ul>
+<li>Para scripts Perl, verifica la sintaxis con 
+    "<tt>perl&nbsp;-cw&nbsp;myscript.cgi</tt>".
+<li>Aseg&uacute;rate que la ruta al int&eacute;rprete Perl (o shell) es correcta en la primera l&iacute;nea del script. Por ejemplo, encuentra el int&eacute;rprete Perl con el comando Unix "<tt>which&nbsp;perl</tt>".
+<li>Por supuesto, aseg&uacute;rate que tu archivo HTML llama correctamente al script ya sea una llamada relativa o absoluta.
+<li>Para pistas, c&oacute;rre el script desde la l&iacute;nea de comandos y v&eacute; c&oacute;mo falla.  
+    Esto no siempre funciona, porque las variables de entorno CGI no est&aacute;n correctamente fijadas. Avanza un poco m&aacute;s probando una copia de tu c&oacute;digo fuente.
+    Algunas herramientas, como las del m&oacute;dulo Perl 
+    <a href="http://www.genome.wi.mit.edu/ftp/pub/software/WWW/">CGI.pm</a>
+    proveen caminos para depurar scripts CGI desde la l&iacute;nea de comandos.
+</ul>
+
+<p><a href="#top">De regreso al principio de la p&aacute;gina</a>
+
+
+<p><hr><p>
+
+<a name="location"></a>
+<h2>Enviando un Archivo Existente como Respuesta</h2>
+
+<p>Si tu respuesta HTML siempre es la misma, o si quieres responder con uno de los archivos existentes, puedes encontrar &uacute;til el encabezado de respuesta "Location:". &Uacute;salo para redireccionar el navegador a otro URL.
+
+<p>Como ejemplo, si tu script CGI escribe la siguiente l&iacute;nea a STDOUT:
+
+<blockquote><tt>Location: response.html</tt></blockquote>
+
+seguida de una l&iacute;nea en blanco, entonces el navegador remoto obtendr&aacute; a
+<tt>response.html</tt> y lo tratar&aacute; como respuesta de tu script CGI.
+Puedes redireccionar al navegador a un URL ya sea relativo o absoluto.
+
+<p>En esta situaci&oacute;n, <b>no</b> imprimas el encabezado de respuesta "<tt>Content-type:</tt>".
+
+<p><a href="#top">De regreso al principio de la p&aacute;gina</a>
+
+
+<p><hr><p>
+
+<a name="otherenv"></a>
+<h2>Otras Variables de Entorno CGI &Uacute;tiles</h2>
+
+<p>Los scripts CGI tienen acceso a algo as&iacute; como 20 variables de entorno, como
+QUERY_STRING y CONTENT_LENGTH mencionadas en la p&aacute;gina principal.
+Aqu&iacute; est&aacute; la 
+<a href="http://hoohoo.ncsa.uiuc.edu/cgi/env.html">lista completa</a> 
+en NCSA.
+
+<p>Otras cuantas que pueden servirte:
+
+<dl>
+<p><dt><b>REQUEST_METHOD</b>
+<dd>El m&eacute;todo HTTP con el que este script fu&eacute; llamado. Generalmente "GET", "POST",
+    o "HEAD".
+<p><dt><b>HTTP_REFERER</b>
+<dd>El URL de la forma que fu&eacute; remitido. No siempre se usa, as&iacute; que no conf&iacute;es mucho en &eacute;l. No invadas la privaci&iacute;a de la gente con &eacute;l tampoco.
+<p><dt><b>PATH_INFO</b>
+<dd>Informaci&oacute;n extra de "ruta". Es posible pasar informaci&oacute;n estra a tu script en el URL, despu&eacute;s del nombre de archivo del script CGI. Por ejempli, llamando al URL
+    <blockquote><pre>http://www.myhost.com/mypath/myscript.cgi/path/info/here</pre></blockquote>
+    fijar&aacute; a PATH_INFO a "<tt>/path/info/here</tt>". Com&uacute;nmente usado para datos tipo ruta, pero puedes usarlo para cualquier prop&oacute;sito.
+<p><dt><b>SERVER_NAME</b>
+<dd>Tu nombre de servidor Web o direcci&oacute;n IP (al menos para esta petici&oacute;n).
+<dt><b>SERVER_PORT</b>
+<dd>Tu puerto de servidor Web (al menos para esta petici&oacute;n).
+<dt><b>SCRIPT_NAME</b>
+<dd>El URL local del script que est&aacute; siendo ejecutado. El est&aacute;ndar CGI no es claro sobre si el slash de inicio se incluye. Puedes soportar ambos casos con esta l&iacute;nea de Perl, que garantiza un slash de inicio:
+    <br><tt>$ENV{'SCRIPT_NAME'}=~ s#^/?#/# ;</tt>
+</dl>
+
+<p>As&iacute; que el URL del script que est&aacute; siendo ejecutado es, en Perl,
+<blockquote><pre>
+"http://$ENV{'SERVER_NAME'}:$ENV{'SERVER_PORT'}$ENV{'SCRIPT_NAME'}"
+</pre></blockquote>
+<p>El URL completo del script con el que fue invocado tambien puede tener
+PATH_INFO y QUERY_STRING al final.
+
+<p>Una vez m&aacute;s, v&eacute;las todas en
+<a href="http://hoohoo.ncsa.uiuc.edu/cgi/env.html">la lista completa de NCSA's</a>.
+
+<p><a href="#top">De regreso al principio de la p&aacute;gina</a>
+
+
+<p><hr><p>
+
+<a name="othertypes"></a>
+<h2>Regresando una Imagen u Otra Respuesta No-HTML de un Script CGI</h2>
+
+<p>La mayor&iacute;a de los scripts CGI regresan datos HTML, pero puedes regresar cualquier tipo de datos que t&uacute; quieras. Solamente usa el tipo MIME correcto en la l&iacute;nea "Content-type:", seguida por la l&iacute;nea en blanco requerida, seguida por los datos de los recursos que est&aacute;s enviando de regreso. En el caso de los archivos HTML, esos datos es el texto HTML. En el caso de im&aacute;genes, audio o video son datos binarios. Por ejemplo, para responder con un archivo gif, usa:
+
+<blockquote>
+<tt>Content-type: image/gif
+<br>
+<br>GIF89a&%*$@#---&nbsp;contenido&nbsp;binario&nbsp;del&nbsp;archivo&nbsp;GIF&nbsp;aqu&iacute;&nbsp;---$(*&%(*@#......
+</tt></blockquote>
+
+<p>Tu archivo HTML puede cargar una im&aacute;gen generada por script con
+<blockquote><tt>&lt;img src="gifmaker.cgi?param1=value1&amp;param2=value2"&gt;</tt></blockquote>
+
+<p>Uno de mis ejemplos favoritos es <i>was</i> el
+<a href="http://www.eece.ksu.edu/IGR/">Render Interactivo de Gr&aacute;ficas</a>,
+que renderea &iacute;conos 3-D de acuerdo con los colores, forma, textura, iluminaci&oacute;n, etc. que definas. Puedes usar el &iacute;cono de resultado en tus p&aacute;ginas Web como balas de lista o reglas horizontales mejoradas..
+<i>Nota: Este sitio ha perdido temporalmente su lugar; el autor dice que 
+<a href="http://www.pobox.com/~spectre/webprojects.html">&eacute;ste</a> ser&aacute; eventualmente el punto de la nueva localizaci&oacute;n.</i>
+
+<!-- jsm- this has a mirror in Finland that may be working soon! -->
+
+
+<h3>Tipos MIME</h3>
+
+<p>Los tipos MIME son cadenas de caracteres est&aacute;ndar de caso sensitivo que identifican el tipo de datos usado a trav&eacute;s de Internet para muchos prop&oacute;sitos. Comienzan con el tipo general de datos (como <tt>text</tt>, <tt>image</tt>, o <tt>audio</tt>), seguido por un slash, y terminando con el tipo espec&iacute;fico de datos (como <tt>html</tt>, <tt>gif</tt>, or <tt>jpeg</tt>). Los archivos HTML se identifican con <tt>text/html</tt>, y los GIFs y JPEGs se identifican con <tt>image/gif</tt> y <tt>image/jpeg</tt>.
+
+<p><a href="#top">De regreso al principio de la p&aacute;gina</a>
+
+
+<p><hr><p>
+
+<a name="getvspost"></a>
+<h2>&#191;Cu&aacute;l es la diferencia entre GET y POST?</h2>
+
+<p>GET y POST son dos m&eacute;todos diferentes definidos en HTTP que hacen cosas bastante diferentes, pero ambos son capaces de enviar remisiones de formas al servidor.
+
+<p>Normalmente, GET es usado para obtener un archivo u otro recurso, posiblemente con par&aacute;metros especificando m&aacute;s exactamente lo que se necesita. En el caso de una entrada por forma, GET incluye completamente en el URL, como
+
+<ul>
+<p><tt>http://mihost.com/mipath/miscript.cgi?<b>nombre1=valor1&amp;nombre2=valor2
+</b></tt>
+</ul>
+
+<p>GET es como tu navegador baja la mayor&iacute;a de los archivos, como archivos HTML e im&aacute;genes. Puede ser usado tambi&eacute;n en la mayor&iacute;a de los env&iacute;os si no hay muchos datos (el l&iacute;mite var&iacute;a de navegador a navegador).
+
+<p>El m&eacute;todo GET es <i>idempotente</i>, lo cual significa que el efecto lateral de muchas peticiones GET id&eacute;nticas es el mismo que para una sola petici&oacute;n GET. En particular, los navegadores y proxies pueden obtener respuestas GET del cach&eacute;, as&iacute; que dos remisiones de formas id&eacute;nticas podr&iacute;an no llegar a tu script CGI. As&iacute; que no uses GET si quieres registrar cada petici&oacute;n, de otra manera almacena los datos de cada petici&oacute;n.
+
+<p>Normalmente POST es usado para enviar un pedazo de datos al servidor para ser procesado, cualquier cosa que esto signifique. (El nombre POST puede venir de la idea de postear una nota en un grupo de discusi&oacute;n o de noticias.) Cuando una forma HTML se remite usando POST, tus datos de la forma se amarran al final de la petici&oacute;n POST en su propio objeto. Esto no es tan r&aacute;pido ni tan f&aacute;cil como al usar GET, pero es mucho m&aacute;s vers&aacute;til. Por ejemplo, puedes enviar un archivo completo usando POST. Tambien, el tama&ntilde;o de los datos no est&aacute; limitado como en GET.
+
+<p>Esto es tras bambalinas, de cualquier manera. Para el programador CGI, GET y POST trabajan casi id&eacute;nticamente, y son igual de usar. Algunas ventajas de POST son que no est&aacute;s limitado sobre los datos que quieres remitir, y puedes contar con que tu script sea llamado cada vez que la forma sea remitida. Una ventaja de GET es que tu remisi&oacute;n completa de la forma puede ser encapsulada en un URL, como una hiperliga o un marcador (aunque ve c&oacute;mo <a href="http://www.io.com/~jsm/autopost/">AutoPOST</a> hace esto con POST).
+
+<p><a href="#top">De regreso al principio de la p&aacute;gina</a>
+
+
+<p><hr><p>
+
+<a name="nph"></a>
+<h2>Ganando M&aacute;s Control con Scripts de Encabezado No-Analizados</h2>
+
+<p>Normalmente, cuando tu script CGI imprime los encabezados "<tt>Content-type:</tt>",
+"<tt>Location:</tt>", u otros, el servidor analiza estos encabezados y genera la respuesta HTTP apropiada para el usuario. Ocasionalmente puedes querer un control m&aacute;s fino sobre la respuesta HTTP. La mayor&iacute;a de los servidores Web soportan  scripts de <i>encabezados no-analizados</i> (o "<b>NPH</b>"), que generan una respuesta HTTP completa y omite el an&aacute;lisis normal del servidor.  
+
+<p>Para usarlos, necesitas saber un poco de
+<a href="http://www.jmarshall.com/easy/http/">HTTP</a>-- espec&iacute;ficamente, los formatos de
+<a href="http://www.jmarshall.com/easy/http/#responseline">l&iacute;neas de estado</a> y
+<a href="http://www.jmarshall.com/easy/http/#headerlines">l&iacute;neas de encabezado</a>.
+
+<p>En tu script de encabezado no-analizado, solamente imprime el HTTP completo de las l&iacute;neas de estado y encabezado donde un script normal imprimir&iacute;a la l&iacute;nea "<tt>Content-Type:</tt>". Incluye la l&iacute;nea en blanco de trailer. 
+Cualquier cosa que imprima tu script se env&iacute;a al usuario verbatim, como la respuesta HTTP completa, sin modificaciones del servidor.
+
+<p>Nombra tus scripts NPH comenzando con algo con "<tt>nph-</tt>", como
+"<tt>nph-miscript.cgi</tt>"; cada script cuyo nombre comienza con
+"<tt>nph-</tt>" ser&aacute; manejado como un script NPH. Esto funciona en la mayor&iacute;a de los servidores, inlcuyendo <a href="http://www.apache.org">Apache</a> y NCSA. Otros servidores pueden usar esquemas diferentes para identificar scripts NPH; lee los documentos o pregunta a tu webmaster.
+
+<p>Como un ejemplo de un script NPH, ve
+<a href="/tools/cgiproxy/">CGIProxy</a>.
+
+<p>Si esto es confuso, no te preocupes. En el extra&ntilde;o caso de que alguna vez necesites un script NPH, esto tendr&aacute; sentido.
+
+<p><a href="#top">De regreso al principio de la p&aacute;gina</a>
+
+
+<p><hr><p>
+
+<a href="./">De Regreso a la P&aacute;gina Principal</a>
+
+<p><hr>
+
+&copy; 1996-1998 <a href="mailto:james@jmarshall.com?subject=CGI Made Really Easy, Footnotes">James Marshall</a>
+<i>(exigo comentarios; para preguntas, por favor revisa primero el 
+<a href="../easy_cgi_faq.html">FAQ</a>)</i>
+
+<br>Traducido en 1998 por <a href="mailto:rene_alvarezm@hotmail.com?subject=El CGI Hecho Realmente Facil, Notas">René Alvarez</a>
+
+
+<p>
+<table width="100%"><tr>
+    <td><i>Ultimo Modificado: Abril 18, 1998</i></td>
+    <td align=right><i>http://www.jmarshall.com/easy/cgi/spanish/cgi_footnotes.html</i></td>
+</tr></table>
+
+<p>
+
+</body>
+</html>

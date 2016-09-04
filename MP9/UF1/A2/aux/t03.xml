@@ -1,0 +1,10 @@
+<!-- use times & name -->
+<html xmlns:py="http://genshi.edgewall.org/" lang="en" >
+  <body>
+    <h1>Hello Genshi</h1>
+    <hr />
+    <ul py:if="int(times)">
+      <li py:for="i in range(int(times))">Hello, $name!</li>
+    </ul>
+  </body>
+</html>

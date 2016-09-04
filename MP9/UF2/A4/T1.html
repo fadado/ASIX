@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ca" lang="ca">
+	<head>
+		<title>Configurar l’entorn de treball</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<style type="text/css">body{font-family: sans-serif;}</style>
+	</head>
+	<body>
+		<!-- title -->
+		<h1>Configurar l’entorn de treball</h1>
+		<p>MP9UF2A4T1</p>	<!-- id -->
+		<!-- description -->
+		<p>Instal·lació i prova de <cite>Jekyll</cite></p>
+
+		<!-- body -->
+
+		<h2>Generadors estàtics de llocs web</h2>
+		<p>Actualment estem vivint un <a href="https://www.smashingmagazine.com/2015/11/modern-static-website-generators-next-big-thing/">renéixer molt fort</a> dels <a href="http://www.staticgen.com/">generadors estàtics</a> de llocs web, i de <a href="https://www.netlify.com/">proveïdors de serveis</a> per allotjar-los. En coherència amb tot els vist al llarg del curs, dedicarem aquest temps a estudiar gestors de continguts que treballen amb aquesta filosofia.</p>
+
+		<h2>Jekyll</h2>
+		<p>El gestor de continguts que estudiarem és <cite>Jekyll</cite>, que començarem a usar de forma independent, però que més endavant veurem que està integrat perfectament amb <cite>GitHub Pages</cite>.</p>
+		<p><strong>Important</strong>: Aquesta activitat t&rsquo;exigirà un alt grau d&rsquo;autonomia. Pots imaginar que es tracta d&rsquo;una mena de mini-projecte, similar en la forma de treballar al projecte final del cicle.</p>
+
+		<p>El sistema recomanat per <cite>GitHub</cite> per preparar els llocs web de <cite>GitHub Pages</cite> és <cite>Jekyll</cite>, i si ells ho diuen per alguna cosa serà&hellip; Anem a explorar! Per estalviar-te feina inicial, configura el teu sistema amb aquests paquets:</p>
+		<pre>	sudo yum install rubygems rubygems-devel ruby-devel
+	# si uses Fedora 23 també cal:
+	sudo dnf install redhat-rpm-config
+	# finalment
+	sudo gem install jekyll</pre>
+		<p>Poden fer falta altres paquets, com el compilador de <code>C</code> (<code>sudo yum install gcc</code>), etc., però el més probable és que els tinguis instal·lats.</p>
+
+		<h2>Enllaços recomanats</h2>
+		<p>Aquestes pàgines seran presentades a classe, però tu les has d&rsquo;estudiar també pel teu compte!</p>
+		<ul>
+			<li>Introducció conceptual: <a href="http://jekyllbootstrap.com/lessons/jekyll-introduction.html">What is Jekyll?</a></li>
+			<li>Lloc web de <a href="https://jekyllrb.com/">Jekyll</a></li>
+			<li>Complet tutorial de <a href="http://code.tutsplus.com/articles/building-static-sites-with-jekyll--net-22211">Jekyll</a></li>
+		</ul>
+
+		<h2>Pràctiques</h2>
+		<ul>
+			<li>Segueix detalladament el <a href="http://code.tutsplus.com/articles/building-static-sites-with-jekyll--net-22211">tutorial Jekyll</a>. El resultat ha de ser un lloc web local, que pots personalitzar al teu gust.</li>
+			<li>Crea i explora un nou lloc executant aquestes ordres (per aturar el servidor et caldrà usar <code>ps</code> i <code>kill</code>):
+			<pre>	jekyll new LLOC
+	cd LLOC
+	jekyll serve --detach
+	firefox http://localhost:4000 &amp; disown</pre>
+			Cal que puguis explicar la funció de qualsevol dels fitxers font del lloc!
+			</li>
+			<li>Modifica els continguts del nou lloc per que estiguin adaptats i personalitzats a tu mateix. Executa <code>jekyll</code> d&rsquo;aquesta forma per poder observar els canvis a mesura que els facis:
+				<pre>	jekyll serve --watch</pre>
+				Pensa que si fas canvis a <code>_config.yml</code> has de reiniciar el servidor.
+			</li>
+	</ul>
+
+	</body>
+</html>
+<!--
+vim:sw=2:ts=2:nowrap
+-->

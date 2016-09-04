@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ca" lang="ca">
+	<head>
+		<title>Inspeccionar scripts amb exemples bàsics</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<style type="text/css">body{font-family: sans-serif;}</style>
+	</head>
+	<body>
+		<!-- title -->
+		<h1>Inspeccionar scripts amb exemples bàsics</h1>
+		<p>MP9UF1A1T3</p>	<!-- id -->
+		<!-- description -->
+		<p>Primer contacte amb scripts <cite>CGI</cite></p>
+
+		<!-- body -->
+
+		<h2>Creació de scripts <cite>CGI</cite></h2>
+		
+		<p><strong>Guia d&rsquo;estil per <cite>Python</cite></strong>. Utilitzarem <cite>Python</cite> per estudiar el protocol CGI, i és necessari que segueixin les normes habituals en escriure codi. Si et vols estalviar estudiar el <a href="https://www.python.org/dev/peps/pep-0008/">PEP8</a> per aplicar l&rsquo;estil recomanat en escriure codi de <cite>Python</cite> tens una solució perfecte en el <a href="http://www.ninja-ide.org/">Ninja-IDE</a>. Tan sols et cal executar <code>yum install ninja-ide -y</code> i sempre escriuras <cite>Python</cite> com els professionals.  </p>
+		<p>Sempre has de treballar sota el teu compte d&rsquo;usuari, i situar els scripts i pàgines a les carpetes apropiades sota el directori <code>/var/www</code>.</p>
+		<p>A banda de estudiar la documentació, pensa que l&rsquo;script <a href="aux/dump.py">dump.py</a> et mostra on es troben les dades els scripts <cite>CGI</cite>.</p>
+
+		<h2>Enllaços recomanats</h2>
+		<p>Els presentats en l&rsquo;activitat dedicada a l&rsquo;organització de la documentació.</p>
+
+		<h2>Pràctiques</h2>
+		<p>Crea un script per cada un dels següents exemples, amb identificadors i títols apropiats, i documenta amb comentaris l&rsquo;script de forma apropiada.</p>
+
+		<p><strong>Avís</strong>: pots probar els scripts en un terminal usant aquesta tècnica del <cite>Shell</cite>: <code>$ REQUEST_METHOD=GET QUERY_STRING='...' ./script.py</code>. </p>
+
+		<p><strong>Avís</strong>: tots els scripts comencen amb el mateix codi, que no es mostra en els exemples. Aquest és (sense comentaris):</p>
+		<pre>#!/usr/bin/python
+
+import os, sys
+import cgitb; cgitb.enable()
+
+write = sys.stdout.write
+
+write('Content-Type: text/plain; charset=UTF-8\r\n')
+write('\r\n')
+		</pre>
+
+		<p>Exemples:</p>
+		<ol>
+			<li>
+				<pre>
+# Mostra variables d'entorn
+for (k, v) in os.environ.iteritems():
+    write("%s = %s\n" % (k, v))</pre>
+			</li>
+			<li>
+				<pre>
+# Mostra query string
+import urllib
+
+camps = os.environ['QUERY_STRING'].split("&amp;")
+
+for i in range(len(camps)):
+    camps[i] = camps[i].split("=", 1)
+
+for i in range(len(camps)):
+    camps[i] = (camps[i][0], urllib.unquote_plus(camps[i][1]))
+
+for (k, v) in camps:
+    write("%s = %s\n" % (k, v))</pre>
+			</li>
+			<li>
+				<pre>
+# Consulta entorn
+user_agent = os.environ.get("HTTP_USER_AGENT", "A bad client!")
+write("User-Agent:" + user_agent + '\n')
+
+if "HTTP_REFERER" in os.environ:
+    http_referer  = os.environ["HTTP_REFERER" ]:
+    write("Referer: " + http_referer + '\n')
+
+if os.environ.has_key("HTTP_ACCEPT_LANGUAGE"):
+    write("Accept-Language: " + os.environ["HTTP_ACCEPT_LANGUAGE"] + '\n)</pre>
+			</li>
+			<li>Consulta la documentació de la funció <code>urllib.unquote_plus</code>.</li>
+			<li>Estudia amb tota atenció l&rsquo;script <a href="aux/dump.py">dump.py</a> (<a href="http://localhost/cgi-bin/dump.py">http://localhost/cgi-bin/dump.py</a>).</li>
+			<li>Implementa partint de zero una funció de nom <code>decode</code> equivalent a <code>urllib.unquote_plus</code>.</li>
+		</ol>
+
+	</body>
+</html>
+<!--
+vim:sw=2:ts=2:nowrap
+-->

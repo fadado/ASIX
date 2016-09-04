@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ca" lang="ca">
+	<head>
+		<title>Connectar plantilles amb scripts</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<style type="text/css">body{font-family: sans-serif;}</style>
+	</head>
+	<body>
+		<!-- title -->
+		<h1>Connectar plantilles amb scripts</h1>
+		<p>MP9UF1A2T2</p>	<!-- id -->
+		<!-- description -->
+		<p>Creació i expansió de plantilles</p>
+
+		<!-- body -->
+
+		<h2>Pàgines dinàmiques</h2>
+		<p>Implementarem el concepte de <cite>pàgines dinàmiques</cite>, és a dir, una pàgina Web que decideix el seu contingut en el moment de ser visitada, en
+		base a un script i una plantilla. D&rsquo;aquesta forma direm que <b>pàgina dinàmica = script + plantilla</b>. Els scripts tindran sempre un contingut bàsic similar a aquest:</p>
+
+		<pre>
+import os, sys
+
+from genshi.template import TemplateLoader
+
+########################################################################
+# Creació resposta
+########################################################################
+
+def pagina(template, environment):
+  # template: nom fitxer XML
+  # environment: diccionari de valors a usar per la plantilla
+
+  path = ["./", "/opt/templates"] # directoris on cercar plantilles
+
+  loader = TemplateLoader(path)
+
+  template = loader.load(template)
+
+  stream = template.generate(**environment) # pasem entorn a plantilla
+
+  sys.stdout.write("Content-Type: text/html\r\n\r\n")
+  sys.stdout.write(stream.render(encoding="UTF-8"))
+
+########################################################################
+# Càlcul i definició variables
+########################################################################
+
+entorn = {
+  'A': ...,
+  'B': ...,
+  'C': ...,
+  ...
+}
+
+plantila = "nom-plantilla.html"
+
+########################################################################
+# Processament petició
+########################################################################
+
+# si cal modificar entorn...
+# processar peticio...
+# ...
+
+pagina(plantilla, entorn)
+
+sys.exit(0) </pre>
+
+		<p>Recomanem aquestes tècniques de treball:</p>
+		<ul>
+			<li>Situar scripts a <code>/var/www/cgi-bin</code> (obligatori).</li>
+			<li>Situar plantilles en un directori no <i>navegable</i>, com ara <code>/opt/templates</code> (crea&rsquo;l amb els permisos apropiats).</li>
+			<li>Els directoris anteriors han de permetre treballar sense ser <code>root</code>, usant la tècnica del grup <code>webmaster</code> treballada amb anterioritat.</li>
+			<li>Els scripts no han de tenir extensió.</li>
+			<li>Les plantilles no han de tenir permisos d&rsquo;execució i poden tenir qualsevol extensió.</li>
+		</ul>
+
+		<h2>Pràctiques I</h2>
+		<ol>
+			<li>Fes una pàgina dinàmica que mostri les primeres 16 potencies de 2 (<code>2**1</code>, <code>2**2</code>, <code>2**3</code>, etc.).</li>
+			<li>Fes una pàgina dinàmica que mostri la taula de multiplicar.</li>
+		</ol>
+
+		<hr/>
+
+		<h2>Galetes (<i>cookies</i>)</h2>
+		<p>Reescriptura d&rsquo;URLs, camps amagats en formularis i galetes són les tres formes de mantenir l&rsquo;estat entre la visita d&rsquo;un mateix usuari a diferents pàgines d&rsquo;un mateix lloc web. Les galetes funcionen bàsicament d&rsquo;aquesta forma:</p>
+
+		<ol>
+			<li>El servidor afegeix a la seva resposta una capçalera HTTP amb aquesta sintaxi:<pre>Set-Cookie: <i>NAME</i>=<i>VALUE</i>; expires=<i>DATE</i>; path=<i>PATH</i>; domain=<i>DOMAIN_NAME</i>; secure</pre> on tan sols <i>NAME=VALUE</i> és obligatori (tots els exemples que veurem usaran aquesta simple forma).</li>
+			<li>Cada vegada que el navegador visita una pàgina del mateix lloc web del que ha rebut la galeta afegeix una capçalera HTTP a la seva petició amb aquesta sintaxi<pre>Cookie: <i>NAME1</i>=<i>VALUE1</i>; <i>NAME2</i>=<i>VALUE2</i> ...</pre> on retorna al servidor els valors rebuts en les seves respostes anteriors.</li>
+			<li>En absència de l&rsquo;atribut <i>expires</i> la galeta desapareix quan l&rsquo;usuari tanca el seu navegador.</li>
+		</ol>
+
+		<p>Per gestionar les galetes amb comoditat farem servir el mòdul <a href="aux/session.py">session.py</a>. Estudia atentament aquest mòdul (i el scrip de prova <a href="aux/last-visit.py">last-visit.py</a>) fins entendre el funcionament de les funcions <code>request_cookies</code> i <code>response_cookie</code>. Pots executar el mòdul en el shell, per estudiar-lo, d&rsquo;aquestes formes:</p>
+		<ul>
+			<li><code>python ./session.py</code>.</li>
+			<li><code>HTTP_COOKIE="SID=lala; PID=lele" python ./session.py</code>.</li>
+		</ul>
+		<p>Per usar el mòdul des del programa principal, si tan sols hem de gestionar una galeta, usarem codi com aquest:</p>
+		<pre>import session
+...
+cookies = session.request_cookies()
+cookie_name = '...'
+if cookies is None or cookie_name not in cookies: # no cookies in request
+    cookie_value = '...'
+else:
+    cookie_value = cookies[cookie_name]
+...
+# set HTTP headers
+sys.stdout.write(session.response_cookie(cookie_name, cookie_value))
+sys.stdout.write("Content-Type: ...
+...</pre>
+
+		<p>Per usar el mòdul des del programa principal, si ens cal gestionar més d&rsquo;una galeta, usarem codi com aquest:</p>
+		<pre>import session
+...
+cookies = session.request_cookies())
+if cookies is None or "NAME" not in cookies:  # no cookies in request
+    cookies = { "NAME": "VALUE", ...   # initialize
+...
+# set HTTP headers
+for (k, v) in cookies.iteritems():     # set cookies in response
+    sys.stdout.write(session.response_cookie(k, v))
+sys.stdout.write("Content-Type: ...
+...</pre>
+
+		<h2>Enllaços recomanats</h2>
+		<ul>
+			<li>En la documentació local de Genshi: <a href="file:///usr/share/doc/python-genshi/doc/xml-templates.html">Genshi XML Template Language</a>.</li>
+			<li>En la documentació local de Genshi: <a href="file:///usr/share/doc/python-genshi/doc/templates.html">Genshi Templating Basics</a>.</li>
+			<li>Vikipèdia: <a href="http://ca.wikipedia.org/wiki/Galeta_(inform%C3%A0tica)">galeta</a></li>
+			<li><a href="http://curl.haxx.se/rfc/cookie_spec.html">Persistent client state &ndash; HTTP cookies</a> (còpia <a href="../A1/aux/cookie_spec.html">local</a>)</li>
+			<li>Mòdul <code>cgi</code> en <cite>The Python Standard Library</cite></li>
+		</ul>
+
+		<h2>Pràctiques II</h2>
+		<p>Les pràctiques giren al voltant del concepte de sessió utilitzant galetes, i s&rsquo;han d&rsquo;implementar combinant plantilles i scripts. Tria noms apropiats per galetes, plantilles, scripts, variables, etc.</p>
+		<p><strong>Important</strong>: pensa que ara la <i>URL d&rsquo;entrada</i> és el script CGI (que no te per que tenir extensió): mai has de visitar la plantilla directament amb el navegador! Pensa que els visitants de la pàgina dinàmica no han de saber que existeix cap plantilla!</p>
+		<p>En algunes d&rsquo;aquestes pràctiques cal de generar <cite>CSS</cite> dinàmicament: fes-ho sempre amb l&rsquo;atribut <code>style</code> i no amb l&rsquo;element equivalent.</p>
+
+		<ol>
+			<li style="margin-bottom: 1ex;">Fes una pàgina que cada vegada que es visiti faci servir un color de fons a triar a l&rsquo;atzar entre <i>aqua</i>, <i>black</i>, <i>blue</i>, <i>fuchsia</i>, <i>gray</i>, <i>green</i>, <i>lime</i>, <i>maroon</i>, <i>navy</i>, <i>olive</i>, <i>purple</i>, <i>red</i>, <i>silver</i>, <i>teal</i>, <i>white</i>, i <i>yellow</i>. En totes les pràctiques per generar dinàmicament el valor de l&rsquo;atribut <code>style</code> usa sempre la directiva <code>py:attr</code>.</li>
+			<li style="margin-bottom: 1ex;">Fes una pàgina que en visitar-la per primera vegada tingui el color groc de fons de pàgina, en la següent visita de color verd, i que en posteriors visites vagi alternant entre els dos colors. Pots encapsular la gestió de les galetes amb un script implementat segons aquest pseudocodi:
+				<ol>
+					<li>Si no hem rebut la galeta&hellip;</li>
+					<li>&hellip;afegir una galeta amb el primer color a usar a la resposta i retornar el nom d&rsquo;aquest color</li>
+					<li>i si la hem rebut triar el següent color segons el valor de la galeta rebuda, afegir-la de nou a la resposta amb el nou color i retornar el nom d&rsquo;aquest color.</li>
+				</ol>
+			</li>
+			<li style="margin-bottom: 1ex;">Fes una pàgina que en visitar-la per primera vegada retorni un missatge publicitari, amb un enllaç o botó a la mateixa pàgina. En clicar-lo s&rsquo;ha de mostra la pàgina definitiva i no el missatge de propaganda. Pots encapsular la gestió de les galetes amb un script implementat segons aquest pseudocodi:
+				<ol>
+					<li>Si no hem rebut la galeta&hellip;</li>
+					<li>&hellip;afegir una galeta a la resposta (el valor no importa) i retornar <code>True</code></li>
+					<li>i si la hem rebut retornar <code>False</code>.</li>
+				</ol>
+			</li>
+			<li style="margin-bottom: 1ex;">Fes una pàgina que cada vegada que es visiti faci servir, de forma rotativa, un color de fons de la llista <i>aqua</i>, <i>black</i>, <i>blue</i>, <i>fuchsia</i>, <i>gray</i>, <i>green</i>, <i>lime</i>, <i>maroon</i>, <i>navy</i>, <i>olive</i>, <i>purple</i>, <i>red</i>, <i>silver</i>, <i>teal</i>, <i>white</i>, i <i>yellow</i>. Pots encapsular la gestió de les galetes amb un script implementat segons aquest pseudocodi:
+				<ol>
+					<li>Podem codificar els colors amb els enters des de 0 a 15.</li>
+					<li>Si no hem rebut la galeta&hellip;</li>
+					<li>&hellip;afegir galeta a la resposta amb el valor 0 i retornar el nom del color 0</li>
+					<li>i si la hem rebut incrementar codi de color (mòdul 16: <code>n = (n + 1) % 16</code>), afegir una galeta amb el nou codi de color i retornar el seu nom.</li>
+				</ol>
+			</li>
+	 	</ol>
+
+		<p><strong>Important</strong>: per provocar l&rsquo;expiració de les galetes simplement tancarem totes les finestres del navegador.</p>
+
+	</body>
+</html>
+<!--
+vim:sw=2:ts=2:nowrap
+-->

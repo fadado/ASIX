@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ca" lang="ca">
+	<head>
+		<title>Organitzar i documentar les transformacions</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<style type="text/css">body{font-family: sans-serif;}</style>
+	</head>
+	<body>
+		<!-- title -->
+		<h1>Organitzar i documentar les transformacions</h1>
+		<p>MP4UF2A3T2</p>	<!-- id -->
+		<!-- description -->
+		<p>Tècniques modulars amb <cite>Python</cite></p>
+
+		<!-- body -->
+
+		<h2>Tècniques modulars i de depuració</h2>
+		<p>A continuació es mencionen algunes de les tècniques disponibles amb <cite>Python</cite> per fer les transformacions més robustes i mantenibles.</p>
+		<ul>
+			<li><b>Funcions</b>: en detectar codi potencialment reusable l&rsquo;hem de separar en una funció independent.</li>
+			<li><b>Mòduls</b>: les funcions de propòsit general, reusables en diferents mòduls, s&rsquo;han de posar en fitxers separats.</li>
+			<li><b>docstrings</b>: tant les funcions com els mòduls han de començar amb una cadena contenint la seva descripció.</li>
+			<li><b>Assercions</b>: per afirmar les nostres conviccions usem assercions.</li>
+		</ul>
+
+		<h2>Exemple de mòdul</h2>
+		<p>A continuació es presenta un mòdul complert (<a href="aux/etlib.py">etlib.py</a>), amb aquestes característiques:</p>
+		<ul>
+			<li><i>docstring</i> pel mòdul.</li>
+			<li>Declaració de noms exportats (<code>__all__</code>).</li>
+			<li><i>docstring</i> pel cada funció.</li>
+			<li>Codi de prova.</li>
+			<li>Us d&rsquo;assercions.</li>
+			<li>Directives per l&rsquo;editor <cite>Vim</cite>.</li>
+		</ul>
+
+<pre>"""Utilities for ElementTree.
+"""
+
+import xml.etree.ElementTree as ET
+
+# exported functions
+__all__ = ["gettext"]
+
+def gettext(element):
+    """Get text immediately inside an element and inside subelements."""
+
+    text = element.text or ""
+    for child in element:
+        text += gettext(child)
+        if child.tail:
+            text += child.tail
+    return text
+
+# test
+if __name__ == "__main__":
+    plant = ET.XML("""
+    &lt;PLANT&gt;Plant description:
+        &lt;COMMON&gt;Bloodroot&lt;/COMMON&gt;
+        &lt;BOTANICAL&gt;Sanguinaria canadensis&lt;/BOTANICAL&gt;
+        &lt;ZONE&gt;4&lt;/ZONE&gt;
+        &lt;LIGHT&gt;Mostly Shady&lt;/LIGHT&gt;
+        &lt;PRICE&gt;$2.44&lt;/PRICE&gt;
+        &lt;AVAILABILITY&gt;031599&lt;/AVAILABILITY&gt;
+    &lt;/PLANT&gt;""")
+    text = gettext(plant)
+    assert len(text) &gt; 100
+    assert "canadensis" in text
+    assert "2.44" in text
+
+# vim:sw=4:ts=4:ai
+</pre>
+
+		<p>Prova aquest mòdul, tant executant-lo com important-lo en l&rsquo;interpret de <cite>Python</cite> i un altre programa.</p>
+
+		<h2>Enllaços recomanats</h2>
+		<ul>
+			<li>En el tutorial de <cite>Python</cite>: <a href="http://docs.python.org/tutorial/modules.html">Python Modules</a></li>
+		</ul>
+
+		<h2>Pràctiques</h2>
+		<p>En un mòdul auxiliar, fes funcions que rebent un arbre XML com argument (no un element!) retornin els valors demanats:</p>
+		<ul>
+			<li>Nombre de caràcters de text continguts en l&rsquo;arbre.</li>
+			<li>Nombre d&rsquo;elements continguts en l&rsquo;arbre.</li>
+			<li>Nombre d&rsquo;atributs continguts en l&rsquo;arbre.</li>
+			<li>Nombre d&rsquo;elements fills de l&rsquo;element arrel.</li>
+			<li>Nombre d&rsquo;elements sense fills (sense altres elements dins seu).</li>
+			<li>Nombre d&rsquo;elements que tenen fills (no son elements &ldquo;terminals&rdquo;).</li>
+		</ul>
+		<p>No oblidis crear codi de prova per totes les funcions.</p>
+		<p><strong>Important</strong>: per construir arbres (objectes de tipus <code>ElementTree</code>) tens la funció <code>parse</code>, el constructor <code>ElementTree</code>, el mètode <code>parse</code> dels objectes de tipus <code>ElementTree</code>&hellip; Vigila de no confondre la funció <code>parse</code> amb el mètode del mateix nom, o el mòdul de nom <code>ElementTree</code> amb la classe del mateix nom!</p>
+
+	</body>
+</html>
+<!--
+vim:sw=2:ts=2:nowrap
+-->

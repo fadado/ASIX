@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ca" lang="ca">
+	<head>
+		<title>Publicar continguts a Internet</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<style type="text/css">body{font-family: sans-serif;}</style>
+	</head>
+	<body>
+		<!-- title -->
+		<h1>Publicar continguts a Internet</h1>
+		<p>MP9UF2A4T2</p>	<!-- id -->
+		<!-- description -->
+		<p>Publicació de continguts amb <cite>Jekyll</cite></p>
+
+		<!-- body -->
+
+		<h2>Integració de <cite>Jekyll</cite> i <cite>GitHub Pages</cite></h2>
+		<p>Una vegada hem generat un lloc amb <cite>Jekyll</cite> podem pensar que el que cal fer per publicar-lo és posar a Internet el contingut del directori <code>_site</code>&hellip; Doncs no! Tenim una solució millor: usar <code>git push</code> i deixar que sigui <cite>GitHub</cite> qui generi el contingut del directori <code>_site</code> del a partir dels documents font. Aquest és el comportament per defecte de <cite>GitHub Pages</cite> i no cal configurar res per que aquesta màgia succeeixi.</p>
+
+		<p>Com que localment hauràs executat <cite>Jekyll</cite>, et caldrà posar aquest fitxer <code>.gitignore</code> en el teu repositori:</p>
+		<pre>	_site
+	.sass-cache
+	.jekyll-metadata</pre>
+
+		<h2>Enllaços recomanats</h2>
+		<ul>
+			<li><a href="https://help.github.com/articles/about-github-pages-and-jekyll/">About GitHub Pages and Jekyll</a></li>
+			<li><a href="https://help.github.com/articles/using-jekyll-as-a-static-site-generator-with-github-pages/">GitHub Pages &amp; Jekyll</a></li>
+			<li><a href="https://github.com/Shopify/liquid/wiki/liquid-for-designers">Liquid for Designers</a></li>
+			<li><a href="https://github.com/planetjekyll/quickrefs/blob/master/JEKYLL.md">Jekyll Cheat Sheet</a></li>
+			<li><a href="https://github.com/planetjekyll/quickrefs/blob/master/YAML.md">YAML Cheat Sheet</a>, i <a href="http://yaml.org/spec/1.1/#id857168">exemples</a> i més <a href="http://pyyaml.org/wiki/PyYAMLDocumentation#Documents">exemples</a>.</li>
+		</ul>
+
+		<h2>Pràctiques I</h2>
+		<ul>
+			<li>Segueix detalladament aquest <a href="http://jmcglone.com/guides/github-pages/">tutorial</a> sobre com fer llocs web a <cite>GitHub</cite> usant <cite>Jekyll</cite>. <strong>Important</strong>: la tècnica emprada, basada sempre en la interfície Web, pot ser bona per un tutorial introductori, però no per un treball professional.</li>
+			<li>Repeteix completament el <a href="http://jmcglone.com/guides/github-pages/">tutorial</a>, ara sense emprar mai la interfície web. Això comporta fer <code>git push</code> a fi de publicar el lloc web.</li>
+		</ul>
+
+		<h2>Pràctiques II</h2>
+		<p>En base al lloc web generat en executar <code>jekyll new</code>, fes un lloc sobre les películes de <a href="http://www.imdb.com/name/nm0706787/">Aishwarya Rai Bachchan</a>. Aquest lloc el pots fer amb l&rsquo;estil <a href="https://pages.github.com/">project site</a>, en una branca de nom <code>gh-pages</code>. Una vegada publicat el lloc comparteix la seva adreça amb tota la classe.</p>
+
+
+	</body>
+</html>
+<!--
+vim:sw=2:ts=2:nowrap
+-->

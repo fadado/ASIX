@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ca" lang="ca">
+	<head>
+		<title>Crear formularis</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<style type="text/css">body{font-family: sans-serif;}</style>
+	</head>
+	<body>
+		<!-- title -->
+		<h1>Crear formularis</h1>
+		<p>MP4UF3A1T1</p>	<!-- id -->
+		<!-- description -->
+		<p>Creació de formularis HMTL</p>
+
+		<!-- body -->
+
+		<h2>Elements HTML per crear formularis</h2>
+		<p>Cal estudiar, en la documentació de referència del llenguatge HTML, aquests elements:</p>
+		<ul>
+			<li><a href="http://htmlhelp.com/reference/html40/forms/form.html">form</a> &ndash; Formulari interactiu
+			<ul>
+				<li><a href="http://htmlhelp.com/reference/html40/forms/button.html">button</a> &ndash; Botó</li>
+				<li><a href="http://htmlhelp.com/reference/html40/forms/fieldset.html">fieldset</a> &ndash; Grup de controls
+				<ul>
+					<li><a href="http://htmlhelp.com/reference/html40/forms/legend.html">legend</a> &ndash; Llegenda per conjunt de camps</li>
+				</ul>
+				</li>
+				<li><a href="http://htmlhelp.com/reference/html40/forms/input.html">input</a> &ndash; Camp d&rsquo;entrada</li>
+				<li><a href="http://htmlhelp.com/reference/html40/forms/label.html">label</a> &ndash; Etiqueta per camp</li>
+				<li><a href="http://htmlhelp.com/reference/html40/forms/select.html">select</a> &ndash; Selector d&rsquo;opcions
+				<ul>
+					<li><a href="http://htmlhelp.com/reference/html40/forms/optgroup.html">optgroup</a> &ndash; Grup d&rsquo;opcions
+					<ul>
+						<li><a href="http://htmlhelp.com/reference/html40/forms/option.html">option</a> &ndash; Opció en menú</li>
+					</ul>
+					</li>
+				</ul>
+				</li>
+				<li><a href="http://htmlhelp.com/reference/html40/forms/textarea.html">textarea</a> &ndash; Entrada de text multilinia</li>
+			</ul>
+			</li>
+		</ul>
+
+		<p>Com es natural, validar els documents XHTML serà extremadament important ara que estudiem aquesta nova part del vocabulari.</p>
+
+		<h2>Enllaços recomanats</h2>
+		<ul>
+			<li><a href="http://htmlhelp.com/distribution/wdghtml40.tar.gz">WDG HTML 4.0 Reference</a> (<a href="../../UF1/A3/aux/wdghtml40.tar.gz">local</a>)</li>
+			<li><a href="http://www.cheat-sheets.org/saved-copy/htmlcheatsheet.pdf">XHTML Cheat Sheet</a> (<a href="../../UF1/A3//aux/htmlcheatsheet.pdf">local</a>)</li>
+		</ul>
+
+		<h2>Pràctiques</h2>
+		<p>Aquests exercicis demanen presentar diferents formularis, a fi d&rsquo;explorar les seves possibilitats. Tots els formularis han de ser vàlids, tenir botons <code>submit</code> i <code>reset</code>, i ser processats per l&rsquo;script presentat al final de la pàgina.</p>
+		<ul>
+			<li>Menú de restaurant, amb diferents grups de controls de tipus <code>radio</code>: primer plat, segon plat, postres i begudes.</li>
+			<li>Elecció de pizza (<code>radio</code>) i complements (<code>checkbox</code>).</li>
+			<li>Desplegable amb els noms de tots els països del mon.</li>
+			<li>Formulari per fer login.</li>
+			<li>Formulari per canvi de contrasenya.</li>
+			<li>Elecció de pizza amb desplegable de tipus <code>multiple</code> per complements.</li>
+			<li>Formulari amb dos botons <code>submit</code>, un per <strong>Acceptar</strong> i un altre per <strong>Cancel·lar</strong> (amb diferents <code>value</code>).</li>
+			<li>Formulari per enviar un missatge, amb camp <code>textarea</code> per cos del missatge.</li>
+			<li>Afegir al formulari anterior camps <code>hidden</code> per destinatari de missatge i nom de servidor SMTP.</li>
+		</ul>
+
+		<h2>Processament dels formularis</h2>
+		<p>Encara que ara ens preocupa principalment crear formularis, és natural voler saber quina informació envia el navegador al servidor en prémer el botó d&rsquo;enviar el formulari.  Per disposar d&rsquo;un servidor web que presenti la informació enviada pel navegador farem això:</p>
+		<ul>
+			<li>Crearem un directori pels formularis:
+				<pre><code>$ mkdir -p website/cgi-bin # directoris per formularis i scripts</code></pre>
+			</li>
+			<li>Cada vegada que calgui arrencar el servidor web farem, en un terminal:
+				<pre><code>$ cd website  # en aquest directori van els formularis HTML
+$ python /usr/lib64/python2.*/CGIHTTPServer.py  # ara llegeix la pantalla!</code></pre>
+			</li>
+			<li>En un altre terminal ens situarem en el directori <code>website</code> per editar els formularis.</li>
+			<li>Per verificar el sistema, còpia el fitxer <a href="aux/form.py">form.py</a> en el directori <code>cgi-bin</code> creat anteriorment (no t&rsquo;oblidis de fer-lo executable). Alternativament pots usar aquest altre script: <a href="aux/form.sh">form.sh</a>.</li>
+			<li>El directori de treball (<code>website</code>) actua com arrel de les rutes en les URLs, i recorda que els scripts s&rsquo;executen amb l&rsquo;usuari <code>nobody</code> (això afecta als permisos!).</li>
+			<li>En tots els formularis l&rsquo;element <code>form</code> serà així: <code>&lt;form action="cgi-bin/form.py" ...&gt;</code> .</li>
+			<li>Per visitar els formularis amb el navegador usarem l&rsquo;adreça <code>http://localhost:8000/<i>formulari</i></code>.</li>
+		</ul>
+
+		</body>
+		</html>
+		<!--
+vim:sw=2:ts=2:nowrap
+-->

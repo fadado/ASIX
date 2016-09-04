@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ca" lang="ca">
+	<head>
+		<title>Dissenyar nous DTDs</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<style type="text/css">body{font-family: sans-serif;}</style>
+	</head>
+	<body>
+		<!-- title -->
+		<h1>Dissenyar nous DTDs</h1>
+		<p>MP4UF1A2T1</p>	<!-- id -->
+		<!-- description -->
+		<p>Introducció a la descripció de tipus de documents</p>
+
+		<!-- body -->
+
+		<h2>Definició de Tipus de Document</h2>
+		<p>Un document XML és vàlid si, a més a més de ser ben format, la seva estructura respecta les restriccions establertes en el seu DTD (<i>Document Type Definition</i>).</p>
+		<ul>
+			<li>La declaració de tipus de document (<code>&lt;!DOCTYPE nom-element-arrel&hellip;&gt;</code>) estableix quin és el DTD del document XML.</li>
+			<li>El DTD pot residir dins el document XML o en un fitxer separat.</li>
+			<li>L&rsquo;ordre <code>xmllint</code>(1) por ser usada per validar documents XML (opcions <code>--valid</code> i <code>--noout</code>).</li>
+		</ul>
+
+		<h2>Declaracions d&rsquo;element i d&rsquo;atribut</h2>
+		<p>Aquestes són les úniques dos declaracions disponibles per definir la gramàtica d&rsquo;un vocabulari XML.</p>
+		<p><strong>Nota</strong>: les declaracions d&rsquo;entitat i de tipus de document, amb la que es completen les declaracions existents en els DTDs, no serveixen per definir la gramàtica del document.</p>
+		<ul>
+			<li>La declaració d&rsquo;element; (<code>&lt;!ELEMENT nom-element&hellip;&gt;</code>).</li>
+			<li>La declaració d&rsquo;atribut; (<code>&lt;!ATTLIST nom-element nom-atribut&hellip;&gt;</code>).</li>
+			<li>Podem tenir més d&rsquo;una declaració de llista d&rsquo;atributs per un mateix element .</li>
+		</ul>
+
+		<h2>Enllaços recomanats</h2>
+		<ul>
+			<li><a href="http://www.mulberrytech.com/quickref/XMLquickref.pdf">XML Syntax Quick Reference</a> (<a href="../A1/aux/XMLquickref.pdf">local</a>)	</li>
+			<li><a href="http://www.w3schools.com/xml/xml_dtd_intro.asp">DTD Tutorial</a></li>
+			<li><a href="http://www.xmlpatterns.com/">XML Design Patterns</a></li>
+		</ul>
+		<p>L&rsquo;<cite>XML Syntax Quick Reference</cite> serà presentada en la seva totalitat a classe.</p>
+
+		<h2>Pràctiques</h2>
+		<ul>
+			<li>Practica els tutorials citats en la llista d&rsquo;enllaços.</li>
+			<li>Fes un document XML, amb el seu corresponent DTD, on es presentin els 4 casos possibles de model de contigut per a elements: buit, elements fills, text (<code>#PCDATA</code>), i <i>mixed</i> (elements i  text).</li>
+			<!--
+			<li>Redacta en un fitxer de text un glossari amb els principals conceptes presentats en la XML Syntax Quick Reference. Comença per fer la llista de conceptes  a definir (tan sols els principals)</li>
+			<li>En el document anterior afegeix els avantatges/desavantatges de posar el DTD dins/fora del document XML</li>
+			-->
+			<li>Crea un document XML descrivint un menú de restaurant (i el seu DTD) per mostrar el patró de disseny <cite>Common Attributes</cite>.</li>
+		</ul>
+
+	</body>
+</html>
+<!--
+vim:sw=2:ts=2:nowrap
+-->

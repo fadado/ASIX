@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ca" lang="ca">
+	<head>
+		<title>Gestionar repositoris amb Git</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<style type="text/css">body{font-family: sans-serif;}</style>
+	</head>
+	<body>
+		<!-- title -->
+		<h1>Gestionar repositoris amb Git</h1>
+		<p>MP9UF2A1T2</p>	<!-- id -->
+		<!-- description -->
+		<p>Us de Git i GitLab</p>
+
+		<!-- body -->
+
+		<h2><cite>Git</cite> en la pràctica</h2>
+			
+		<p>En lloc de dedicar temps a la pura teoria farem tots junts aquest <a href="https://try.github.io/">tutorial</a> de <cite>GitHub</cite>.</p>
+
+		<h2>Cicle de treball amb <cite>Git</cite></h2>
+
+    <pre><code>	# Crear directori de projecte
+	mkdir PROJECTE; cd PROJECTE
+	git init
+
+	# Crear fitxers de text a desenvolupar
+	touch FITXER
+	git add FITXER
+
+	# Repetir:
+		# editar FITXER...
+		git status
+		# si FITXER ok i estable
+		git commit -am 'Missatge'
+		# si caos absolut
+		git checkout FITXER</code></pre>
+
+		<p>Les ordres de <cite>Git</cite> que et caldrà usar inicialment són aquestes:</p>
+		<ul>
+			<li><code>git init</code></li>
+			<li><code>git add</code></li>
+			<li><code>git status</code></li>
+			<li><code>git log</code></li>
+			<li><code>git commit</code></li>
+			<li><code>git checkout</code></li>
+		</ul>
+		<p>Totes disposen de la seva pàgina de manual. Per exemple:</p>
+		<ul>
+			<li><code>man git-log</code></li>
+			<li><code>git log --help</code></li>
+			<li><code>git help log</code></li>
+			<li><code>git help log --web</code></li>
+		</ul>
+
+		<p>Si no et funciona el darrer exemple configura així <cite>Git</cite>:</p>
+		<pre><code>git config --global help.htmlPath /usr/share/doc/git-core-doc/</code></pre>
+
+		<h2>Enllaços recomanats</h2>
+		<ul>
+			<li><a href="https://try.github.io/">Tutorial a <cite>GitHub</cite></a></li>
+			<li><a href="http://rogerdudler.github.io/git-guide/index.es.html">The simple guide. no deep shit ;)</a></li>
+			<li><a href="https://www.atlassian.com/git/tutorials/">Tutorials a <cite>Atlassian</cite></a></li>
+		</ul>
+
+		<h2>Pràctiques</h2>
+		<ul>
+			<li>Si no ho has fet encara, instal·la <cite>Git</cite>:
+				<pre><code>	MANAGER=yum
+	which dnf &gt;/dev/null 2&gt;&amp;1 &amp;&amp; MANAGER=dnf
+	sudo $MANAGER -y install git gitg meld</code></pre>
+			</li>
+			<li>Configura <cite>Git</cite>:
+				<pre><code>	git config --global user.email &lt;juanpalomo@...&gt;
+	git config --global user.name &lt;juanpalomo&gt;
+	git config --global color.ui true
+	git config --global color.status auto
+	git config --global color.branch auto
+	git config --global core.editor vim
+	git config --global diff.tool meld
+	git config --global merge.tool meld
+	git config --global merge.conflictstyle diff3
+	git config --global mergetool.prompt false</code></pre>
+			</li>
+			<li>Explora el repositori de <cite>GitHub</cite> <a href="https://github.com/fadado/gitet">fadado/gitet</a>. En particular, fes una còpia local tal i visita la presentació sobre <cite>Git</cite> del directori <code>slides</code>.</li>
+			<li>Posa un nou directori sota el control de <cite>Git</cite> i experimenta el cicle de treball explicat més amunt.</li>
+			<li>Posa un dels teus directoris de treball sota el control de <cite>Git</cite>.</li>
+		</ul>
+
+	</body>
+</html>
+<!--
+vim:sw=2:ts=2:nowrap
+-->

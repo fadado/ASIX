@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ca" lang="ca">
+	<head>
+		<title>Validar documents XML</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<style type="text/css">body{font-family: sans-serif;}</style>
+	</head>
+	<body>
+		<!-- title -->
+		<h1>Validar documents XML</h1>
+		<p>MP4UF1A2T2</p>	<!-- id -->
+		<!-- description -->
+		<p>Pràctica amb eines per validar documents XML respecte el seu DTD</p>
+
+		<!-- body -->
+
+		<h2>Eines de validació</h2>
+		<p>Opcions avançades de l&rsquo;ordre <code>xmllint</code>(1)</p>
+		<ul>
+			<li><code>--format</code></li>
+			<li><code>--dtdattr</code></li>
+			<li><code>--encode</code></li>
+			<li><code>--noent</code></li>
+			<li><code>--nonet</code></li>
+			<li><code>--shell</code></li>
+		</ul>
+
+		<h2>El catàleg</h2>
+		<ul>
+			<li>El catàleg és com una base de dades que permet recuperar DTDs situats en fitxers locals usant com a claus identificador públics o URLs. Això evita fer descàrregues de fitxers remots.</li>
+			<li>Les eines <code>xmllint</code>(1) i <code>xsltproc</code>(1)  usen un catàleg per optimitzar l&rsquo;accés als DTDs.</li>
+			<li>El &ldquo;punt d&rsquo;entrada&rdquo; del catàleg és <code>/etc/xml/catalog</code>.</li>
+			<li>L&rsquo;ordre <code>xmlcatalog</code>(1) facilita la gestió del catàleg, encara que res impedeix editar-lo directament.</li>
+		</ul>
+
+		<h2>Enllaços recomanats</h2>
+		<p>La presentació <cite>XML Avanzado</cite> serà presentada, parcialment, al llarg de diverses classes.</p>
+		<ul>
+			<li><a href="http://www.di.uniovi.es/~labra/cursos/XMLAvanzado/XML.html">XML Avanzado</a> (<a href="aux/XMLAvanzado/XML.html">local</a>)</li>
+			<li><a href="http://www.mulberrytech.com/quickref/XMLquickref.pdf">XML Syntax Quick Reference</a> (<a href="../A1/aux/XMLquickref.pdf">local</a>)	</li>
+		</ul>
+
+		<h2>Pràctiques</h2>
+		<ul>
+			<li>Instal·la el paquet <code>xhtml1-dtds</code> (abans guarda una còpia de <code>/etc/xml/catalog</code>). Compara ara <code>/etc/xml/catalog</code> amb la còpia que has fet (usa les ordres <code>diff</code>(1), o <code>meld</code> per comparar fitxers).</li>
+			<li>Consulta el contingut del paquet (<code>rpm -ql xhtml1-dtds</code>).  Què hi ha en els fitxers amb extensió <code>.ent</code>? Com es combinen &ldquo;dins&rdquo; els fitxers amb extensió <code>.dtd</code>?</li>
+			<li>Valida documents XHTML baixats d&rsquo;Internet. Per exemple:
+			<pre><code>$ wget -O x.html http://www.w3c.org/
+$ xmllint --nonet --noout --valid x.html</code></pre></li>
+			<li>Estudia la presentació <cite>XML Avanzado</cite> mencionada en la llista d&rsquo;enllaços.</li>
+		</ul>
+
+	</body>
+</html>
+<!--
+vim:sw=2:ts=2:nowrap
+-->

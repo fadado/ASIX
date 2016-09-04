@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ca" lang="ca">
+	<head>
+		<title>Crear i validar documents RSS</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<style type="text/css">body{font-family: sans-serif;}</style>
+	</head>
+	<body>
+		<!-- title -->
+		<h1>Crear i validar documents RSS</h1>
+		<p>MP4UF2A1T2</p>	<!-- id -->
+		<!-- description -->
+		<p>Estudi dels vocabularis RSS i Atom</p>
+
+		<!-- body -->
+
+		<h2>Vocabularis RSS</h2>
+		<p>Existeixen diferents <a href="aux/crono-rss.jpg">versions</a> de RSS, sense comptar el vocabulari <cite>Atom</cite>, que podem agrupar en dos branques (RDF &ndash;o RSS 1.*&ndash; i RSS 2.*). </p>
+		<ul>
+			<li>Vocabularis de la branca RDF: RSS 0.90 (<cite>RDF Site Summary</cite>, creat per<cite> Netscape</cite>), RSS 1.0 (encara <cite>RDF Site Summary</cite>), RSS 1.1 (pensat per substituir RSS 1.0).</li>
+			<li>Vocabularis de la branca RSS 2.*: RSS 0.91 (<cite>Rich Site Summary</cite>, creat per Netscape), RSS 0.92, 0.93 i 0.94 (variacions de l&rsquo;anterior), RSS 2.0.1 (<cite>Really Simple Sindication</cite>).</li>
+			<li>Vocabulari <cite>Atom</cite>: pensat per substituir tots els anteriors. Ben dissenyat, però amb dificultats per imposar-se i eliminar el caos existent.</li>
+		</ul>
+
+		<p>Un dels participants en la definició del RSS 1.0, amb tan sols 14 anys d&rsquo;edat, va ser <a href="https://en.wikipedia.org/wiki/Aaron_Swartz#Life_and_works">Aaron Swartz</a>, famós hacker i <a href="http://www.aaronsw.com/">activista</a> per les llibertats a Internet.</p>
+
+		<h2>Validar documents RSS</h2>
+		<p>Donada la varietat de vocabularis RSS, la forma més convenient de validar documents RSS és utilitzar el servei de validació del W3C.</p>
+		<ul>
+			<li><a href="http://validator.w3.org/feed/">W3C Feed Validation Service</a></li>
+			<li><a href="http://validator.w3.org/">W3C Markup Validation Service</a></li>
+			<li><a href="http://www.w3.org/QA/Tools/">W3C Quality Assurance Tools</a></li>
+		</ul>
+
+		<h2>Enllaços recomanats</h2>
+		<ul>
+			<li><a href="http://en.wikipedia.org/wiki/RSS">Wikipedia: RSS</a></li>
+			<li><a href="http://en.wikipedia.org/wiki/Atom_(standard)">Wikipedia: Atom (standard)</a></li>
+			<li><a href="http://barrapunto.com/">Barrapunto</a> (<a href="http://barrapunto.com/index.rss"><i>feed RDF</i></a>)</li>
+			<li><a href="http://slashdot.org/">Slashdot</a> (<a href="http://rss.slashdot.org/Slashdot/slashdot"><i>feed</i> RSS 2.0</a>)</li>
+			<li><a href="http://pirata.cat/bloc/">Bloc Pirata!</a> (<a href="http://pirata.cat/bloc/?feed=rss"><i>feed</i> RSS 0.92</a>, <a href="http://pirata.cat/bloc/?feed=rss2"><i>feed</i> RSS 2.0</a>, <a href="http://pirata.cat/bloc/?feed=atom"><i>feed</i> Atom</a>)</li>
+		</ul>
+
+		<h2>Pràctiques</h2>
+		<ul>
+			<li>Fes per escrit una llista de diferències observables en els vocabularis dels diferents canals mencionats en els enllaços recomanats.</li>
+			<li>A partir del model d’Atom <em>feed</em> presentat al final de la pàgina crea, en un fitxer, un canal sobre un tema del teu interès, afegint un mínim de 3 <code>entry</code>. Valida el fitxer amb alguns dels serveis disponibles a Internet.</li>
+			<li>Verifica quins tipus MIME assigna el fitxer <code>/etc/mime.types</code> a les extensions <code>rss</code> i <code>xml</code>. Si l’extensió <code>xml</code> no te tipus MIME associat, associa-li <code>application/xml</code>; i si l’extensió <code>rss</code> no te tipus MIME associat, associa-li <code>application/rss+xml</code>. </li>
+			<li>Visualitza el fitxer amb <cite>Firefox</cite> i el lector <cite>Liferea</cite>. Influeix l’extensió del fitxer (prova <code>.xml</code> i <code>.rss</code>) en el comportament dels programes?</li>
+		</ul>
+
+		<h3>Exemple de document Atom</h3>
+		<p>Avis: podem crear UUIds (identificadors únics universals), i dates ben formatades amb les ordres del shell, respectivament:</p>
+		<ul>
+			<li><code>uuidgen -t | sed 's/^/urn:uuid:/'</code></li>
+			<li><code>date -u --rfc-3339=seconds | sed 's/ /T/;s/+00:00$/Z/'</code></li>
+		</ul>
+		<p>Per calcular una data determinada passa a l&rsquo;ordre <code>date</code> (seguint l&rsquo;exemple anterior) un argument extra amb la forma <code>[MMDDhhmm[[CC]YY][.ss]]</code>.</p>
+
+		<pre>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;feed xmlns="http://www.w3.org/2005/Atom"&gt;
+	&lt;title&gt;Example Feed&lt;/title&gt;
+	&lt;subtitle&gt;A subtitle.&lt;/subtitle&gt;
+	&lt;link href="http://example.org/feed/" rel="self" /&gt;
+	&lt;link href="http://example.org/" /&gt;
+	&lt;id&gt;urn:uuid:60a76c80-d399-11d9-b91C-0003939e0af6&lt;/id&gt;
+	&lt;updated&gt;2003-12-13T18:30:02Z&lt;/updated&gt;
+	&lt;author&gt;
+		&lt;name&gt;John Doe&lt;/name&gt;
+		&lt;email&gt;johndoe@example.com&lt;/email&gt;
+	&lt;/author&gt;
+
+	&lt;entry&gt;
+		&lt;title&gt;Atom-Powered Robots Run Amok&lt;/title&gt;
+		&lt;link href="http://example.org/2003/12/13/atom03" /&gt;
+		&lt;link rel="alternate" type="text/html" href="http://example.org/2003/12/13/atom03.html"/&gt;
+		&lt;link rel="edit" href="http://example.org/2003/12/13/atom03/edit"/&gt;
+		&lt;id&gt;urn:uuid:1225c695-cfb8-4ebb-aaaa-80da344efa6a&lt;/id&gt;
+		&lt;updated&gt;2003-12-13T18:30:02Z&lt;/updated&gt;
+		&lt;summary&gt;Some text.&lt;/summary&gt;
+	&lt;/entry&gt;
+&lt;/feed&gt;
+		</pre>
+
+
+	</body>
+</html>
+<!--
+vim:sw=2:ts=2:nowrap
+-->

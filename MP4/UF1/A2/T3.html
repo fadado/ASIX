@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ca" lang="ca">
+	<head>
+		<title>Organitzar i documentar DTDs</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<style type="text/css">body{font-family: sans-serif;}</style>
+	</head>
+	<body>
+		<!-- title -->
+		<h1>Organitzar i documentar DTDs</h1>
+		<p>MP4UF1A2T3</p>	<!-- id -->
+		<!-- description -->
+		<p>Tècniques i normes de documentació del DTDs</p>
+
+		<!-- body -->
+
+		<h2>Entitats de paràmetre internes i externes</h2>
+		<p>Les entitats de paràmetre ofereixen un simple sistema de substitució de text a emprar dins del DTD.</p>
+		<ul>
+			<li>Es defineixen com les generals però afegint el caràcter <code>%</code> (<code>&lt;!ENTITY % &hellip;&gt;</code>) .</li>
+			<li>Es defineixen i referèncien sempre dins del DTD, mai en el document.</li>
+			<li>Es deferèncien amb la sintaxi <code>%NOM;</code>.</li>
+			<li>Es poden fer servir per dividir un gran DTD en diferents fitxers (fent servir entitats externes).</li>
+		</ul>
+
+		<h2>Comentaris</h2>
+		<ul>
+			<li>Capçalera: autor, descripció del contingut del document, registre de canvis&hellip;</li>
+			<li>Seccions principals: separen blocs importants del DTD (no es recomana l&rsquo;estil <i>banner</i>).</li>
+			<li>Element: per a cada element cal una descripció, sense oblidar els seus atributs.</li>
+		</ul>
+
+		<h2>Enllaços recomanats</h2>
+		<ul>
+			<li><a href="http://www.di.uniovi.es/~labra/cursos/XMLAvanzado/XML.html">XML Avanzado</a> (<a href="aux/XMLAvanzado/XML.html">local</a>)</li>
+			<li><a href="http://www.mulberrytech.com/quickref/XMLquickref.pdf">XML Syntax Quick Reference</a> (<a href="../A1/aux/XMLquickref.pdf">local</a>)</li>
+		</ul>
+
+		<h2>Pràctiques</h2>
+		<ul>
+			<li>Crea (i expandeix amb <code>xmllint</code>(1) &ndash;busca les opcions necessàries en la documentació de l&rsquo;ordre&ndash;) un document XML que inclogui (utilitzant entitats de paràmetre externes) les declaracions d&rsquo;entitat que acompanyen el DTD de l&rsquo;XHTML (en els fitxers amb extensió <code>.ent</code>). Utilitza algunes d&rsquo;aquestes entitats dins del text del document i verifica que es poden expandir correctament.</li>
+			<li>Documenta el document i DTD de menú de restaurant que has fet en una de les primeres pràctiques d&rsquo;aquesta activitat.</li>
+		</ul>
+
+	</body>
+</html>
+<!--
+vim:sw=2:ts=2:nowrap
+-->

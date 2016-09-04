@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ca" lang="ca">
+	<head>
+		<title>Crear plantilles</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<style type="text/css">body{font-family: sans-serif;}</style>
+	</head>
+	<body>
+		<!-- title -->
+		<h1>Crear plantilles</h1>
+		<p>MP9UF1A2T1</p>	<!-- id -->
+		<!-- description -->
+		<p>El sistema de plantilles <cite>Genshi</cite></p>
+
+		<!-- body -->
+
+		<h2><cite>Genshi</cite></h2>
+		<p>El paquet de <cite>Fedora</cite> <code>python-genshi</code> instal·la el sistema de plantilles <cite>Genshi</cite> i la seva documentació.</p>
+
+		<p><cite>Genshi</cite> és una biblioteca de <cite>Python</cite> que proporciona un conjunt integrat
+		de components per a l&rsquo;anàlisi, la generació i processament d&rsquo;HTML, XML o
+		qualsevol altre contingut textual per a la generació de documents per la
+		Web. La principal característica és un llenguatge de plantilles, que està
+		fortament inspirat en <cite>Kid</cite> i <cite>TAL</cite>.</p>
+
+		<p>Una plantilla de <cite>Genshi</cite> és un document XML ben format, amb <cite>Python</cite>
+		embegut utilitzat per el control de flux i la substitució de variables.
+		Les plantilles es poden fer servir per generar qualsevol tipus de
+		sortida en format HTML o XML.</p>
+
+		<p>A continuació es mostra una plantilla bàsica de Genshi:</p>
+		<pre> 1 &lt;?python
+ 2    title =  "A Genshi Template"
+ 3    fruits = ["apple", "orange", "kiwi"]
+ 4  ?&gt;
+ 5  &lt;html xmlns:py="http://genshi.edgewall.org/"&gt;
+ 6    &lt;head&gt;
+ 7      &lt;title py:content="title"&gt;This is replaced.&lt;/title&gt;
+ 8    &lt;/head&gt;
+ 9    &lt;body&gt;
+10      &lt;p&gt;These are some of my favorite fruits:&lt;/p&gt;
+11      &lt;ul&gt;
+12        &lt;li py:for="fruit in fruits"&gt;
+13          I like ${fruit}s
+14        &lt;/li&gt;
+15      &lt;/ul&gt;
+16    &lt;/body&gt;
+17  &lt;/html&gt;</pre>
+
+		<p>En aquest exemple hi trobem:</p>
+
+		<ul>
+			<li>Un bloc de codi en <cite>Python</cite>, utilitzant una instrucció de processament.</li>
+			<li>La declaració d&rsquo;espai de noms per <cite>Genshi</cite>.</li>
+			<li>L&rsquo;ús de les directives de plantilles (<code>py:content</code> i <code>py:for</code>).</li>
+			<li>Una expressió de <cite>Python</cite>: (${fruit}).</li>
+		</ul>
+
+		<p><strong>Important</strong>: en general no farem servir la instrucció de processament per definir codi o variables de <cite>Python</cite>, i situarem aquest codi en fitxers separats.</p>
+
+		<h2>Directives de processament</h2>
+		<p>Les directives de processament de <cite>Genshi</cite> que primer hem d&rsquo;estudiar es poden clasificar tal com mostra aquesta llista:</p>
+		<ul>
+			<li>Execució condicional: <code>py:if</code>, <code>py:choose</code></li>
+			<li>Bucles: <code>py:for</code></li>
+			<li>Definició de variables: <code>py:with</code></li>
+			<li>Generació d&rsquo;XML: <code>py:attrs</code>, <code>py:content</code>, <code>py:replace</code> i <code>py:strip</code></li>
+		</ul>
+
+		<h2>Expansió de plantilles</h2>
+		<p>Per expandir les plantilles usarem de moment l&rsquo;script <a href="aux/render.py">render.py</a>, i expandirem les plantilles en el terminal, sense involucrar en aquesta tasca a servidor web o scripts CGI. Aquestes ordres mostren com expandir diferents plantilles de prova situades en el directori <a href="aux">aux</a>:</p>
+		<ul>
+			<li><code>$ python ./render.py t01.xml</code></li>
+			<li><code>$ title="valor heretat en entorn" python ./render.py t02.xml</code></li>
+			<li><code>$ name=Joan times=10 python ./render.py t03.xml | xmllint --format -</code></li>
+		</ul>
+		<p>Pot ser instructiu estudiar l&rsquo;script <a href="aux/render.py">render.py</a>, ja que mes endavant et caldrà fer servir un codi similar en els scripts CGI:</p>
+		<pre> 2  """Expand genshi templates.
+ 3  Usage: env N=V... python ./render.py TEMPLATE
+ 4  """
+
+ 5  import os
+ 6  import sys
+ 7  from genshi.template import TemplateLoader
+
+ 8  TEMPLATE = sys.argv[1]
+
+ 9  TPATH = ["./", "/opt/templates"] # directoris on cercar plantilles
+
+10  loader = TemplateLoader(TPATH)
+
+11  template = loader.load(TEMPLATE)
+
+12  stream = template.generate(**os.environ)
+
+13  sys.stdout.write(stream.render(encoding="UTF-8"))</pre>
+
+		<p>Llegeix la documentació de la línia 3: ho entens tot?</p>
+
+		<h2>Tècniques especials de <cite>Python</cite></h2>
+		<p>Si no coneixies encara la tècnica emprada en la línia 12 estudia aquests exemples:</p>
+		<pre>
+&gt;&gt;&gt; t = (5, 6)
+&gt;&gt;&gt; def f(a=None, b=None):
+...  print a, b
+... 
+&gt;&gt;&gt; f()
+None None
+&gt;&gt;&gt; f(7, 8)
+7 8
+&gt;&gt;&gt; f(*t)
+5 6
+&gt;&gt;&gt; f(b=9)
+None 9
+&gt;&gt;&gt; d = dict(a=1, b=2)
+&gt;&gt;&gt; f(**d)
+1 2
+&gt;&gt;&gt; d = { "a": 11, "b": 22 }
+&gt;&gt;&gt; f(**d)
+11 22</pre>
+
+		<h2>Enllaços recomanats</h2>
+		<ul>
+			<li>En la documentació local de Genshi: <a href="file:///usr/share/doc/python-genshi/doc/xml-templates.html">Genshi XML Template Language</a>.</li>
+		</ul>
+
+		<h2>Pràctiques</h2>
+		<p>De moment treballarem les plantilles sense usar servidor Web o scripts CGI. Simplement expandirem les plantilles en la sortida estàndard i estudiarem el resultat.</p>
+		<ol>
+			<li>Consulta la documentació instal·lada amb el paquet <code>python-genshi</code> que es recomana en els enllaços recomanats.</li>
+			<li>Estudia i expandeix (amb <a href="aux/render.py">render.py</a>) les plantilles de prova situades en el directori <a href="aux">aux</a> (fitxers amb extensió <code>xml</code>).</li>
+			<li>Fes una plantilla que mostri els arguments rebuts en executar a <a href="aux/render.py">render.py</a> (llista <code>sys.argv</code>).</li>
+			<li>Fes plantilles de prova per els exemples presentats en la documentació local de <a href="file:///usr/share/doc/python-genshi/doc/index.html">Genshi</a>: <i>Genshi XML Template Language</i>.</li>
+			<li>Fes una plantilla que mostri les primeres 16 potencies de 2 (<code>2**1</code>, <code>2**2</code>, <code>2**3</code>, etc.).</li>
+			<li>Fes una plantilla que mostri la taula de multiplicar.</li>
+		</ol>
+
+	</body>
+</html>
+<!--
+vim:sw=2:ts=2:nowrap
+-->

@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ca" lang="ca">
+	<head>
+		<title>Consultar documents XML</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<style type="text/css">body{font-family: sans-serif;}</style>
+	</head>
+	<body>
+		<!-- title -->
+		<h1>Consultar documents XML</h1>
+		<p>MP4UF2A2T1</p>	<!-- id -->
+		<!-- description -->
+		<p>Introducció al mòdul <code>ElementTree</code> de <cite>Python</cite></p>
+
+		<!-- body -->
+
+		<h2>Tècniques convenients de <cite>Python</cite></h2>
+		<p>Et caldrà recordar moltes de les tècniques de <cite>Python</cite> pel tractament de llistes i diccionaris que ja has estudiat. A més a més, presentem a continuació altres tècniques útils que potser no coneixes encara:</p>
+		<ul>
+			<li><strong>Guia d&rsquo;estil per <cite>Python</cite></strong>: si et vols estalviar estudiar el <a href="https://www.python.org/dev/peps/pep-0008/">PEP8</a> per aplicar l&rsquo;estil recomanat en escriure codi de <cite>Python</cite> tens una solució perfecte en el <a href="http://www.ninja-ide.org/">Ninja-IDE</a>. Tan sols et cal executar <code>yum install ninja-ide -y</code> i sempre escriuras <cite>Python</cite> com els professionals. </li>
+			<li><strong>Comprehensió de llistes</strong>: les comprehensions de llistes ofereixen una sintaxi compacta, inspirada en la notació matemàtica de conjunts, per expressar llistes de forma declarativa, sense assignacions o bucles. Un senzills exemples faran fàcil entendre les seves possibilitats:<br/><br/>
+				<ul>
+					<li>Els quadrats dels 10 primers enters: <code>[ i ** 2 for i in range(10) ]</code></li>
+					<li>Els 10 primers enters i els seus quadrats: <code>[ (i, i ** 2) for i in range(10) ]</code></li>
+					<li>Nombres parells menors de 40: <code>[ i for i in range(1, 40) if i%2 == 0]</code></li>
+					<li>Múltiples de 7 menors de 100: <code>[ i for i in range(7, 100) if i%7 == 0]</code></li>
+					<li>Paraules en majúscules: <code>[s.upper() for s in 'The quick brown fox jumps over the lazy dog'.split()]</code></li>
+					<li>Treure un nivell de llistes: <code>[x for xs in [[1,2,3], [4,5,6], [7,8,9]] for x in xs]</code></li>
+				</ul>
+				<br/>
+				La relació entre les comprehensions de llistes i el seu equivalent procedural és aquesta:
+				<br/> <br/>
+				<table cellspacing="1" cellpadding="8" border="1" style="font-family: monospace">
+					<tr>
+						<td>ys = [f(x) for x in xs]</td>
+						<td>&nbsp;&hArr;&nbsp;</td>
+						<td>ys = []<br/>for x in xs:<br/>&nbsp;&nbsp;ys.append(f(x))</td>
+					</tr>
+					<tr>
+						<td>ys = [x for x in xs if g(x)]</td>
+						<td>&nbsp;&hArr;&nbsp;</td>
+						<td>ys = []<br/>for x in xs:<br/>&nbsp;&nbsp;if g(x):<br/>&nbsp;&nbsp;&nbsp;&nbsp;ys.append(x)</td>
+					</tr>
+					<tr>
+						<td>ys = [f(x) for x in xs if g(x)]</td>
+						<td>&nbsp;&hArr;&nbsp;</td>
+						<td>ys = []<br/>for x in xs:<br/>&nbsp;&nbsp;if g(x):<br/>&nbsp;&nbsp;&nbsp;&nbsp;ys.append(f(x))</td>
+					</tr>
+				</table>
+				<br/>
+			</li>
+			<li><strong>Programació funcional</strong>: <cite>Python</cite> sempre a proporcionat diverses funcions típiques de la programació funcional, com ara <code>map</code> i <code>filter</code> que tenen aquesta correspondència amb les comprehensions de llistes:<br/><br/>
+			<table cellspacing="1" cellpadding="8" border="1" style="font-family: monospace">
+				<tr>
+					<td>[f(x) for x in xs]</td>
+					<td>&nbsp;&hArr;&nbsp;</td>
+					<td>map(f, xs)</td>
+				</tr>
+				<tr>
+					<td>[x for x in xs if g(x)]</td>
+					<td>&nbsp;&hArr;&nbsp;</td>
+					<td>filter(g, xs)</td>
+				</tr>
+				<tr>
+					<td>[f(x) for x in xs if g(x)]</td>
+					<td>&nbsp;&hArr;&nbsp;</td>
+					<td>map(f, filter(g, xs))</td>
+				</tr>
+			</table>
+			<br/>
+			Per fer com <code>map</code>, però ignorant el resultat retornat per la funció, podem fer servir en el seu lloc aquesta funció:
+<pre>def foreach(f, it):
+    for x in it:
+        f(x)</pre>
+			</li>
+			<li><strong>Calcul de totals</strong>: les funcions <code>sum</code>, <code>max</code> i <code>min</code> s'apliquen a qualsevol iterable (llistes, tuples, fitxers, etc.).</li>
+			<li><strong>Expressió condicional</strong>: l'expressió de <cite>Python</cite> <code><i>a</i> if <i>b</i> else <i>c</i></code> proporciona el valor <code><i>a</i></code> si l'expressió <code><i>b</i></code> és certa, i el valor <code><i>b</i></code> en cas contrari. El valor que no es retorna no és avaluat. L'expressió és similar a <code><i>a</i> and <i>b</i> or <i>c</i></code>, però aquesta darrera falla en alguns casos obscurs que ara no comentarem.  </li>
+		</ul>
+
+		<h2>El mòdul <code>ElementTree</code></h2>
+		<p>El mòdul de <cite>Python</cite> <code>xml.etree.ElementTree</code> proporciona diverses facilitats per la creació i manipulació d&rsquo;arbres d&rsquo;elements. Ara tan sols utilitzarem unes poques prestacions d'aquest mòdul, presentades en forma d'exemples més endavant. Els conceptes principals a considerar són aquests:</p>
+
+		<ul>
+			<li>La funció <code>parse</code> retorna un objecte de tipus <code>ElementTree</code>.</li>
+			<li>El mètode <code>getroot</code> dels objectes de tipus <code>ElementTree</code> retorna un objecte de tipus <code>Element</code>.</li>
+			<li>Les propietats principals dels elements són <code>tag</code>, <code>text</code> i <code>attrib</code>.</li>
+			<li>Els elements comparteixen característiques de les llistes (pels seus subelements) i dels diccionaris (pels seus atributs).</li>
+			<li>Els mètodes dels elements que farem servir per ara són <code>findall</code> i <code>find</code>.</li>
+		</ul>
+
+
+		<h2>El llenguatge <cite>XPath</cite></h2>
+		<p>En cridar a alguns mètodes dels objectes de tipus <code>Element</code> podem fer servir un petit subconjunt del llenguatge <cite>XPath</cite>:</p>
+		<ul>
+			<li><code>Nom</code>: el nom (etiqueta) de qualsevol element fill de l&rsquo;element actual.</li>
+			<li><code>Nom1/Nom2/...</code>: ruta relativa amb noms d&rsquo;elements.</li>
+			<li><code>*</code>: equival a qualsevol nom d&rsquo;element.</li>
+			<li><code>.//Nom</code>: element, descendent de l&rsquo;element actual, en qualsevol lloc de l&rsquo;arbre d&rsquo;elements.</li>
+			<li><code>//*</code>: tots els elements de l&rsquo;arbre d&rsquo;elements.</li>
+		</ul>
+
+		<h2>Enllaços recomanats</h2>
+		<ul>
+			<li><a href="http://home.uchicago.edu/~gan/file/python.pdf">Python 2.5 Reference Card</a> (imprimeix en paper aquest document, i conserva una versió <a href="aux/python-2-5.pdf">local</a>)</li>
+			<li><a href="http://rgruet.free.fr/">Python Quick Reference Card</a> (versió <a href="aux/python-QR.pdf">local</a>)</li>
+			<li>Copia local de la <a href="file:///usr/share/doc/python-docs/html/index.html">Python v2.7 documentation</a> (paquet RPM <code>python-docs</code>).</li>
+			<li>Mòdul <code>xml.etree.ElementTree</code> en <cite>The Python Standard Library</cite></li>
+		</ul>
+
+		<h2>Exemples de consultes I</h2>
+		<p>Les expressions de <cite>Python</cite> presentades a continuació assumeixen aquest entorn de treball:</p>
+		<pre>import xml.etree.ElementTree as ET
+tree = ET.parse("<a href="aux/cd_catalog.xml">cd_catalog.xml</a>")
+root = tree.getroot()</pre>
+
+		<ol>
+			<li>Element arrel: <code>tree.getroot()</code></li>
+			<li>Nom de l&rsquo;element arrel: <code>root.tag</code></li>
+			<li>El primer CD: <code>ET.dump(root[0])</code></li>
+			<li>El darrer CD: <code>ET.dump(root[-1])</code></li>
+			<li>Quantitat de CDs: <code>len(root)</code></li>
+			<li>Tots el CDs: <code>list(root)</code></li>
+			<li>Visualitzar tots el CDs: <code>foreach(ET.dump, root)</code></li>
+			<li>Visualitzar tots el CDs: <code>foreach(ET.dump, list(root))</code></li>
+			<li>Quantitat total d&rsquo;elements:  <code>len(root.findall(".//*"))</code></li>
+			<li>Els CDs en ordre invers: <code>list(reversed(root))</code></li>
+		</ol>
+
+		<h2>Exemples de consultes II</h2>
+		<p>Les expressions de <cite>Python</cite> presentades a continuació assumeixen aquest entorn de treball:</p>
+		<pre>import xml.etree.ElementTree as ET
+tree = ET.parse("<a href="aux/cd_catalog.xml">cd_catalog.xml</a>")
+query = tree.getroot().findall</pre>
+
+		<p>Exemples amb <code>foreach</code>.</p>
+
+		<ol>
+			<li>Tots els noms d&rsquo;artistes: <code>[e.text for e in query("CD/ARTIST")]</code>; alternativa: <code>[e.text for e in query(".//ARTIST")]</code></li>
+			<li>CDs d&rsquo;abans de 1980: <code>foreach(ET.dump, [e for e in query("CD") if int(e.find("YEAR").text) &lt; 1980])</code></li>
+			<li>CDs del Regne Unit: <code>foreach(ET.dump, [e for e in query("CD") if e.find("COUNTRY").text == "UK"])</code></li>
+			<li>Nom dels artistes del Regne Unit: <code>[e.find("ARTIST").text for e in query("CD") if e.find("COUNTRY").text == "UK"]</code></li>
+			<li>Noms curts de CDs: <code>[e.text for e in query("CD/TITLE") if len(e.text) &lt; 5]</code></li>
+			<li>CDs sense preu: <code>foreach(ET.dump, [e for e in query("CD") if e.find("PRICE") is None])</code></li>
+			<li>CDs amb atributs: <code>foreach(ET.dump, [e for e in query("CD") if len(e.attrib) &gt; 0])</code></li>
+			<li>Suma dels preus de tots els CDs: <code>sum([float(e.text) for e in query("CD/PRICE")])</code></li>
+			<li>El preu del CD més car:  <code>max([float(e.text) for e in query("CD/PRICE")])</code></li>
+			<li>L&rsquo;any del CD més antic:  <code>min([int(e.text) for e in query("CD/YEAR")])</code></li>
+		</ol>
+
+		<p>Exemples sense <code>foreach</code>.</p>
+		<ol>
+			<li>CDs d&rsquo;abans de 1980: <code>[ET.dump(e) for e in query("CD") if int(e.find("YEAR").text) &lt; 1980]</code></li>
+			<li>CDs del Regne Unit: <code>[ET.dump(e) for e in query("CD") if e.find("COUNTRY").text == "UK"]</code></li>
+			<li>CDs sense preu: <code>[ET.dump(e) for e in query("CD") if e.find("PRICE") is None]</code></li>
+			<li>CDs amb atributs: <code>[ET.dump(e) for e in query("CD") if len(e.attrib) &gt; 0]</code></li>
+		</ol>
+
+		<h2>Pràctiques</h2>
+		<ul>
+			<li>Reescriu alguns dels exemples de comprehensions de llistes fent servir bucles tradicionals.</li>
+			<li>Reescriu alguns dels exemples de comprehensions de llistes fent servir les funcions <code>map</code> i <code>filter</code>.</li>
+			<li>Executa les consultes de les seccions <cite>Exemples de consultes</cite>.</li>
+			<li>Consulta en el mòdul <code>xml.etree.ElementTree</code> els mètodes usats en els exemples.</li>
+			<li>Contesta aquestes <a href="aux/ejercicios_xpath_preguntas.txt">preguntes</a> (afegint al fitxer de les preguntes les respostes) en base a aquest <a href="aux/ejercicios_xpath_documento.xml">document</a>.</li>
+		</ul>
+
+	</body>
+</html>
+<!--
+vim:sw=2:ts=2:nowrap
+-->

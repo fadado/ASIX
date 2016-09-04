@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ca" lang="ca">
+	<head>
+		<title>Convertir documents HTML a XHTML</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<style type="text/css">body{font-family: sans-serif;}</style>
+	</head>
+	<body>
+		<!-- title -->
+		<h1>Convertir documents HTML a XHTML</h1>
+		<p>MP4UF1A3T3</p>	<!-- id -->
+		<!-- description -->
+		<p>Tècniques de correcció i adaptació de documents HTML</p>
+
+		<!-- body -->
+
+		<h2>La sopa d&rsquo;etiquetes de l&rsquo;HTML</h2>
+		<ul>
+			<li>El navegadors sempre han acceptat HTML amb defectes, encara que no està definit com es mostrarà aquest.</li>
+			<li>A l&rsquo;inici de la Web no existien eines de validació.</li>
+			<li>Molts autors de pàgines Web no tenen formació apropiada.</li>
+			<li>Fins i tot les eines <a href="http://ca.wikipedia.org/wiki/WYSIWYG">WYSIWYG</a> poden generar HTML incorrecte.</li>
+			<li>Pot ser necessari migrar codi HTML, encara que correcte, a XHTML.</li>
+			<li>Els documents vàlids poden no ser correctes segons altres criteris, com ara la seva accesibilitat.</li>
+		</ul>
+		<p>L&rsquo;eina <code>tidy</code>(1) és perfecte per tractar tot tipus de problemes en HTML antic o incorrecte.</p>
+
+		<h2>Tipus MIME</h2>
+		<ul>
+			<li>Els <a href="http://es.wikipedia.org/wiki/Multipurpose_Internet_Mail_Extensions">tipus MIME</a> especifiquen el tipus de contingut dels fitxers.</li>
+			<li>Poden ser definits pel servidor web, o obtinguts a partir de l&rsquo;extensió del fitxer.</li>
+			<li>La correspondència entre extensions i tipus pot ser establerta pel gestor d&rsquo;escriptori, de forma centralitzada (<code>/etc/mime.types</code>) o pel navegador.</li>
+			<li>Sempre farem servir el tipus <code>text/html</code> (extensió <code>.html</code>) per documents HTML i XHTML.</li>
+			<li>El tipus MIME <code>application/xhtml+xml</code> (extensió <code>.xhtml</code>) no està plenament suportat pels navegadors.</li>
+		</ul>
+
+		<h2>Enllaços recomanats</h2>
+		<ul>
+			<li><a href="http://tidy.sourceforge.net/">HTML Tidy Project</a></li>
+			<li><a href="http://www.w3.org/People/Raggett/tidy/">Dave Raggett&rsquo;s Overview</a> (<a href="aux/TIDY/tidy.html">local</a>)</li>
+			<li><a href="http://en.wikipedia.org/wiki/Tag_soup">Wikipedia: HTML Tag Soup</a></li>
+		</ul>
+
+		<h2>Pràctiques</h2>
+		<ul>
+			<li>Instal·la si cal el paquet <cite>tidy</cite>. Estudia els fitxers instal·lats amb el paquet, documentació, etc.</li>
+			<li>Segueix, íntegrament, el tutorial de Dave Ragget citat més amunt.</li>
+			<li>Què significa, en el text mostrat en fer <code>tidy -help | less</code>, <i>Use --optionX valueX for any configuration option "optionX" with argument "valueX". For a list of the configuration options, use "-help-config" or refer to the man page. </i>.</li>
+			<li>Prepara un script del shell que, cridant a <code>tidy</code>, converteixi documents HTML a XHTML estricte. Opcions que et poden fer servei:
+				<ul>
+					<li><code>clean: yes</code></li>
+					<li><code>doctype: transitional</code></li>
+					<li><code>doctype: strict</code></li>
+					<li><code>drop-font-tags: yes</code></li>
+					<li><code>drop-proprietary-attributes: yes</code></li>
+					<li><code>logical-emphasis: yes</code></li>
+					<li><code>numeric-entities: yes</code></li>
+					<li><code>output-xhtml: yes</code></li>
+					<li><code>indent: auto</code></li>
+					<li><code>tidy-mark: no</code></li>
+					<li><code>alt-text: Text&hellip;</code></li>
+				</ul>
+			</li>
+			<li>Processa aquesta <a href="http://sheldonbrown.com/web_sample1.html">pàgina</a> amb <cite>Tidy</cite>, convertida a XHTML <i>transicional</i>, fins que no es generin missatges d&rsquo;error o avís.</li>
+		</ul>
+
+	</body>
+</html>
+<!--
+vim:sw=2:ts=2:nowrap
+-->

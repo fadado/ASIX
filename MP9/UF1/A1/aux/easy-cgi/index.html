@@ -1,0 +1,143 @@
+<html>
+<head>
+<title>El CGI Hecho Realmente Fácil</title>
+
+</head>
+
+<body bgcolor="#FFF8E8" link="#0000FF" vlink="#007090" alink="#00A0FF">
+
+<h1>
+El CGI Hecho Realmente Fácil
+</h1>
+
+<h2>o, Escribiendo scripts CGI para procesar formas Web</h2>
+
+
+<p>Este preliminar se enfoca a escribir scripts CGI para procesar formas HTML en el Web. 
+Se salta algunos detalles, pero puede hacerlo <i>muy</i> rápido (literalmente una hora o menos), 
+y cubre el 90% de las situaciones en el mundo real.
+
+<p>Una vez que hayas leído esta página, ve las 
+<a href="cgi_footnotes.html">notas</a> para scripts de ejemplo y otros temas.
+
+<p><hr><p>
+
+<h2>¿Qué es CGI?</h2>
+
+CGI no es un lenguaje. Es simplemente un protocolo que puede ser usado para 
+comunicarse entre formas Web y tu programa  Un script CGI puede ser escrito en 
+cualquier lenguaje que pueda leer de STDIN, escribir en STDOUT, y leer variables de entorno
+como virtualmente cualquier lenguaje de programación, incluyendo C, Perl, o incluso scripts de shell.
+
+<h2>Estructura de un script CGI</h2>
+
+<p>Aquí está la secuencia típica de un script CGI:
+<ol>
+<li>Leer la forma de entrada del usuario.
+<li>Hacer lo que quieras con los datos.
+<li>Escribir la respuesta HTML a STDOUT.
+</ol>
+
+<p>El primer y último pasos se describen abajo.
+
+
+<p><hr><p>
+
+<h2>Leyendo la Forma de Entrada del Usuario</h2>
+
+<p>Cuando el usuario envía la forma, tu script recibe los datos como un conjunto 
+de pares nombre-valor. Los nombres que definiste en las etiquetas INPUT 
+(o etiquetas SELECT o TEXTAREA), y los valores son cualquier cosa que el usuario 
+haya escrito o seleccionado.  (Los usuarios también pueden enviar archivos con formas, pero
+este preliminar no lo cubre.)
+
+<p>Este conjunto de pares nombre-valor se te envía como una sola larga cadena, la cual
+debes procesar. No es muy complicado, y existen muchas rutinas que lo hacen por tí.
+
+<p>Si esto ya te es suficiente, salta a la siguiente sección. Si no lo es, o simplemente 
+eres curioso, aquí está el formato de una cadena larga:
+
+<blockquote>
+<b>"nombre1=valor1&amp;nombre2=valor2&amp;nombre3=valor3"</b>
+</blockquote>
+
+<p>Así que solamente divide en los ampersands y signos de igual. Entonces, haz dos cosas más 
+para cada nombre y valor:
+<ol>
+<li>Convierte todos los caracteres "+" en espacios, y
+<li>Convierte todas las secuencias "%xx" en el caracter cuyo valor ascii sea
+    "xx", en hexadecimal. Por ejemplo, convierte "%3d" en "=".
+</ol>
+Esto es necesario porque la cadena larga original es <b>código-URL</b>, 
+para permitir signos de igual, ampersands, y otros en la entrada del usuario.
+
+<p>Entonces de dónde obtienes la cadena larga? Eso depende del método HTTP que la forma haya usado:
+<ul>
+<li>Para GET envíos, está en la variable de entorno <b>QUERY_STRING</b>.
+<li>Para POST envíos, léelos de STDIN. El número exacto de bytes a leer está en la variable de
+entorno <b>CONTENT_LENGTH</b>.
+</ul>
+
+<p><i>(Si te estás preguntando sobre la diferencia entre GET y POST, ve la
+<a href="cgi_footnotes.html#getvspost">nota de discusión</a>.
+Respuesta corta: POST es más de propósito general, pero GET está bien para formas pequeñas.)</i>
+
+</blockquote>
+
+<p><hr><p>
+
+<h2>Enviando la Respuesta de Regreso al Usuario</h2>
+
+<p>Primero, escribe la línea 
+<blockquote><tt>Content-type: text/html</tt></blockquote>
+mas otra línea en blanco a. Después de eso, escribe tu página de respuesta HTML en STDOUT,
+y se enviará al usuario cuando tu script termine de ejecutarse.  Eso es todo.
+
+<p>Si, estás generando código HTML en pleno vuelo. No es muy difícil, es en realidad
+bastante sincero. El HTML fue diseñado para ser suficientemente simple para generarse
+así.
+
+<p>Si quieres enviar de regreso una imágen u otra respuesta no-HTML,
+<a href="cgi_footnotes.html#othertypes">aquí está cómo hacerlo.</a>
+
+
+<p><hr><p>
+
+<h3>Eso es todo. Buena Suerte!</h3>
+
+<p>¿Ves qué fácil es? Si todavía no me crees, adelante y escribe un script.
+Asegúrate de poner el archivo en el lugar correcto en tu servidor,
+y hacerlo ejecutable; revisa esta
+<a href="cgi_footnotes.html#placing">nota</a> para más consejos.
+
+<p>Antes de que escribas muchos scripts, aprende sobre
+<a href="cgi_footnotes.html#security">asuntos de seguridad CGI</a>.
+
+<p>Oh sí, <b>CGI</b> quiere decir <b>Common Gateway Interface</b>-- en otras
+palabras, un método estándar ("común") de comunicación ("interfaz") entre diferentes procesos (tipo de "gateway").
+
+
+<p><hr><p>
+
+<h2>Otras Cosas Para Jugar</h2>
+
+<p>Ve la <a href="cgi_footnotes.html">Página de Notas</a> para los temas siguientes:
+
+<ol>
+<li><a href="cgi_footnotes.html#samples">Ejemplos de programas CGIs</a>
+<li><a href="cgi_footnotes.html#mailer">Script de CGI de Mailer</a>
+<li><a href="cgi_footnotes.html#security">Seguridad con Scripts CGI</a>
+<li><a href="cgi_footnotes.html#placing">Poniendo Tu Script en el Servidor</a>
+<li><a href="cgi_footnotes.html#location">Enviando un Archivo Existente como Respuesta</a>
+<li><a href="cgi_footnotes.html#otherenv">Otras Variables de Entorno CGI Utiles</a>
+<li><a href="cgi_footnotes.html#othertypes">Regresando una Imágen u Otra Respuesta No-HTML de un Scritp CGI</a>
+<li><A HREF="cgi_footnotes.html#getvspost">Cuál es la diferencia entre GET y POST?</A>
+<li><a href="cgi_footnotes.html#nph">Ganando Más Control, con Scripts de Encabezados No-Procesados</a>
+</ol>
+
+</body>
+</html>
+
+
+
+

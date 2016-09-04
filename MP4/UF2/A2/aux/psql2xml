@@ -1,0 +1,78 @@
+#!/usr/bin/python
+# -*- encoding:utf-8 -*-
+# psql2xml: universal psql to XML filter
+
+# Assume UTF-8 input
+# Assume this psql configuration: psql $BD -F $'\t' -A -x
+#	* -F $'\t' == \f '\t'
+#	* -A       == \a	
+#	* -x       == \x
+# Assume that each record has an extra \n as terminator
+# (also the last: using \qecho)
+
+# Typical usage in interactive mode:
+#	psql>\f '\t'
+#	psql>\a
+#	psql>\x
+#	psql>\o | ./psql2xml > table.xml
+#	psql>SELECT .... FROM table;
+#	psql>\qecho
+#	psql>\o
+
+import re
+import sys
+
+# field separator
+FS = '\t'
+
+# compiled regular expressions
+DATE = re.compile(r'(\d\d\d\d-\d\d-\d\d) ')
+TIME = re.compile(r'(00:00:00)\+01')
+
+# record to fill
+record = {}
+
+# main
+print('<?xml version="1.0"?>')
+print('<data>')
+
+for line in sys.stdin:
+	field = line.rstrip()
+	if field: # not empty line
+		try:
+			(fieldname, fieldvalue) = line.rstrip().split(FS)
+		except:
+			fieldname = field
+			fieldvalue = '\\null'
+
+		if not fieldvalue:	# ignore empty or NULL attributes
+			pass
+		else: # sanitize fieldvalue
+			# HTML elements
+			fieldvalue = fieldvalue.replace('&', '&amp;')
+			fieldvalue = fieldvalue.replace("'", '&apos;')
+			fieldvalue = fieldvalue.replace('"', '&quot;')
+			fieldvalue = fieldvalue.replace('<', '&lt;')
+			fieldvalue = fieldvalue.replace('>', '&gt;')
+
+			# Dates in ISO format
+			fieldvalue = DATE.sub(r'\1T', fieldvalue)
+			fieldvalue = TIME.sub(r'\1', fieldvalue)
+
+			# Newlines in field values: uncomment if necessary
+			#fieldvalue = fieldvalue.replace(r'\n', '&#10;')
+
+			# add field to record
+			record[fieldname] = fieldvalue
+	else: # record completed
+		print('\t<row')
+		for (fieldname, fieldvalue) in record.iteritems():
+			print("\t\t%s='%s'" % (fieldname, fieldvalue))
+		print('\t/>')
+		record.clear()
+
+print('</data>')
+
+sys.exit(0)
+
+# vim:ts=4:sw=4:ai

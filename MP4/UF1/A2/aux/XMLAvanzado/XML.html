@@ -1,0 +1,359 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>XML</title><meta http-equiv="Content-Style-Type" content="text/css"><meta name="Author" content="Jose Emilio Labra Gayo"><link rel="stylesheet" type="text/css" media="screen, projection, print" href="slidy.css"><link rel="stylesheet" type="text/css" media="screen, projection" href="slidy-toc.css"><script src="slidy.js" type="text/javascript"></script><script src="slidy-toc.js" type="text/javascript"></script><link rel="stylesheet" type="text/css" media="screen, projection, print" href="w3c-blue.css"></head><body><div class="background"><img id="head-icon" alt="graphic with four colored squares" src="icon-blue.png"></div><div class="slide"><h1><em>XML</em></h1><h2><a href="http://www.di.uniovi.es/~labra">Jose Emilio Labra Gayo</a></h2><h3>Octubre 2006</h3></div><div class="slide contenidos"><h1>Contenidos</h1><ul><li><a href="#id104608">Antecedentes</a><ul><li><a href="#id104471">Unicode y URIs</a></li></ul></li><li><a href="#id107710">Lenguaje XML</a></li><li><a href="#id108544">DTDs</a></li><li><a href="#id109201">Espacios de nombres</a></li></ul></div><em>XML</em><a href="http://www.di.uniovi.es/~labra">Jose Emilio Labra Gayo</a>Octubre 2006<a name="id104608"></a><div class="slide"><h1>Arquitectura de la Web</h1><img src="SemanticWebArchitecture.png" alt="Architecture of Semantic Web" width="60%"></div><div class="slide"><a name="id104471"><h1>Unicode y URIs</h1></a></div><div class="slide"><h1>Unicode</h1><ul><li>Consorcio de empresas dedicadas a internacionalización</li><li>Objetivo: Representar los símbolos escritos en todos los idiomas</li><li>Asocia un código único a cada símbolo</li><li>Ejemplo: 2200 en hexadecimal = ∀</li><li>Diversas codificaciones: UTF-8, UTF-16, UTF-32, etc.</li></ul></div><div class="slide"><h1>URI</h1><p class="text">URI (<em>Identificadores únicos de recursos</em>)</p><ul><li>URI = URL + URN</li><ul><li>URL (<em>Locator</em>) tiene doble funcionalidad:
+    <ul><li>Identificar recursos</li><li>Protocolo de acceso</li></ul><p class="text">Ejemplo: <code>http://www.uniovi.es</code></p></li><li>URN: Nombre único de recursos
+    <ul><li>Ejemplo: <code>urn:isbn:0-395-36341-1</code></li></ul></li></ul><li>IRI (<em>Internationalized Resource Identifier</em>) permite incluir
+    caracteres Unicode</li></ul></div><a name="id107710"></a><div class="slide"><h1>XML</h1><ul><li>XML es un lenguaje de marcado generalizado</li><li>Define una sintaxis común que permite definir vocabularios específicos</li><li>Orígenes
+    <ul><li>SGML (70~) permitía definir vocabulrios</li><li>HTML fue un vocabulario de SGML para hipertexto</li><li>XML = SGML más simple y adaptado a Internet</li></ul></li>Gran éxito industrial y adopción en múltiples contextos
+    <ul><li>Parte fundamental de la arquitectura Web</li><li>Otras aplicaciones: Ficheros de Configuración, vocabularios específicos, etc.</li></ul></ul></div><div class="slide"><h1>XML</h1><div style="width:50%;float:left;"><div class="example"><em></em><code><pre>
+
+&lt;html&gt;
+&lt;head&gt;&lt;title&gt;Poema&lt;/title&gt;
+&lt;/head&gt;
+&lt;body lang="es"&gt;
+&lt;h1&gt;Alba&lt;/h1&gt;
+&lt;h2&gt;Abril de 1915 &lt;/h2&gt;
+&lt;h2&gt;Granada&lt;/h2&gt;
+&lt;p&gt;Mi corazon 
+    oprimido&lt;/p&gt;
+&lt;p&gt;siente junto a 
+     la alborada&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+
+</pre></code></div></div><div style="width:50%;float:left;"><div class="example"><em></em><code><pre>
+
+&lt;poema fecha="Abril 1915" 
+       lugar="Granada"&gt;
+&lt;titulo&gt;Alba&lt;/titulo&gt;
+&lt;verso&gt;Mi corazon
+    oprimido&lt;/verso&gt;
+&lt;verso&gt;siente junto a 
+    la alborada&lt;/verso&gt;
+&lt;verso&gt;el dolor de sus 
+    amores...&lt;/verso&gt;
+&lt;/poema&gt;
+</pre></code></div></div><p class="text">Ambos documentos tienen una sintaxis común</p></div><div class="slide"><h1>Partes de un documento XML</h1><div style="width:50%;float:left;"><ul><li>Declaración XML: opcional</li><li>Declaración de tipo de documento (DTD): opcional </li><li>Contenidos</li></ul></div><div style="width:50%;float:left;"><div class="example"><em>Ejemplo de fichero XML</em><code><pre>
+
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE poema 
+      SYSTEM "poema.dtd"&gt;
+&lt;poema fecha="Abril 1915" 
+       lugar="Granada"&gt;
+&lt;titulo&gt;Alba&lt;/titulo&gt;
+&lt;verso&gt;Mi corazon 
+    oprimido&lt;/verso&gt;
+&lt;verso&gt;siente junto a 
+    la alborada&lt;/verso&gt;
+&lt;verso&gt;el dolor de sus 
+    amores...&lt;/verso&gt;
+&lt;/poema&gt;
+</pre></code></div></div></div><div class="slide"><h1>Declaración XML</h1><div class="example"><em></em><code><pre>
+
+&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;    
+
+</pre></code></div><ul><li><code>version</code> indica la versión. 
+ <ul><li>1.0 = versión más habitual</li><li>1.1 aumenta capacidad de soporte de Unicode</li></ul></li><li><code>encoding</code> indica codificación de caracteres
+ <ul><li><code>UTF-8</code>= caracteres Unicode</li><li><code>iso-8859-1</code> = caracteres latinos</li></ul></li><li><code>standalone</code><ul><li><code>yes</code> indica que puede haber declaraciones externas</li><li><code>no</code> indica que no hay dichas declaraciones</li></ul></li></ul></div><div class="slide"><h1>Cuerpo del documento XML</h1><div class="example"><em>Formato de elemento</em><code><pre>
+
+&lt;etiqueta atrib1="valor1" atrib2="valor2" ...&gt;
+ ...contenidos...
+ &lt;/etiqueta&gt;
+</pre></code></div><ul><li>El cuerpo del documento está formado por un elemento</li><li>Un elemento consta de:
+ <ul><li>Una etiqueta inicial que puede contener
+ una lista de atributos y valores </li><li>Los contenidos del elemento (puede estar vacío)</li><li>La etiqueta final</li></ul></li><li>Los contenidos del elemento pueden ser otros subelementos</li><li>Es necesario cerrar todas las etiquetas</li><li>XML es sensible a mayúsculas/minúsculas</li></ul></div><div class="slide"><h1>Elementos vacíos</h1><div class="example"><em>Elemento vacío sin simplificar</em><code><pre>
+
+&lt;etiqueta atrib1="valor1" atrib2="valor2" ...&gt;
+&lt;/etiqueta&gt;
+</pre></code></div><p class="text">Un elemento vacío puede simplificarse como:
+</p><div class="example"><em>Elemento vacío simplificado</em><code><pre>
+
+&lt;etiqueta atrib1="valor1" atrib2="valor2" ... /&gt;
+</pre></code></div></div><div class="slide"><h1>Anidamiento</h1><p class="text">Las etiquetas que se abran deben cerrarse sin que se
+ produzcan anidamientos</p><div style="width:50%;float:left;"><div class="example"><em>Correcto</em><code><pre>
+
+&lt;externo&gt;
+  &lt;interno&gt;
+    texto
+  &lt;/interno&gt;
+&lt;/externo&gt;
+</pre></code></div></div><div style="width:50%;float:left;"><div class="example"><em>Incorrecto</em><code><pre>
+
+&lt;externo&gt;
+  &lt;interno&gt;
+    texto
+  &lt;/externo&gt;
+&lt;/interno&gt;
+</pre></code></div></div></div><div class="slide"><h1>XML tiene estructura de árbol</h1><p class="text">Cada documento XML puede representarse como un árbol</p><div style="width:50%;float:left;"><div class="example"><em></em><code><pre>
+
+&lt;poema fecha="Abril 1915" lugar="Granada"&gt;
+  &lt;titulo&gt;Alba&lt;/titulo&gt;
+  &lt;verso&gt;Mi corazon oprimido&lt;/verso&gt;
+  &lt;verso&gt;siente junto a la alborada&lt;/verso&gt;
+  &lt;verso&gt;el dolor de sus amores&hellip;&lt;/verso&gt;
+&lt;/poema&gt;
+</pre></code></div></div><div style="width:50%;float:left;"><img src="ArbolXML.png" alt="Árbol documento XML" width="100%"></div></div><div class="slide"><h1>Arbol XML</h1><div class="exercise"><em></em><p class="text">Dibujar el árbol DOM para el siguiente documento</p><code><pre>
+  &lt;html&gt;
+  &lt;head&gt;&lt;title&gt;Pagina&lt;/title&gt;&lt;/head&gt;
+  &lt;body&gt;
+   &lt;h1&gt;Ejemplo&lt;/h1&gt;
+   &lt;p&gt;Este texto tiene un
+       &lt;a href="http://www.uniovi.es"&gt;enlace&lt;/a&gt;
+       y un texto &lt;em&gt;enfatizado&lt;/em&gt;&lt;/p&gt;
+  &lt;/body&gt;
+  &lt;/html&gt;
+ </pre></code></div></div><div class="slide"><h1>Atributos</h1><div class="example"><em></em><code><pre>
+
+&lt;poema fecha="Abril 1915" 
+       lugar="Granada"&gt;
+ ...
+&lt;/poema&gt;
+</pre></code></div><ul><li>El orden de los atributos no es significativo</li><li>No puede haber nombres de atributos repetidos</li><li>Hay varios atributos predefinidos. Por ejemplo:
+ <ul><li><code>xml:lang</code> especifica el código del idioma: 
+    <code>en</code> (inglés), <code>sp</code> (español), etc.</li><li><code>xml:space</code> especifica cómo tratar el 
+  espacio en blanco:
+   <ul><li><code>preserve</code> = mantenerlo</li><li><code>default</code> = dejar libertar a la aplicación 
+     para tratarlo como quiera</li></ul></li></ul></li></ul></div><div class="slide"><h1>Comentarios</h1><p class="text">Los comentarios indican porciones del documento
+ que no serán analizadas por el procesador</p><p class="text">Comienzan por <code>&lt;--</code> y finalizan por <code>--&gt;</code></p><div class="example"><em></em><code><pre>
+
+&lt;!-- Este poema requiere
+     comentarios --&gt;
+&lt;poema&gt;
+ &lt;titulo&gt;La fealdad&lt;/titulo&gt;
+ &lt;!-- No hay versos --&gt;
+&lt;/poema&gt;
+</pre></code></div><p class="text">Dentro de los comentarios no 
+  pueden aparecer los caracteres <code>--</code></p></div><div class="slide"><h1>Caracteres especiales</h1><p class="text">Existen 5 caracteres especiales:</p><ul><li><code>
+&amp;
+lt;</code> = <code>&lt;</code></li><li><code>
+&amp;
+gt;</code> = <code>&gt;</code></li><li><code>
+&amp;
+amp;</code> = <code>
+&amp;
+</code></li><li><code>
+&amp;
+quot;</code> = <code>"</code></li><li><code>
+&amp;
+apos;</code> = <code>'</code></li></ul><p class="text">Cualquier carácter Unicode puede indicarse
+ mediante 
+&amp;
+ seguido del número y acabado por <code>;</code></p></div><div class="slide"><h1>Secciones CDATA</h1><p class="text">Suelen utilizarse para incluir porciones
+ de texto sin analizar. Por ejemplo código fuente</p><div style="width:50%;float:left;"><div class="example"><em>Ejemplo sin CDATA</em><code><pre>
+&lt;codigo&gt;
+if (x &amp;lt; 3 &amp;amp;&amp;amp; 
+    x &amp;gt; 4) 
+ printf(&amp;quot;Hola&amp;quot;);
+&lt;/codigo&gt;
+</pre></code></div></div><div style="width:50%;float:left;"><div class="example"><em>Ejemplo con CDATA</em><code><pre>
+&lt;codigo&gt;
+&lt;![CDATA[
+if (x &lt; 3 &amp;&amp; x &gt; 4) 
+ printf("Hola");
+]]&gt;
+&lt;/codigo&gt; 
+</pre></code></div></div></div><div class="slide"><h1>Instrucciones de Procesamiento</h1><p class="text">Permiten indicar al procesador que
+ ejecute una aplicación externa</p><p class="text">Formato: 
+  <code>&lt;?aplicación ...datos... ?&gt;</code></p><p class="text">Los tipos de aplicaciones externas no están definidos</p><p class="text">Algunos ejemplos:
+ <ul></li><li><code>&lt;?xsl-stylesheet type='text/xsl' href='...' ?&gt;</code></li><li><code>&lt;?php ... ?&gt;</code></li></ul></p></div><div class="slide"><h1>Documento bien formado</h1><p class="text">Un documento XML está bien formado si cumple las 
+ reglas anteriores</p><p class="text">Una condición básica para trabajar con un 
+ documento XML es que esté bien formado</p></div><a name="id108544"></a><div class="slide"><h1>Validación</h1><ul><li>Es posible limitar la estructura de los documentos</li><li>Varias alternativas:
+<ul><li>DTDs</li><li><a href="http://www.w3.org/XML/Schema">XML Schema</a></li><li><a href="http://relaxng.org/">Relax NG</a></li><li><a href="http://www.schematron.com/">Schematron</a></li></ul></li></ul></div><div class="slide"><h1>Validación mediante DTDs</h1><div style="width:50%;float:left;"><div class="example"><em>Ejemplo XML con DTD</em><code><pre>
+
+&lt;!DOCTYPE poema SYSTEM "poema.dtd"&gt;
+&lt;poema fecha="Abril 1915" lugar="Granada"&gt;
+  &lt;titulo&gt;Alba&lt;/titulo&gt;
+  &lt;verso&gt;Mi corazon oprimido&lt;/verso&gt;
+  &lt;verso&gt;siente junto a la alborada&lt;/verso&gt;
+  &lt;verso&gt;el dolor de sus amores...&lt;/verso&gt;
+&lt;/poema&gt;
+</pre></code></div></div><div style="width:50%;float:left;"><div class="example"><em>Ejemplo de DTD</em><code><pre>
+
+&lt;!ELEMENT poema (titulo, verso*)&gt;
+&lt;!ELEMENT titulo (#PCDATA)&gt;
+&lt;!ELEMENT verso (#PCDATA)&gt;
+&lt;!ATTLIST poema 
+     fecha CDATA #REQUIRED
+     lugar CDATA #IMPLIED&gt;           
+
+</pre></code></div></div></div><div class="slide"><h1>DTDs internas vs externas</h1><p class="text">Las DTDs pueden definirse dentro del documento XML</p><div class="example"><em></em><code><pre>
+&lt;!DOCTYPE poema [
+ &lt;!ELEMENT poema (titulo, verso*)&gt;
+. . .
+]&gt;
+&lt;poema&gt;. . . &lt;/poema&gt;
+
+</pre></code></div><p class="text">También pueden residir en otro documento:</p><div class="example"><em></em><code><pre>
+&lt;!DOCTYPE poema SYSTEM "poema.dtd"&gt;
+&lt;poema&gt;. . . &lt;/poema&gt;
+
+</pre></code></div><p class="text">Algunas DTDs pueden tener identificadores públicos</p><div class="example"><em></em><code><pre>
+&lt;!DOCTYPE html
+   PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;
+
+</pre></code></div></div><div class="slide"><h1>Tipos de declaraciones</h1><ul><li><code>ELEMENT</code> = elementos del documento</li><li><code>ATTLIST</code> = lista de atributos de un elemento</li><li><code>ENTITY</code> = entidades (similares a las macros)</li><li><code>NOTATION</code> = permite definir otros tipos de contenidos, 
+   facilitando la inclusión de formatos binarios</li></ul></div><div class="slide"><h1>Modelo de contenido de elementos</h1><p class="text">Se utiliza un modelo basado en expresiones regulares</p><div style="width:50%;float:left;"><ul><li><code>?</code> = 0,1 elemento</li><li><code>*</code> = 0 ó más elementos</li><li><code>+</code> = 1 ó más elementos</li><li><code>|</code> = alternativa</li><li><code>,</code> = secuencia</li><li><code>EMPTY</code> = vacío</li><li><code>ANY</code> = cualquier cosa</li><li><code>#PCDATA</code> = texto</li></ul></div><div style="width:50%;float:left;"><div class="example"><em></em><code><pre>
+
+&lt;!ELEMENT poema  (titulo,
+                  autor?,
+                  verso* ) &gt;
+&lt;!ELEMENT libro  (poema 
+                 | prosa) &gt;
+&lt;!ELEMENT autor  EMPTY&gt;
+&lt;!ELEMENT titulo (#PCDATA)&gt;
+&lt;!ELEMENT sec    (titulo, 
+                 (p | sec+))
+                 &gt;
+</pre></code></div></div></div><div class="slide"><h1>Modelo de contenido mixto</h1><div class="example"><em></em><code><pre>
+ 
+&lt;p&gt;Este texto tiene un 
+  &lt;a href="ref.html"&gt;enlace&lt;/a&gt;
+  y algo &lt;em&gt;enfatizado&lt;/em&gt;
+&lt;/p&gt;
+ </pre></code></div><p class="text">La validación puede realizarse mediante:</p><div class="example"><em></em><code><pre>
+ 
+ &lt;!ELEMENT p (#PCDATA | a | em )* &gt;
+ &lt;!ELEMENT a (#PCDATA)&gt;
+ &lt;!ELEMENT em (#PCDATA)&gt;
+ 
+ </pre></code></div></div><div class="slide"><h1>Atributos</h1><ul><li>Tipos de datos:
+ <ul><li>CDATA = cadena</li><li>NMTOKEN = nombre</li><li>NMTOKENS = lista de nombres</li></ul></li><li>Valor de atributos:
+ <ul><li><code>#REQUIRED</code> obligatorio</li><li><code>#IMPLIED</code> opcional</li><li><code>#FIXED</code> fijo</li><li><code>Valor</code> = valor por defecto</li></ul></li></ul><div class="example"><em></em><code><pre>
+
+&lt;!ATTLIST poema fecha CDATA #REQUIRED
+                lugar CDATA #IMPLIED&gt;
+
+</pre></code></div></div><div class="slide"><h1>Valores ID e IDREF</h1><ul><li><code>ID</code> representa un atributo
+ cuyo valor debe ser único en todo el documento</li><li><code>IDREF</code> representa un atributo
+ cuyo valor debe coincidir con el de otro atributo 
+ del documento</li></ul><div class="example"><em></em><code><pre>
+
+&lt;!ATTLIST autor         codigo ID #REQUIRED&gt;
+&lt;!ATTLIST autorPremiado codigo IDREF #REQUIRED&gt;
+. . .
+
+&lt;autor codigo="A21"&gt;...&lt;/autor&gt;
+&lt;autor codigo="A45"&gt;...&lt;/autor&gt;
+...
+&lt;autorPremiado codigo="A45" /&gt;
+
+</pre></code></div></div><div class="slide"><h1>Entidades generales</h1><p class="text">Permiten definir macros</p><div class="example"><em></em><code><pre>
+&lt;!ENTITY clarin '&lt;autor codigo="23"&gt;Leopoldo Alas Clarin&lt;/autor&gt;'&gt;
+. . .
+&lt;libro&gt;
+ &lt;titulo&gt;La Regenta&lt;/titulo&gt;
+ &amp;clarin;
+&lt;/libro&gt;
+</pre></code></div><p class="text"> equivale a:</p><div class="example"><em></em><code><pre>
+&lt;libro&gt;
+ &lt;titulo&gt;La Regenta&lt;/titulo&gt;
+ &lt;autor codigo="23"&gt;Leopoldo Alas Clarin&lt;/autor&gt;
+&lt;/libro&gt;
+</pre></code></div></div><div class="slide"><h1>Entidades externas</h1><p class="text">Permiten incluir documentos externos en el documento actual</p><div class="example"><em></em><code><pre>
+&lt;!DOCTYPE libros [
+&lt;!ENTITY autores     SYSTEM "autores.xml"&gt;
+&lt;!ENTITY editoriales SYSTEM "editoriales.xml"&gt;
+]&gt;
+&lt;libros&gt;
+ &amp;autores;
+ &amp;editoriales;
+&lt;/libros&gt;
+</pre></code></div></div><div class="slide"><h1>Entidades parámetro</h1><p class="text">Permiten crear macros dentro de las definiciones
+ de las DTDs</p><div class="example"><em></em><code><pre>
+
+&lt;!ENTITY % localizacion "(calle, numero?, ciudad, pais, codigoPostal)"&gt;
+&lt;!ELEMENT autor     (nombre, apellidos, %localizacion;)&gt;
+&lt;!ELEMENT editorial (nombre, cif, %localizacion;)&gt;
+</pre></code></div></div><div class="slide"><h1>Entidades parámetro externas</h1><p class="text">Permiten incluir otras DTDs en una DTD</p><div class="example"><em></em><code><pre>
+&lt;!ENTITY % autores     SYSTEM "autores.dtd" &gt;
+&lt;!ENTITY % editoriales SYSTEM "editoriales.dtd" &gt;
+
+%autores;
+%editoriales;</pre></code></div></div><a name="id109201"></a><div class="slide"><h1>Espacios de nombres</h1><p class="text">El problema de la homonimia</p><div style="width:50%;float:left;"><div class="example"><em></em><code><pre>
+&lt;pais nombre="Francia"&gt;
+&lt;capital&gt;Paris&lt;/capital&gt;
+&lt;/pais&gt;
+</pre></code></div></div><div style="width:50%;float:left;"><div class="example"><em></em><code><pre>
+&lt;inversion&gt;
+  &lt;capital&gt;7000&lt;/capital&gt;
+&lt;/inversion&gt;
+</pre></code></div></div><p class="text">¿Cómo juntarlo todo en un mismo documento?</p><div class="example"><em></em><code><pre>
+&lt;inversiones&gt;
+  &lt;pais nombre="Francia"&gt;
+    &lt;capital&gt;Paris&lt;/capital&gt;
+    &lt;capital&gt;1200&lt;/capital&gt;
+  &lt;/pais&gt;
+  . . .
+&lt;/inversiones&gt;
+</pre></code></div></div><div class="slide"><h1>Espacios de Nombres</h1><ul><li>La solución consistirá en asociar a cada etiqueta
+ una URI que identificará el espacio de nombres al que pertenece</li><li>La URI sirve simplemente para evitar ambigüedad = identificador global único</li><li>Conceptualmente se representaría como:
+</li></ul><div class="example"><em>Representación conceptual de Espacio de nombres</em><code><pre>
+&lt;[http://www.bolsa.com]:inversiones&gt;
+  &lt;[http://www.geog.es]:pais 
+      [http://www.geog.es]:nombre="Francia"&gt;
+    &lt;[http://www.geog.es]:capital&gt;Paris
+    &lt;/[http://www.geog.es]:capital&gt;
+    &lt;[http://www.bolsa.com]:capital&gt;1200
+    &lt;/[http://www.bolsa.com]:capital&gt;
+  &lt;/[http://www.bolsa.com]:pais&gt;
+  . . .
+&lt;/[http://www.bolsa.com]:inversiones&gt;
+</pre></code></div></div><div class="slide"><h1>Sintaxis de Espacio de nombres</h1><ul><li>Para abreviar la sintaxis se asocian alias mediante el atributo
+ <code>xmlns:alias="...URI..."</code></li></ul><div class="example"><em>Espacio de nombres</em><code><pre>
+&lt;b:inversiones xmlns:b="http://www.bolsa.com"
+               xmlns:geo="http://www.geo.es"&gt;
+  &lt;geo:pais geo:nombre="Francia"&gt;
+    &lt;geo:capital&gt;Paris&lt;geo:capital&gt;
+    &lt;b:capital&gt;1200&lt;/b:capital&gt;
+  &lt;/geo:pais&gt;
+  . . .
+&lt;/b:inversiones&gt;
+</pre></code></div></div><div class="slide"><h1>Sintaxis de Espacio de nombres</h1><ul><li>No es necesario asociar todos los alias al comienzo del documento</li></ul><div class="example"><em>Espacio de nombres</em><code><pre>
+&lt;b:inversiones xmlns:b="http://www.bolsa.com"&gt;
+  &lt;geo:pais xmlns:geo="http://www.geo.es"
+            geo:nombre="Francia"&gt;
+    &lt;geo:capital&gt;Paris&lt;geo:capital&gt;
+    &lt;b:capital&gt;1200&lt;/b:capital&gt;
+  &lt;/geo:pais&gt;
+  . . .
+&lt;/b:inversiones&gt;
+</pre></code></div></div><div class="slide"><h1>Sintaxis de Espacio de nombres</h1><ul><li>Puede definirse un espacio de nombres por defecto</li><li>Para ello, se utiliza el atributo <code>xmlns="...URI..."</code></li></ul><div class="example"><em>Espacio de nombres</em><code><pre>
+&lt;inversiones xmlns="http://www.bolsa.com"&gt;
+  &lt;geo:pais xmlns:geo="http://www.geo.es"
+            geo:nombre="Francia"&gt;
+    &lt;geo:capital&gt;Paris&lt;geo:capital&gt;
+    &lt;capital&gt;1200&lt;/capital&gt;
+  &lt;/geo:pais&gt;
+  . . .
+&lt;/inversiones&gt;
+</pre></code></div></div><div class="slide"><h1>Algunos espacios de nombres populares</h1><ul><li><code>http://www.w3.org/1999/xhtml</code>: XHTML</li><li><code>http://www.w3.org/1999/XSL/Transform</code>: XSLT</li><li><code>http://www.w3.org/2000/svg</code>: SVG</li><li><code>http://www.w3.org/1999/xlink</code>: XLink</li><li><code>http://www.w3.org/1999/xlink</code>: XLink</li><li><code>http://www.w3.org/1999/02/22-rdf-syntax-ns#</code>: RDF</li><li><code>http://purl.org/dc/elements/1.1/</code>: Dublin Core</li><li><code>http://www.w3.org/2005/Atom</code>: Formato Atom</li></ul></div><div class="slide"><h1>Combinación de Espacios de nombres</h1><div class="example"><em>Ejemplo de combinación</em><code><pre>
+
+&lt;html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:xlink="http://www.w3.org/1999/xlink"&gt;
+  &lt;head&gt;
+    &lt;title&gt;HTML + SVG&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Una imagen&lt;/h1&gt;
+
+    &lt;svg xmlns="http://www.w3.org/2000/svg" 
+         width="300" height="200"&gt;
+      &lt;a xlink:href="http://www.uniovi.es"&gt;
+       &lt;circle cx="150" cy="100" r="50" /&gt;
+      &lt;/a&gt;
+    &lt;/svg&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+
+</pre></code></div></div><div class="slide"><h1>Validación de Espacios de nombres con DTDs</h1><p class="text">Los espacios de nombres fueron posteriores a los DTDs</p><p class="text">De todas formas, es posible realizar la validación</p><div class="example"><em></em><code><pre>
+&lt;!DOCTYPE inversiones [
+&lt;!ELEMENT inversiones (g:pais*)&gt;
+&lt;!ELEMENT g:pais (g:capital, capital) &gt;
+&lt;!ELEMENT g:capital (#PCDATA)&gt;
+&lt;!ELEMENT capital (#PCDATA)&gt;
+&lt;!ATTLIST inversiones 
+        xmlns CDATA #FIXED "http://www.bolsa.com"&gt;
+&lt;!ATTLIST g:pais 
+        g:nombre CDATA #REQUIRED
+        xmlns:g CDATA #FIXED "http://www.geog.es"&gt;
+]&gt;
+</pre></code></div></div><div class="slide toc"><h1>Contenidos</h1></div></body></html>

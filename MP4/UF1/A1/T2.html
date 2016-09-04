@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ca" lang="ca">
+	<head>
+		<title>Editar documents XML ben formats</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<style type="text/css">body{font-family: sans-serif;}</style>
+	</head>
+	<body>
+		<!-- title -->
+		<h1>Editar documents XML ben formats</h1>
+		<p>MP4UF1A1T2</p>	<!-- id -->
+		<!-- description -->
+		<p>Us d&rsquo;editors de propòsit general amb documents XML</p>
+
+		<!-- body -->
+
+		<h2>XML ben format</h2>
+		<ul>
+			<li>Declaració XML: <code>&lt;?xml version="1.0" encoding="utf-8"?&gt;</code></li>
+			<li>Un sol element arrel</li>
+			<li>Aniuament elements: <code>&lt;p&gt;&lt;b&gt;...&lt;/b&gt;...&lt;/p&gt;</code></li>
+			<li>Sensible a majúscules/minúscules</li>
+			<li>Valors atributs entre cometes: <code>href="..."</code></li>
+			<li>Entitats predefinides: <code>&amp;amp;</code> <code>&amp;lt;</code> <code>&amp;gt;</code> <code>&amp;apos;</code> <code>&amp;quot;</code></li>
+		</ul>
+		<p>Els comentaris en l&rsquo;XML tenen aquest aspecte: <code>&lt;!-- ... --&gt;</code> (no poden contenir en mig dos guions seguits)</p>
+
+		<h2>Editor visual</h2>
+		<ul>
+			<li>Tots els editors moderns implementen les dreceres de teclat CUA (IBM Common User Access).</li>
+			<li>Implementen cerca i substitució utilitzant expressions regulars.</li>
+			<li>Gestionen diferents codificacions de caràcters o finals de línia.</li>
+			<li>Permeten editar múltiples fitxers simultàniament.</li>
+			<li>Ofereixen sintaxi colorejada.</li>
+			<li>Agrupen, per plegar/desplegar, els blocs de codi segons el llenguatge.</li>
+			<li>Són extensibles amb plugins.</li>
+		</ul>
+
+		<h2>Altres formats de text estructurat</h2>
+		<ul>
+			<li>Camps delimitats per un caràcter, i registres delimitats per salt de línia (<code>/etc/passwd</code>).</li>
+			<li><a href="http://en.wikipedia.org/wiki/INI_file">INI</a>, en diferents variants (<code>/etc/systemd/system/*.service</code>).</li>
+			<li><a href="http://en.wikipedia.org/wiki/Comma-separated_values">CSV</a> (opció en usar <cite>PostgreSQL</cite> <code>COPY</code>).</li>
+			<li><a href="http://en.wikipedia.org/wiki/JSON">JSON</a>, important competidor d&rsquo;XML.</li>
+			<li><a href="http://en.wikipedia.org/wiki/YAML">YAML</a>, fracasat competidor d&rsquo;XML.</li>
+		</ul>
+
+		<h2>Enllaços recomanats</h2>
+		<ul>
+			<li><a href="http://en.wikipedia.org/wiki/IBM_Common_User_Access">Wikipedia: IBM Common User Access</a></li>
+			<li><a href="http://en.wikipedia.org/wiki/Clipboard_%28software%29">Wikipedia: Clipboard</a></li>
+			<li><a href="http://www.mulberrytech.com/quickref/XMLquickref.pdf">XML Syntax Quick Reference</a> (<a href="aux/XMLquickref.pdf">local</a>)	</li>
+			<li><a href="file:///etc/fonts/fonts.conf">fonts.conf</a></li>
+		</ul>
+
+		<h2>Pràctiques</h2>
+		<p><strong>Molt important:</strong> imprimeix i porta a classe l&rsquo;<cite>XML Syntax Quick Reference</cite>.</p>
+		<ul>
+			<li>Instal·la si cal els editors <code>geany</code> i <code>gvim</code> (opcional).</li>
+			<li>Instal·la si cal els paquets auxiliars dels editors <code>geany</code> i <code>gedit</code>.</li>
+			<li>Consulta les dreceres de teclat de l&rsquo;editor en la seva ajuda.</li>
+			<li>Confecciona una &ldquo;xuleta&rdquo; per les tecles CUA de moviment, selecció i us del clipboard.</li>
+			<li>Verifica que les tecles CUA funcionen igual en els editors <code>geany</code> i <code>gedit</code>.</li>
+			<li>Practica amb l&rsquo;editor utilitzant una còpia del fitxer <code>/etc/fonts/fonts.conf</code>.</li>
+		</ul>
+
+	</body>
+</html>
+<!--
+vim:sw=2:ts=2:nowrap
+-->
