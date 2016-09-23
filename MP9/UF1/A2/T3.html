@@ -25,25 +25,25 @@
 		<h2>Formularis HTML</h2>
 		<p>En crear formularis amb HTML cal tenir presents els següents aspectes:</p>
 		<ul>
-			<li>L&rsquo;atribut <code>action</code> de l&rsquo;element <code>form</code> conté el nom de l&rsquo;script que processarà el formulari.</li>
-			<li>Es recomana fer servir el mètode <code>post</code>, en lletres minúscules (atribut <code>method</code> de l&rsquo;element <code>form</code>).</li>
+			<li>L’atribut <code>action</code> de l’element <code>form</code> conté el nom de l’script que processarà el formulari.</li>
+			<li>Es recomana fer servir el mètode <code>post</code>, en lletres minúscules (atribut <code>method</code> de l’element <code>form</code>).</li>
 			<li>Els boton bàsics per enviar o netejar el formulari es fan amb elements <code>input</code> de tipus <code>submit</code> o <code>reset</code>.</li>
 		</ul>
 
 		<h2>Processament de formularis</h2>
-		<p>Treballarem, per processar els formularis, amb la tècnica que anomenarem <b>GET/POST</b>: la <i>pàgina d&rsquo;entrada</i> és el script CGI (que no te per que tenir extensió); aquest retorna com a resposta el formulari (plantilla) o el resultat de processar-lo, segons el mètode usat en la petició sigui <code>GET</code> o <code>POST</code> o hi hagi errors en les dades.</p>
+		<p>Treballarem, per processar els formularis, amb la tècnica que anomenarem <b>GET/POST</b>: la <i>pàgina d’entrada</i> és el script CGI (que no te per que tenir extensió); aquest retorna com a resposta el formulari (plantilla) o el resultat de processar-lo, segons el mètode usat en la petició sigui <code>GET</code> o <code>POST</code> o hi hagi errors en les dades.</p>
 		<p>Observa que el mètode serà <code>GET</code> si anem al formulari clicant en un enllaç normal, i serà <code>POST</code> en clicar els botons del formulari (cosa que forçarem amb l'atribut <code>method</code> del formulari). Aquestes són totes les situacions possibles:</p>
 		<ul>
-			<li>El mètode és <code>GET</code>: cal mostrar per primera vegada, si cal amb valors per defecte pels seus camps (l&rsquo;usuari ha clicat en una pàgina per anar al formulari).</li>
-			<li>El mètode és <code>POST</code>: cal validar i processar el formulari (l&rsquo;usuari ha clicat en el botó del formulari)&hellip;
+			<li>El mètode és <code>GET</code>: cal mostrar per primera vegada, si cal amb valors per defecte pels seus camps (l’usuari ha clicat en una pàgina per anar al formulari).</li>
+			<li>El mètode és <code>POST</code>: cal validar i processar el formulari (l’usuari ha clicat en el botó del formulari)&hellip;
 			<ul>
-				<li>&hellip; si el formulari no valida s&rsquo;ha de tornar a presentar aquest a l&rsquo;usuari, amb missatge d&rsquo;error,</li>
-				<li>&hellip; si el formulari valida correctament s&rsquo;ha de processar, retornant el resultar d&rsquo;expandir una nova plantilla o, alternativament, redirigir a una nova pàgina.</li>
+				<li>&hellip; si el formulari no valida s’ha de tornar a presentar aquest a l’usuari, amb missatge d’error,</li>
+				<li>&hellip; si el formulari valida correctament s’ha de processar, retornant el resultar d’expandir una nova plantilla o, alternativament, redirigir a una nova pàgina.</li>
 			</ul>
 			</li>
 		</ul>
-		<p><strong>Important</strong>: per l&rsquo;usuari <i>existeix</i> una sola pàgina!</p>
-		<p>Aques és l&rsquo;aspecte general de tots els scripts:</p>
+		<p><strong>Important</strong>: per l’usuari <i>existeix</i> una sola pàgina!</p>
+		<p>Aques és l’aspecte general de tots els scripts:</p>
 
 		<pre>
 import os, sys
@@ -116,8 +116,8 @@ sys.exit(0) </pre>
 		<h2>Pràctiques</h2>
 		<p>Sempre utilitzant la tècnica <b>GET/POST</b>, implementa aquests formularis com una pàgina dinàmica, usant en cada cas un script més una plantilla.</p>
 		<ol>
-			<li>Fes un formulari que demani dos nombres. El formulari ha de ser processat retornant finalment com a simple text el resultat de sumar els dos nombres. Gestiona els casos d&rsquo;error més evidents (nombres absents o malformats), presentant reiteradament el formulari fins que l&rsquo;usuari els superi tots.</li>
-			<li>Fes un formulari que, en ser processat, si algun dels camps del formulari està buit es torni a torni a mostrar  però conservant els valors dels camps que sí tenien contingut correcte. En rebre tots els camps correctament cal retornar una resposta mostrant els valors rebuts (en una primera versió retorna una simple cadena de text). Estructura general de l&rsquo;script:
+			<li>Fes un formulari que demani dos nombres. El formulari ha de ser processat retornant finalment com a simple text el resultat de sumar els dos nombres. Gestiona els casos d’error més evidents (nombres absents o malformats), presentant reiteradament el formulari fins que l’usuari els superi tots.</li>
+			<li>Fes un formulari que, en ser processat, si algun dels camps del formulari està buit es torni a torni a mostrar  però conservant els valors dels camps que sí tenien contingut correcte. En rebre tots els camps correctament cal retornar una resposta mostrant els valors rebuts (en una primera versió retorna una simple cadena de text). Estructura general de l’script:
 			<ol>
 				<li>Si el mètode és <code>GET</code>&hellip;</li>
 				<li>&hellip;retornar el resultat de cridar a la plantilla.</li>

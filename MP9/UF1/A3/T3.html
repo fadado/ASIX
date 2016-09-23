@@ -15,13 +15,13 @@
 		<!-- body -->
 
 		<h2>Llibre de visites</h2>
-		<p>Ara que disposem d&rsquo;un mòdul per gestionar la base de dades de llibre de visites ja podem implementar la pàgina web que l&rsquo;ha de mostrar. Aquesta pàgina farà servir una plantilla de <cite>Genshi</cite> i un script CGI. En crear aquests fitxers ha de tenir en compte aquests aspectes:</p>
+		<p>Ara que disposem d’un mòdul per gestionar la base de dades de llibre de visites ja podem implementar la pàgina web que l’ha de mostrar. Aquesta pàgina farà servir una plantilla de <cite>Genshi</cite> i un script CGI. En crear aquests fitxers ha de tenir en compte aquests aspectes:</p>
 		<ul>
-			<li>L&rsquo;adreça (URL) de la pàgina a visitar ha de ser la del script.</li>
+			<li>L’adreça (URL) de la pàgina a visitar ha de ser la del script.</li>
 			<li>Els visitants no poden saber que plantilla i script existeixen en fitxers separats.</li>
 			<li>En la pàgina a generar mostra primer les entrades del llibre de visites i al final un formulari per inserir noves entrades.</li>
 			<li>Tots els camps del formulari han de ser obligatoris.</li>
-			<li>Valida el contingut dels camps, per exemple verificant que l&rsquo;adreça de correu te el format apropiat. Per fer això et pot servir una expressió regular com la que mostra el següent exemple:
+			<li>Valida el contingut dels camps, per exemple verificant que l’adreça de correu te el format apropiat. Per fer això et pot servir una expressió regular com la que mostra el següent exemple:
 				<pre>import re
 
 EMAIL_RE = re.compile(r"^[\S]+@[\S]+\.[\S]+$")
@@ -38,12 +38,12 @@ def valid_email(email):
 		</ul>
 
 		<h2>Pràctiques</h2>
-		<p><b>Atenció</b>: et farà falta vigilar els permisos del fitxer de la base de dades per que tant tu com l&rsquo;usuari <code>apache</code> el pogueu modificar.</p>
+		<p><b>Atenció</b>: et farà falta vigilar els permisos del fitxer de la base de dades per que tant tu com l’usuari <code>apache</code> el pogueu modificar.</p>
 		<ul>
 			<li>Fes la versió inicial del llibre de visites: una sola pàgina (script més plantilla de <cite>Genshi</cite>) que mostri totes les entrades del llibre de visites i al final un formulari per afegir de noves.</li>
 			<li>Fes una versió <i>paginada</i> del llibre de visites (mostra 10 entrades del llibre per pàgina).</li>
-			<li>Organitza el llibre de visites en diferents pàgines: una per mostrar el contingut (paginat); una per afegir una nova entrada. Cal oferir una navegació correcta al visitant: tornar a la pàgina inicial; cancel·lar l&rsquo;edició de noves entrades; visitar les entrades <i>paginades</i>, etc.</li>
-			<li>Ofereix a l&rsquo;usuari un enllaç o botó per tornar a la pàgina original, sigui aquesta quina sigui.</li>
+			<li>Organitza el llibre de visites en diferents pàgines: una per mostrar el contingut (paginat); una per afegir una nova entrada. Cal oferir una navegació correcta al visitant: tornar a la pàgina inicial; cancel·lar l’edició de noves entrades; visitar les entrades <i>paginades</i>, etc.</li>
+			<li>Ofereix a l’usuari un enllaç o botó per tornar a la pàgina original, sigui aquesta quina sigui.</li>
 		</ul>
 
 	</body>

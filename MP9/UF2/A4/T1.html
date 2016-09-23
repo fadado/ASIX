@@ -19,18 +19,17 @@
 
 		<h2>Jekyll</h2>
 		<p>El gestor de continguts que estudiarem és <cite>Jekyll</cite>, que començarem a usar de forma independent, però que més endavant veurem que està integrat perfectament amb <cite>GitHub Pages</cite>.</p>
-		<p><strong>Important</strong>: Aquesta activitat t&rsquo;exigirà un alt grau d&rsquo;autonomia. Pots imaginar que es tracta d&rsquo;una mena de mini-projecte, similar en la forma de treballar al projecte final del cicle.</p>
+		<p><strong>Important</strong>: Aquesta activitat t’exigirà un alt grau d’autonomia. Pots imaginar que es tracta d’una mena de mini-projecte, similar en la forma de treballar al projecte final del cicle.</p>
 
 		<p>El sistema recomanat per <cite>GitHub</cite> per preparar els llocs web de <cite>GitHub Pages</cite> és <cite>Jekyll</cite>, i si ells ho diuen per alguna cosa serà&hellip; Anem a explorar! Per estalviar-te feina inicial, configura el teu sistema amb aquests paquets:</p>
-		<pre>	sudo yum install rubygems rubygems-devel ruby-devel
-	# si uses Fedora 23 també cal:
+		<pre>	sudo dnf install rubygems rubygems-devel ruby-devel
 	sudo dnf install redhat-rpm-config
 	# finalment
 	sudo gem install jekyll</pre>
-		<p>Poden fer falta altres paquets, com el compilador de <code>C</code> (<code>sudo yum install gcc</code>), etc., però el més probable és que els tinguis instal·lats.</p>
+		<p>Poden fer falta altres paquets, com el compilador de <code>C</code> (<code>sudo dnf install gcc</code>), etc., però el més probable és que els tinguis instal·lats. En tot cas, llegeix atentament el missatges en pantalla per saber si cal instal·lar res més, tant paquets de Ruby amb <code>gem</code> o paquets del sistema amb <code>dnf</code>.</p>
 
 		<h2>Enllaços recomanats</h2>
-		<p>Aquestes pàgines seran presentades a classe, però tu les has d&rsquo;estudiar també pel teu compte!</p>
+		<p>Aquestes pàgines seran presentades a classe, però tu les has d’estudiar també pel teu compte!</p>
 		<ul>
 			<li>Introducció conceptual: <a href="http://jekyllbootstrap.com/lessons/jekyll-introduction.html">What is Jekyll?</a></li>
 			<li>Lloc web de <a href="https://jekyllrb.com/">Jekyll</a></li>
@@ -39,15 +38,18 @@
 
 		<h2>Pràctiques</h2>
 		<ul>
-			<li>Segueix detalladament el <a href="http://code.tutsplus.com/articles/building-static-sites-with-jekyll--net-22211">tutorial Jekyll</a>. El resultat ha de ser un lloc web local, que pots personalitzar al teu gust.</li>
-			<li>Crea i explora un nou lloc executant aquestes ordres (per aturar el servidor et caldrà usar <code>ps</code> i <code>kill</code>):
-			<pre>	jekyll new LLOC
-	cd LLOC
-	jekyll serve --detach
-	firefox http://localhost:4000 &amp; disown</pre>
+			<li>Crea i explora un nou lloc executant (no com a <i>root</i>!) aquestes ordres (per aturar el servidor et caldrà usar <code>CTRL-C</code>:
+			<pre>	jekyll new foobar
+	cd foobar
+	cp -r ~/.gem/ruby/gems/minima-*/* .  # vigila la ruta! (alternativament mira a /usr/local/gem...)
+	sed -i 's/^theme:/#&amp;/' _config.yml 
+	jekyll serve --watch</pre>
+
+			Ara ja pots amb Firefox visitar <code>http://localhost:4000</code>.
 			Cal que puguis explicar la funció de qualsevol dels fitxers font del lloc!
 			</li>
-			<li>Modifica els continguts del nou lloc per que estiguin adaptats i personalitzats a tu mateix. Executa <code>jekyll</code> d&rsquo;aquesta forma per poder observar els canvis a mesura que els facis:
+			<li>Segueix detalladament el <a href="http://code.tutsplus.com/articles/building-static-sites-with-jekyll--net-22211">tutorial Jekyll</a>. El resultat ha de ser un lloc web local, que pots personalitzar al teu gust.</li>
+			<li>Modifica els continguts del nou lloc per que estiguin adaptats i personalitzats a tu mateix. Executa <code>jekyll</code> d’aquesta forma per poder observar els canvis a mesura que els facis:
 				<pre>	jekyll serve --watch</pre>
 				Pensa que si fas canvis a <code>_config.yml</code> has de reiniciar el servidor.
 			</li>

@@ -14,13 +14,13 @@
 
 		<!-- body -->
 
-		<h2>L&rsquo;ordre <code>psql</code></h2>
+		<h2>L’ordre <code>psql</code></h2>
 		<p>No sempre cal disposar de facilitats primitives a un SGBDR per exportar les seves dades a format XML. Una de les virtuts dels sistemes operatius <cite>Posix</cite> és la possibilitat de combinar ordres existents en formes noves, usant el shell i les tècniques de redirecció.</p>
-		<p>Facilitats proporcionades per l&rsquo;ordre <code>psql</code>:</p>
+		<p>Facilitats proporcionades per l’ordre <code>psql</code>:</p>
 		<ul>
 			<li>Es pot usar interactivament i en mode <i>batch</i> (per lots, no interactivament).</li>
-			<li>Pot llegir les ordres a executar d&rsquo;un fitxer de text o l&rsquo;entrada estàndard.</li>
-			<li>La majoria  de les seves meta-ordres (les precedides per antibarra, com ara <code>\?</code>) tenen el seu equivalent en forma d&rsquo;opcions de  l&rsquo;ordre <code>psql</code>.</li>
+			<li>Pot llegir les ordres a executar d’un fitxer de text o l’entrada estàndard.</li>
+			<li>La majoria  de les seves meta-ordres (les precedides per antibarra, com ara <code>\?</code>) tenen el seu equivalent en forma d’opcions de  l’ordre <code>psql</code>.</li>
 			<li>La meta-ordre <code>\o</code> permet redirigir la sortida a fitxers o <i>pipes</i>.</li>
 		</ul>
 
@@ -61,12 +61,12 @@ $ psql --host 127.0.0.1 --user training --dbname training
 		<h2>La facilitat <i>doc-here</i> del shell</h2>
 		<p>Recorda: encara que pensada pel seu us dins de scripts, podem practicar interactivament aquesta tècnica.</p>
 		<ul>
-			<li>Si un script del shell ha de cridar a una ordre que necessita del seu propi fitxer d&rsquo;ordres, ens trobem amb que hem de &ldquo;mantenir&rdquo; dos fitxers amb ordres.</li>
-			<li>Si posem el segon fitxer d&rsquo;ordres dins del script del shell, el manteniment de la nova ordre és molt més simple.</li>
-			<li>A més a més, podem disposar de parts dinàmiques, calculades en tems d&rsquo;execució, dins del segon fitxer (ara dins del script del shell).</li>
+			<li>Si un script del shell ha de cridar a una ordre que necessita del seu propi fitxer d’ordres, ens trobem amb que hem de &ldquo;mantenir&rdquo; dos fitxers amb ordres.</li>
+			<li>Si posem el segon fitxer d’ordres dins del script del shell, el manteniment de la nova ordre és molt més simple.</li>
+			<li>A més a més, podem disposar de parts dinàmiques, calculades en tems d’execució, dins del segon fitxer (ara dins del script del shell).</li>
 			<li>La tècnica a usar per obtenir aquests beneficis és clàssica, pròpia del shell, i té per nom <i>doc-here</i>.</li>
 		</ul>
-		<p>Exemple d&rsquo;aquesta tècnica, i de com es va originar l&rsquo;ordre <code>grep</code>:</p>
+		<p>Exemple d’aquesta tècnica, i de com es va originar l’ordre <code>grep</code>:</p>
 		<pre>$ ed -s /etc/passwd &lt;&lt;-END
 	g/^root/p
 	q
@@ -76,22 +76,22 @@ root:x:0:0:root:/root:/bin/bash </pre>
 
 		<h2>Enllaços recomanats</h2>
 		<ul>
-			<li>Pàgina de manual de l&rsquo;ordre <code>psql</code>(1).</li>
-			<li>Secció <i>Here Documents</i> de la pàgina de manual de l&rsquo;ordre <code>bash</code>(1).</li>
+			<li>Pàgina de manual de l’ordre <code>psql</code>(1).</li>
+			<li>Secció <i>Here Documents</i> de la pàgina de manual de l’ordre <code>bash</code>(1).</li>
 			<li>Altres tècniques: documentació del SGBDR Postgres, seccions <a href="http://www.postgresql.org/docs/9.0/static/datatype-xml.html">XML Type</a> i <a href="http://www.postgresql.org/docs/9.0/static/functions-xml.html">XML Functions</a>.</li>
 		</ul>
 
 		<h2>Pràctiques</h2>
 		<ul>
-			<li>Estudia la meta-ordre <code>\o</code> de l&rsquo;ordre <code>psql</code>(1) (escrivint en un fitxer i també en un <i>pipe</i>).</li>
-			<li>De forma interactiva, i seguint les instruccions situades en el fitxer de l&rsquo;ordre <code>psql2xml</code> (situada en el <a href="aux/psql2xml">repositori local</a> de fitxers), exporta manualment una o dos taules de la base de dades <i>training</i> a format XML. Et caldrà practicar al mateix temps les dues pràctiques següents
+			<li>Estudia la meta-ordre <code>\o</code> de l’ordre <code>psql</code>(1) (escrivint en un fitxer i també en un <i>pipe</i>).</li>
+			<li>De forma interactiva, i seguint les instruccions situades en el fitxer de l’ordre <code>psql2xml</code> (situada en el <a href="aux/psql2xml">repositori local</a> de fitxers), exporta manualment una o dos taules de la base de dades <i>training</i> a format XML. Et caldrà practicar al mateix temps les dues pràctiques següents
 				<ul>
-					<li>Explora, fins a entendre-les completament, les meta-ordres <code>\f '\t'</code>, <code>\a</code> i <code>\x</code> (i els seus equivalents en la línia d&rsquo;ordres) de l&rsquo;ordre <code>psql</code>(1) (manual: <code>man psql</code>; ajuda interactiva: \?).</li>
-					<li>Quina és la diferència entre les meta-ordres <code>\echo</code> i <code>\qecho</code> de l&rsquo;ordre <code>psql</code>(1)?.</li>
+					<li>Explora, fins a entendre-les completament, les meta-ordres <code>\f '\t'</code>, <code>\a</code> i <code>\x</code> (i els seus equivalents en la línia d’ordres) de l’ordre <code>psql</code>(1) (manual: <code>man psql</code>; ajuda interactiva: \?).</li>
+					<li>Quina és la diferència entre les meta-ordres <code>\echo</code> i <code>\qecho</code> de l’ordre <code>psql</code>(1)?.</li>
 				</ul>
 			</li>
-			<li>Fes un script del shell que utilitzant l&rsquo;ordre <code>psql</code> i l&rsquo;ordre <code>psql2xml</code> exporti alguna de les taules de la base de dades <i>training</i> a format XML. El script SQL  a executar per l&rsquo;ordre <code>psql</code> s&rsquo;ha de llegir de l&rsquo;entrada estàndard amb la tècnica del shell coneguda com <i>doc-here</i>.</li>
-			<!--<li>Fes un script del shell que utilitzant l&rsquo;ordre <code>psql</code> i l&rsquo;ordre <code>psql2xml</code> exporti totes les taules de la base  de dades <i>training</i> a format XML (cada taula en un fitxer separat). El script SQL  a executar per l&rsquo;ordre <code>psql</code> s&rsquo;ha de llegir de l&rsquo;entrada estàndard amb la tècnica del shell coneguda com <i>doc-here</i></li>-->
+			<li>Fes un script del shell que utilitzant l’ordre <code>psql</code> i l’ordre <code>psql2xml</code> exporti alguna de les taules de la base de dades <i>training</i> a format XML. El script SQL  a executar per l’ordre <code>psql</code> s’ha de llegir de l’entrada estàndard amb la tècnica del shell coneguda com <i>doc-here</i>.</li>
+			<!--<li>Fes un script del shell que utilitzant l’ordre <code>psql</code> i l’ordre <code>psql2xml</code> exporti totes les taules de la base  de dades <i>training</i> a format XML (cada taula en un fitxer separat). El script SQL  a executar per l’ordre <code>psql</code> s’ha de llegir de l’entrada estàndard amb la tècnica del shell coneguda com <i>doc-here</i></li>-->
 		</ul>
 
 	</body>

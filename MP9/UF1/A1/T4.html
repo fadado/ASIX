@@ -1,13 +1,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ca" lang="ca">
 	<head>
-		<title>Programar scripts en l&rsquo;estil del CGI</title>
+		<title>Programar scripts en l’estil del CGI</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<style type="text/css">body{font-family: sans-serif;}</style>
 	</head>
 	<body>
 		<!-- title -->
-		<h1>Programar scripts en l&rsquo;estil del <cite>CGI</cite></h1>
+		<h1>Programar scripts en l’estil del <cite>CGI</cite></h1>
 		<p>MP9UF1A1T4</p>	<!-- id -->
 		<!-- description -->
 		<p>Usos tradicionals del Common Gateway Interface</p>
@@ -96,7 +96,7 @@ form = parse(os.environ["QUERY_STRING"])</pre>
 		</ul>
 
 		<h2>Enllaços recomanats</h2>
-		<p>A mes a mes dels presentats en l&rsquo;activitat dedicada a l&rsquo;organització de la documentació:</p>
+		<p>A mes a mes dels presentats en l’activitat dedicada a l’organització de la documentació:</p>
 		<ul>
 			<li><a href="http://en.wikipedia.org/wiki/Common_Gateway_Interface">Common Gateway Interface</a> a la Wikipedia</li>
 			<li><a href="http://en.wikipedia.org/wiki/Percent-encoding">Percent encoding</a> a la Wikipedia</li> 
@@ -105,29 +105,29 @@ form = parse(os.environ["QUERY_STRING"])</pre>
 		<h2>Pràctiques I</h2>
 		<p><strong>Important</strong>: visualitza permanentment els complements de <cite>Firefox</cite> <cite>All-In-One Sidebar</cite> i <cite>Live HTTP  headers</cite> per poder estudiar les capçaleres HTTP intercanviades entre client i servidor.</p>
 		<ul>
-			<li>Fes un script de nom <code>daus</code> que en ser visitat retorni el resultat de simular una tirada de daus (usa el mòdul de Python <code>random</code> per obtenir valors a l&rsquo;atzar).</li>
-			<li>Fes un script de nom <code>salta</code> que en ser visitat redirigeixi a una URL triada a l&rsquo;atzar d&rsquo;una llista (has de redirigir amb la capçalera escrita per l&rsquo;script <code>Location: <i>URL</i></code>). Quin tipus de resposta  de redirecció ha fet el servidor?</li>
-			<li>Fes un script de nom <code>calcula</code> que en ser visitat amb una  <i>query string</i> amb la forma <code>?N=<i>nombre</i>&amp;M=<i>nombre</i>&amp;OP=<i>operació</i></code> retorni el resultat d&rsquo;aplicar l&rsquo;operació <code>OP</code> (suma, resta, multiplicació o divisió codificades amb un sol caràcter) als nombres <code>N</code> i <code>M</code>.</li>
-			<li>En un script de nom <code>query.py</code> millora la funció <code>parse</code> per que suporti noms de camps repetits. No deixis d&rsquo;afegir comentaris justificant les teves decisions i codi de prova, i observa que tan sols has de modificar la darrera línia de codi de la funció.</li>
+			<li>Fes un script de nom <code>daus</code> que en ser visitat retorni el resultat de simular una tirada de daus (usa el mòdul de Python <code>random</code> per obtenir valors a l’atzar).</li>
+			<li>Fes un script de nom <code>salta</code> que en ser visitat redirigeixi a una URL triada a l’atzar d’una llista (has de redirigir amb la capçalera escrita per l’script <code>Location: <i>URL</i></code>). Quin tipus de resposta  de redirecció ha fet el servidor?</li>
+			<li>Fes un script de nom <code>calcula</code> que en ser visitat amb una  <i>query string</i> amb la forma <code>?N=<i>nombre</i>&amp;M=<i>nombre</i>&amp;OP=<i>operació</i></code> retorni el resultat d’aplicar l’operació <code>OP</code> (suma, resta, multiplicació o divisió codificades amb un sol caràcter) als nombres <code>N</code> i <code>M</code>.</li>
+			<li>En un script de nom <code>query.py</code> millora la funció <code>parse</code> per que suporti noms de camps repetits. No deixis d’afegir comentaris justificant les teves decisions i codi de prova, i observa que tan sols has de modificar la darrera línia de codi de la funció.</li>
 			<li>Millora la funció <code>parse</code> per que, una vegada tallada la cadena pels ampersands, verifiqui aquests aspectes: cap bocí és la cadena buida; tots els bocins contenen un caràcter <code>'='</code>. Si fracasen els tests cal acabar amb <code>raise ValueError('Bad query string')</code>.</li>
 			<li>Substitueix en la funció <code>parse</code> la crida a <code>urllib.unquote_plus</code> per la funció <code>decode</code> desenvolupada a classe.</li>
 		</ul>
 
 		<h2>Pràctiques II</h2>
 		<ul>
-			<li>En un script de nom <code>count.py</code> implementa un comptador de visites (a emmagatzemar en un fitxer a <code>/var/tmp</code>): la resposta ha d&rsquo;informar de les vegades que s&rsquo;ha visitat la URL.</li>
-			<li>Fa anys van ser populars els <a href="http://es.wikipedia.org/wiki/Anillo_web">Webrings</a>. Fes un script que en ser visitat amb una  <i>query string</i> amb la forma <code style="white-space: nowrap;">?visita=<i>direcció</i></code> (on <i>direcció</i> pot ser <code>esquerra</code>, <code>dreta</code> o <code>atzar</code> utilitzi el valor de la capçalera HTTP <code>Referer</code> (excepte en el cas de la redirecció a l&rsquo;atzar) per decidir	a quina pàgina redirigir al visitant de l&rsquo;anell web. L&rsquo;anell el pots representar en una simple llista que has d&rsquo;imaginar <em>circular</em> (posició en la llista anterior a <code>0</code>: <code>len(llista)-1</code>; posició posterior en la llista a  <code>len(llista)-1</code>: <code>0</code>; en altres casos simplement incrementar o decrementar la posició en <code>1</code>).
+			<li>En un script de nom <code>count.py</code> implementa un comptador de visites (a emmagatzemar en un fitxer a <code>/var/www/tmp</code>; dòna permisos d’scriptura en el directori al grup <code>apache</code>): la resposta ha d’informar de les vegades que s’ha visitat la URL.</li>
+			<li>Fa anys van ser populars els <a href="http://es.wikipedia.org/wiki/Anillo_web">Webrings</a>. Fes un script que en ser visitat amb una  <i>query string</i> amb la forma <code style="white-space: nowrap;">?visita=<i>direcció</i></code> (on <i>direcció</i> pot ser <code>esquerra</code>, <code>dreta</code> o <code>atzar</code> utilitzi el valor de la capçalera HTTP <code>Referer</code> (excepte en el cas de la redirecció a l’atzar) per decidir	a quina pàgina redirigir al visitant de l’anell web. L’anell el pots representar en una simple llista que has d’imaginar <em>circular</em> (posició en la llista anterior a <code>0</code>: <code>len(llista)-1</code>; posició posterior en la llista a  <code>len(llista)-1</code>: <code>0</code>; en altres casos simplement incrementar o decrementar la posició en <code>1</code>).
 				<br />Pseudocodi del programa:
 				<ol>
-					<li>Si no es rep la capçalera HTTP <code>Referer</code> redirigir a una URL a l&rsquo;atzar de l&rsquo;anell.</li>
-					<li>Si els valors extrets de la <i>query string</i> no són correctes retornar un missatge d&rsquo;error.</li>
-					<li>En cas contrari i si es demana visitar una pàgina a l&rsquo;atzar, redirigir apropiadament.</li>
+					<li>Si no es rep la capçalera HTTP <code>Referer</code> redirigir a una URL a l’atzar de l’anell.</li>
+					<li>Si els valors extrets de la <i>query string</i> no són correctes retornar un missatge d’error.</li>
+					<li>En cas contrari i si es demana visitar una pàgina a l’atzar, redirigir apropiadament.</li>
 					<li>En cas contrari buscar la URL de la capçalera HTTP <code>Referer</code> en la llista i&hellip;:</li>
-					<li>&hellip; si no es troba retornar un missatge d&rsquo;error</li>
-					<li>&hellip; en cas contrari redirigir a la URL anterior o posterior segons s&rsquo;hagi demanat.</li>
+					<li>&hellip; si no es troba retornar un missatge d’error</li>
+					<li>&hellip; en cas contrari redirigir a la URL anterior o posterior segons s’hagi demanat.</li>
 				</ol>
-				Pensa que necessitaràs dos o més pàgines HTML estàtiques per poder provar el sistema d&rsquo;anell web.<br />
-				Es recomana definir funcions auxiliars per les parts del codi que no han de conèixer res sobre el <cite>CGI</cite>, com ara per buscar dins la llista circular, i provar aquestes funcions en un mòdul separat abans de fer l&rsquo;script <cite>CGI</cite>.
+				Pensa que necessitaràs dos o més pàgines HTML estàtiques per poder provar el sistema d’anell web.<br />
+				Es recomana definir funcions auxiliars per les parts del codi que no han de conèixer res sobre el <cite>CGI</cite>, com ara per buscar dins la llista circular, i provar aquestes funcions en un mòdul separat abans de fer l’script <cite>CGI</cite>.
 			</li>
 			<li>Implementa un script per gestionar <a href="http://es.wikipedia.org/wiki/Banner">Web banners</a> (consulta també la Wikipedia <a href="http://en.wikipedia.org/wiki/Web_banner">anglesa</a>).</li>
 		</ul>

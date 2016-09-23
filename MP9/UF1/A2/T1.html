@@ -18,7 +18,7 @@
 		<p>El paquet de <cite>Fedora</cite> <code>python-genshi</code> instal·la el sistema de plantilles <cite>Genshi</cite> i la seva documentació.</p>
 
 		<p><cite>Genshi</cite> és una biblioteca de <cite>Python</cite> que proporciona un conjunt integrat
-		de components per a l&rsquo;anàlisi, la generació i processament d&rsquo;HTML, XML o
+		de components per a l’anàlisi, la generació i processament d’HTML, XML o
 		qualsevol altre contingut textual per a la generació de documents per la
 		Web. La principal característica és un llenguatge de plantilles, que està
 		fortament inspirat en <cite>Kid</cite> i <cite>TAL</cite>.</p>
@@ -51,30 +51,30 @@
 
 		<ul>
 			<li>Un bloc de codi en <cite>Python</cite>, utilitzant una instrucció de processament.</li>
-			<li>La declaració d&rsquo;espai de noms per <cite>Genshi</cite>.</li>
-			<li>L&rsquo;ús de les directives de plantilles (<code>py:content</code> i <code>py:for</code>).</li>
+			<li>La declaració d’espai de noms per <cite>Genshi</cite>.</li>
+			<li>L’ús de les directives de plantilles (<code>py:content</code> i <code>py:for</code>).</li>
 			<li>Una expressió de <cite>Python</cite>: (${fruit}).</li>
 		</ul>
 
 		<p><strong>Important</strong>: en general no farem servir la instrucció de processament per definir codi o variables de <cite>Python</cite>, i situarem aquest codi en fitxers separats.</p>
 
 		<h2>Directives de processament</h2>
-		<p>Les directives de processament de <cite>Genshi</cite> que primer hem d&rsquo;estudiar es poden clasificar tal com mostra aquesta llista:</p>
+		<p>Les directives de processament de <cite>Genshi</cite> que primer hem d’estudiar es poden clasificar tal com mostra aquesta llista:</p>
 		<ul>
 			<li>Execució condicional: <code>py:if</code>, <code>py:choose</code></li>
 			<li>Bucles: <code>py:for</code></li>
 			<li>Definició de variables: <code>py:with</code></li>
-			<li>Generació d&rsquo;XML: <code>py:attrs</code>, <code>py:content</code>, <code>py:replace</code> i <code>py:strip</code></li>
+			<li>Generació d’XML: <code>py:attrs</code>, <code>py:content</code>, <code>py:replace</code> i <code>py:strip</code></li>
 		</ul>
 
 		<h2>Expansió de plantilles</h2>
-		<p>Per expandir les plantilles usarem de moment l&rsquo;script <a href="aux/render.py">render.py</a>, i expandirem les plantilles en el terminal, sense involucrar en aquesta tasca a servidor web o scripts CGI. Aquestes ordres mostren com expandir diferents plantilles de prova situades en el directori <a href="aux">aux</a>:</p>
+		<p>Per expandir les plantilles usarem de moment l’script <a href="aux/render.py">render.py</a>, i expandirem les plantilles en el terminal, sense involucrar en aquesta tasca a servidor web o scripts CGI. Aquestes ordres mostren com expandir diferents plantilles de prova situades en el directori <a href="aux">aux</a>:</p>
 		<ul>
 			<li><code>$ python ./render.py t01.xml</code></li>
 			<li><code>$ title="valor heretat en entorn" python ./render.py t02.xml</code></li>
 			<li><code>$ name=Joan times=10 python ./render.py t03.xml | xmllint --format -</code></li>
 		</ul>
-		<p>Pot ser instructiu estudiar l&rsquo;script <a href="aux/render.py">render.py</a>, ja que mes endavant et caldrà fer servir un codi similar en els scripts CGI:</p>
+		<p>Pot ser instructiu estudiar l’script <a href="aux/render.py">render.py</a>, ja que mes endavant et caldrà fer servir un codi similar en els scripts CGI:</p>
 		<pre> 2  """Expand genshi templates.
  3  Usage: env N=V... python ./render.py TEMPLATE
  4  """

@@ -25,11 +25,11 @@
 					<li><a href="http://htmlhelp.com/reference/html40/forms/legend.html">legend</a> &ndash; Llegenda per conjunt de camps</li>
 				</ul>
 				</li>
-				<li><a href="http://htmlhelp.com/reference/html40/forms/input.html">input</a> &ndash; Camp d&rsquo;entrada</li>
+				<li><a href="http://htmlhelp.com/reference/html40/forms/input.html">input</a> &ndash; Camp d’entrada</li>
 				<li><a href="http://htmlhelp.com/reference/html40/forms/label.html">label</a> &ndash; Etiqueta per camp</li>
-				<li><a href="http://htmlhelp.com/reference/html40/forms/select.html">select</a> &ndash; Selector d&rsquo;opcions
+				<li><a href="http://htmlhelp.com/reference/html40/forms/select.html">select</a> &ndash; Selector d’opcions
 				<ul>
-					<li><a href="http://htmlhelp.com/reference/html40/forms/optgroup.html">optgroup</a> &ndash; Grup d&rsquo;opcions
+					<li><a href="http://htmlhelp.com/reference/html40/forms/optgroup.html">optgroup</a> &ndash; Grup d’opcions
 					<ul>
 						<li><a href="http://htmlhelp.com/reference/html40/forms/option.html">option</a> &ndash; Opció en menú</li>
 					</ul>
@@ -50,7 +50,7 @@
 		</ul>
 
 		<h2>Pràctiques</h2>
-		<p>Aquests exercicis demanen presentar diferents formularis, a fi d&rsquo;explorar les seves possibilitats. Tots els formularis han de ser vàlids, tenir botons <code>submit</code> i <code>reset</code>, i ser processats per l&rsquo;script presentat al final de la pàgina.</p>
+		<p>Aquests exercicis demanen presentar diferents formularis, a fi d’explorar les seves possibilitats. Tots els formularis han de ser vàlids, tenir botons <code>submit</code> i <code>reset</code>, i ser processats per l’script presentat al final de la pàgina.</p>
 		<ul>
 			<li>Menú de restaurant, amb diferents grups de controls de tipus <code>radio</code>: primer plat, segon plat, postres i begudes.</li>
 			<li>Elecció de pizza (<code>radio</code>) i complements (<code>checkbox</code>).</li>
@@ -64,7 +64,8 @@
 		</ul>
 
 		<h2>Processament dels formularis</h2>
-		<p>Encara que ara ens preocupa principalment crear formularis, és natural voler saber quina informació envia el navegador al servidor en prémer el botó d&rsquo;enviar el formulari.  Per disposar d&rsquo;un servidor web que presenti la informació enviada pel navegador farem això:</p>
+		<p>Informació tècnica (pots ignorar-la de moment): usarem de moment un senzill servidor web que porta la llibreria de Python, que suporta CGIs però no suporta en aquests la redirecció derivada d’usar la capçalera <code>Location</code>.</p>
+		<p>Encara que ara ens preocupa principalment crear formularis, és natural voler saber quina informació envia el navegador al servidor en prémer el botó d’enviar el formulari.  Per disposar d’un servidor web que presenti la informació enviada pel navegador farem això:</p>
 		<ul>
 			<li>Crearem un directori pels formularis:
 				<pre><code>$ mkdir -p website/cgi-bin # directoris per formularis i scripts</code></pre>
@@ -74,10 +75,10 @@
 $ python /usr/lib64/python2.*/CGIHTTPServer.py  # ara llegeix la pantalla!</code></pre>
 			</li>
 			<li>En un altre terminal ens situarem en el directori <code>website</code> per editar els formularis.</li>
-			<li>Per verificar el sistema, còpia el fitxer <a href="aux/form.py">form.py</a> en el directori <code>cgi-bin</code> creat anteriorment (no t&rsquo;oblidis de fer-lo executable). Alternativament pots usar aquest altre script: <a href="aux/form.sh">form.sh</a>.</li>
-			<li>El directori de treball (<code>website</code>) actua com arrel de les rutes en les URLs, i recorda que els scripts s&rsquo;executen amb l&rsquo;usuari <code>nobody</code> (això afecta als permisos!).</li>
-			<li>En tots els formularis l&rsquo;element <code>form</code> serà així: <code>&lt;form action="cgi-bin/form.py" ...&gt;</code> .</li>
-			<li>Per visitar els formularis amb el navegador usarem l&rsquo;adreça <code>http://localhost:8000/<i>formulari</i></code>.</li>
+			<li>Per verificar el sistema, còpia el fitxer <a href="aux/form.py">form.py</a> en el directori <code>cgi-bin</code> creat anteriorment (no t’oblidis de fer-lo executable). Alternativament pots usar aquest altre script: <a href="aux/form.sh">form.sh</a>.</li>
+			<li>El directori de treball (<code>website</code>) actua com arrel de les rutes en les URLs, i recorda que els scripts s’executen amb l’usuari <code>nobody</code> (això afecta als permisos!).</li>
+			<li>En tots els formularis l’element <code>form</code> serà així: <code>&lt;form action="cgi-bin/form.py" ...&gt;</code> .</li>
+			<li>Per visitar els formularis amb el navegador usarem l’adreça <code>http://localhost:8000/<i>formulari</i></code>.</li>
 		</ul>
 
 		</body>

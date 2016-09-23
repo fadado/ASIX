@@ -29,7 +29,7 @@ import xml.etree.ElementTree as ET
 tree = ET.parse(sys.stdin)
 
 # transform
-for element in tree.getiterator():
+for element in tree.iter():
     element.tag = element.tag.lower()
 
 # save
@@ -37,14 +37,14 @@ tree.write(sys.stdout)
 
 sys.exit(0)</pre>
 
-		<p>La nostre feina consistirà en fer transformacions en els elements recorreguts en el bucle que processa l&rsquo;iterador retornat per <code>tree.getiterator()</code>.</p>
+		<p>La nostre feina consistirà en fer transformacions en els elements recorreguts en el bucle que processa l’iterador retornat per <code>tree.iter()</code>.</p>
 
 		<h2>Enllaços recomanats</h2>
 		<ul>
 			<li>Tutorial: <a href="http://effbot.org/zone/element.htm">Elements and Element Trees</a></li>
 			<li><a href="http://home.uchicago.edu/~gan/file/python.pdf">Python 2.5 Reference Card</a> (imprimeix en paper aquest document, i conserva una versió <a href="../../UF2/A2/aux/python-2-5.pdf">local</a>)</li>
 			<li><a href="http://rgruet.free.fr/">Python Quick Reference Card</a> (versió <a href="../../UF2/A2/aux/python-QR.pdf">local</a>)</li>
-			<li>Copia local de la <a href="file:///usr/share/doc/python-docs/html/library/xml.etree.elementtree.html">Python v2.7.5 documentation</a> (paquet RPM <code>python-docs</code>; vigila la versió del paquet per si ha canviat respecte a la de l&rsquo;enllaç anterior)</li>
+			<li>Copia local de la <a href="file:///usr/share/doc/python-docs/html/library/xml.etree.elementtree.html">Python v2.7.5 documentation</a> (paquet RPM <code>python-docs</code>; vigila la versió del paquet per si ha canviat respecte a la de l’enllaç anterior)</li>
 			<li>Mòdul <code>xml.etree.ElementTree</code> en <cite>The Python Standard Library</cite></li>
 		</ul>
 
@@ -52,24 +52,27 @@ sys.exit(0)</pre>
 		<p>Pots fer aquestes pràctiques usant com a entrada aquest <a href="aux/plant_catalog.xml">catàleg de plantes</a>.</p>
 		<p>Tots aquests exercicis consisteixen en modificar la transformació <a href="aux/identity.py">identitat</a>, com fa per exemple la transformació a <a href="aux/lower.py">minúscules</a>. Amb aquest esquema de treball, fes transformacions per:</p>
 		<ul>
-			<li>Eliminar tots els atributs d&rsquo;un document.</li>
+			<li>Eliminar tots els atributs d’un document.</li>
 			<li>Afegir a tots els elements un atribut de nom <code>id</code> amb un valor diferent per cada element.</li>
-			<li>Convertir a majúscules els noms d&rsquo;atributs.</li>
+			<li>Convertir a majúscules els noms d’atributs.</li>
 			<li>Eliminar de tots els elements un determinat atribut, rebent el seu nom com argument (a <code>sys.argv[]</code>).</li>
 			<li>Prefixar els noms dels elements amb una cadena, rebuda com argument (a <code>sys.argv[]</code>.</li>
-			<li>Verificar que tots els elements fills de l&rsquo;element arrel tenen un determinat nombre de fills, rebent aquest nombre com argument (a <code>sys.argv[])</code>.</li>
+			<li>Verificar que tots els elements fills de l’element arrel tenen un determinat nombre de fills, rebent aquest nombre com argument (a <code>sys.argv[])</code>.</li>
 		</ul>
 
 		<h2>Pràctiques II</h2>
 		<p>En aquests exercicis la sortida dels programes ha de ser simple text, no XML.</p>
 		<ul>
-			<li>Comptar el nombre de caràcters de text continguts en el document d&rsquo;entrada.</li>
-			<li>Comptar el nombre d&rsquo;elements continguts en el document d&rsquo;entrada.</li>
-			<li>Comptar el nombre d&rsquo;atributs continguts en el document d&rsquo;entrada.</li>
-			<li>Comptar el nombre d&rsquo;elements fills de l&rsquo;element arrel.</li>
-			<li>Comptar el nombre d&rsquo;elements sense fills (sense altres elements dins seu).</li>
-			<li>Comptar el nombre d&rsquo;elements que tenen fills (no son elements &ldquo;terminals&rdquo;).</li>
+			<li>Comptar el nombre de caràcters de text continguts en el document d’entrada.</li>
+			<li>Comptar el nombre d’elements continguts en el document d’entrada.</li>
+			<li>Comptar el nombre d’atributs continguts en el document d’entrada.</li>
+			<li>Comptar el nombre d’elements fills de l’element arrel.</li>
+			<li>Comptar el nombre d’elements sense fills (sense altres elements dins seu).</li>
+			<li>Comptar el nombre d’elements que tenen fills (no son elements &ldquo;terminals&rdquo;).</li>
 		</ul>
+
+		<h2>Pràctiques II</h2>
+		<p>Processa la sortida de l’ordre <code>sudo lshw -xml</code> per extreure parts de la mateixa, presentar la informació de forma diferent, etc. </p>
 
 	</body>
 </html>

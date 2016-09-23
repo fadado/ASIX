@@ -10,7 +10,7 @@
 		<h1>Comprimir documents XML</h1>
 		<p>MP4UF2A2T2</p>	<!-- id -->
 		<!-- description -->
-		<p>Tècniques eficients d&rsquo;emmagatzematge de documents XML</p>
+		<p>Tècniques eficients d’emmagatzematge de documents XML</p>
 
 		<!-- body -->
 
@@ -18,33 +18,33 @@
 		<ul>
 			<li>Els documents XML poden ser grans, en tenir molta informació redundant, com ara els noms dels elements.</li>
 			<li>Per emmagatzemar i transmetre aquests document pot ser convenient comprimir-los.</li>
-			<li>L&rsquo;algoritme de l&rsquo;ordre <code>gzip</code> ofereix una gran eficiència comprimint fitxers de text.</li>
-			<li>L&rsquo;ordre <code>gunzip</code> equival a l&rsquo;ordre <code>gzip -d</code>.</li>
+			<li>L’algoritme de l’ordre <code>gzip</code> ofereix una gran eficiència comprimint fitxers de text.</li>
+			<li>L’ordre <code>gunzip</code> equival a l’ordre <code>gzip -d</code>.</li>
 		</ul>
 
-		<h2>Sintaxi de l&rsquo;ordre <code>gzip</code></h2>
+		<h2>Sintaxi de l’ordre <code>gzip</code></h2>
 		<ul>
-			<li>Pot causar confusió el fet de que l&rsquo;ordre pot treballar com a filtre o modificar fitxers <i>in place</i>.</li>
-			<li>Pot causar confusió el fet de que l&rsquo;ordre <code>gunzip</code> accepta noms de fitxers en els que falti l&rsquo;extensió <code>.gz</code>.</li>
-			<li>L&rsquo;ordre <code>tar</code> pot fer servir internament <code>gzip</code> (opció <code>z</code>).</li>
+			<li>Pot causar confusió el fet de que l’ordre pot treballar com a filtre o modificar fitxers <i>in place</i>.</li>
+			<li>Pot causar confusió el fet de que l’ordre <code>gunzip</code> accepta noms de fitxers en els que falti l’extensió <code>.gz</code>.</li>
+			<li>L’ordre <code>tar</code> pot fer servir internament <code>gzip</code> (opció <code>z</code>).</li>
 			<li>Sintaxi com a filtre: <code>tar cvf - x | gzip -c &gt; x.tgz</code>.</li>
 			<li>Sintaxi <i>in place</i>: <code>gzip x; gunzip x.gz</code>.</li>
-			<li>L&rsquo;ordre <code>bzip2</code> té sintaxi similar a <code>gzip</code> i ofereix superior nivell de compressió. La trobem en l&rsquo;opció <code>j</code> de l&rsquo;ordre <code>tar</code>, i amb ella es fa servir típicament l&rsquo;extensió <code>.bz2</code>.</li>
+			<li>L’ordre <code>bzip2</code> té sintaxi similar a <code>gzip</code> i ofereix superior nivell de compressió. La trobem en l’opció <code>j</code> de l’ordre <code>tar</code>, i amb ella es fa servir típicament l’extensió <code>.bz2</code>.</li>
 		</ul>
 
 		<h2>Enllaços recomanats</h2>
 		<ul>
 			<li>Pàgina de manual gzip(1).</li>
-			<li>Pàgina de <a href="http://www.gzip.org/">l&rsquo;autor de l&rsquo;ordre</a> <code>gzip</code>.</li>
-			<li>Pàgina del <a href="http://www.gnu.org/software/gzip/">projecte GNU sobre l&rsquo;ordre</a> <code>gzip</code>.</li>
+			<li>Pàgina de <a href="http://www.gzip.org/">l’autor de l’ordre</a> <code>gzip</code>.</li>
+			<li>Pàgina del <a href="http://www.gnu.org/software/gzip/">projecte GNU sobre l’ordre</a> <code>gzip</code>.</li>
 		</ul>
 
 		<h2>Pràctiques</h2>
 		<ul>
-			<li>Verifica que l&rsquo;ordre <code>xmllint</code> treballa de forma &ldquo;transparent&rdquo; amb fitxers comprimits (amb extensió <code>.gz</code>).</li>
-			<li>Fes un script del shell, de nom <code>ztar</code>, que cridant a les ordres <code>tar</code> i <code>gzip</code>, sigui equivalent a cridar a l&rsquo;ordre <code>tar cvzf filename &hellip;</code>.</li>
+			<li>Verifica que l’ordre <code>xmllint</code> treballa de forma &ldquo;transparent&rdquo; amb fitxers comprimits (amb extensió <code>.gz</code>).</li>
+			<li>Fes un script del shell, de nom <code>ztar</code>, que cridant a les ordres <code>tar</code> i <code>gzip</code>, sigui equivalent a cridar a l’ordre <code>tar cvzf filename &hellip;</code>.</li>
 			<li>Fes un script del shell, de nom <code>zedit</code>, que cridant a les ordres <code>geany</code> i <code>gzip</code>, permeti editar fitxers comprimits (amb extensió <code>.gz</code>) de forma &ldquo;transparent&rdquo; (en una primera versió la nova ordre no cal que gestioni casos erronis).</li>
-			<!--<li>En forma de comentaris en el fitxer <code>zedit</code>, descriu tots els controls que l&rsquo;ordre anterior hauria de fer per ser completament robusta</li>-->
+			<!--<li>En forma de comentaris en el fitxer <code>zedit</code>, descriu tots els controls que l’ordre anterior hauria de fer per ser completament robusta</li>-->
 		</ul>
 
 	</body>

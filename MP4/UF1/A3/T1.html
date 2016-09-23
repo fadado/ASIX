@@ -15,25 +15,25 @@
 		<!-- body -->
 
 		<h2>Els vocabularis HTML (HyperText Markup Language)</h2>
-		<p>L&rsquo;HTML és el llenguatge de publicació de la Web.</p>
+		<p>L’HTML és el llenguatge de publicació de la Web.</p>
 		<ul>
-			<li>Al llarg de la història s&rsquo;han succeït diferents versions de l&rsquo;HTML. La més antiga i important de les encara vigents és l&rsquo;HTML4.</li>
-			<li>L&rsquo;HTML4 és una aplicació del <a href="http://en.wikipedia.org/wiki/Standard_Generalized_Markup_Language">SGML</a>, conforme a l&rsquo;estàndard internacional ISO 8879 &mdash; <cite>Standard Generalized Markup Language</cite>.</li>
-			<li>L&rsquo;HTML4 en concreta en tres diferents DTDs: <i>Frameset</i>, <i>Transitional</i>, <i>Strict</i>.</li>
-			<li>El DTD preferent és el de tipus estricte, el de menor quantitat d&rsquo;elements i atributs, on la presentació queda en mans dels fulls d&rsquo;estil CSS.</li>
-			<li>L&rsquo;XHTML 1.0 és com HTML4 però amb sintaxi XML, més restringida que la del SGML.</li>
-			<li>El vocabulari HTML5, encara en fase de desenvolupament, es fonamenta en l&rsquo;XHTML 1.0 estricte.</li>
+			<li>Al llarg de la història s’han succeït diferents versions de l’HTML. La més antiga i important de les encara vigents és l’HTML4.</li>
+			<li>L’HTML4 és una aplicació del <a href="http://en.wikipedia.org/wiki/Standard_Generalized_Markup_Language">SGML</a>, conforme a l’estàndard internacional ISO 8879 &mdash; <cite>Standard Generalized Markup Language</cite>.</li>
+			<li>L’HTML4 en concreta en tres diferents DTDs: <i>Frameset</i>, <i>Transitional</i>, <i>Strict</i>.</li>
+			<li>El DTD preferent és el de tipus estricte, el de menor quantitat d’elements i atributs, on la presentació queda en mans dels fulls d’estil CSS.</li>
+			<li>L’XHTML 1.0 és com HTML4 però amb sintaxi XML, més restringida que la del SGML.</li>
+			<li>El vocabulari HTML5, encara en fase de desenvolupament, es fonamenta en l’XHTML 1.0 estricte.</li>
 			<li>El format EPUB (acrònim en anglès de <i>electronic publication</i> &ndash;publicació electrònica&ndash;) és un estàndard obert de llibre electrònic fonamentat en XHTML. </li>
 		</ul>
 
 		<h2>XHTML: HTML amb sintaxi XML</h2>
-		<p>L&rsquo;XHTML és una reformulació de l&rsquo;HTML amb sintaxi XML, més estricte i simple que la del SGML.</p>
+		<p>L’XHTML és una reformulació de l’HTML amb sintaxi XML, més estricte i simple que la del SGML.</p>
 		<ul>
 			<li>Per compatibilitat amb els navegadors ometrem la declaració XML.</li>
-			<li>Declaració DOCTYPE de l&rsquo;XHTML estricte:
+			<li>Declaració DOCTYPE de l’XHTML estricte:
 				<pre><code>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;</code></pre>
 			</li>
-			<li>Disposem d&rsquo;una còpia local dels DTDs per XHTML proporcionada pel paquet <code>xhtml1-dtds</code> de <cite>Fedora</cite>.</li>
+			<li>Disposem d’una còpia local dels DTDs per XHTML proporcionada pel paquet <code>xhtml1-dtds</code> de <cite>Fedora</cite>.</li>
 		</ul>
 
 		<h2 id="TEMPLATE">Estructura dels documents HTML</h2>
@@ -41,10 +41,12 @@
 			<li>Exemple de document XHTML bàsic (elements i atributs sempre en minúscules):
 				<pre><code>&lt;!DOCTYPE html 
     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-		"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;
 
 &lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"&gt;
-  &lt;head&gt;&lt;title&gt;Virtual Library&lt;/title&gt;&lt;/head&gt;
+  &lt;head&gt;
+    &lt;title&gt;Virtual Library&lt;/title&gt;
+  &lt;/head&gt;
   &lt;body&gt;
     &lt;p&gt;Moved to &lt;a href="http://example.org/"&gt;example.org&lt;/a&gt;.&lt;/p&gt;
   &lt;/body&gt;
@@ -55,33 +57,33 @@
 		<h2>Codificació de caràcters dels documents HTML</h2>
 		<ul>
 			<li>La codificació per defecte és ISO-8859-1 (latin1).</li>
-			<li>Per establir la codificació UTF-8 cal afegir aquest element dins l&rsquo;element <code>head</code>:
+			<li>Per establir la codificació UTF-8 cal afegir aquest element dins l’element <code>head</code>:
 				<pre><code>&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /&gt;</code></pre>
 			</li>
-			<li>L&rsquo;HTML4 defineix moltes entitats generals per caràcters no sempre presents en el teclat (per exemple): <code>&amp;hellip</code>; (&hellip;)  <code>&amp;raquo</code>; (&raquo;) <code>&amp;laquo</code>; (&laquo;) <code>&amp;rsquo</code>; (&rsquo;) <code>&amp;lsquo</code>; (&lsquo;) <code>&amp;rdquo</code>; (&rdquo;) <code>&amp;ldquo</code>; (&ldquo;)  <code>&amp;mdash</code>; (&mdash;) <code>&amp;ndash</code>; (&ndash;) <code>&amp;nbsp;</code> (&nbsp;).</li>
+			<li>L’HTML4 defineix moltes entitats generals per caràcters no sempre presents en el teclat (per exemple): <code>&amp;hellip</code>; (&hellip;)  <code>&amp;raquo</code>; (&raquo;) <code>&amp;laquo</code>; (&laquo;) <code>&amp;rsquo</code>; (’) <code>&amp;lsquo</code>; (&lsquo;) <code>&amp;rdquo</code>; (&rdquo;) <code>&amp;ldquo</code>; (&ldquo;)  <code>&amp;mdash</code>; (&mdash;) <code>&amp;ndash</code>; (&ndash;) <code>&amp;nbsp;</code> (&nbsp;).</li>
 			<li>Utilitzant entitats de caràcters numèriques podem introduir en els documents XML qualsevol caràcter Unicode.</li>
 		</ul>
-		<p><strong>Nota</strong>: en el DTD de l&rsquo;XHTML la definició d&rsquo;entitats generals per a caràcters es fa en fitxers auxiliars amb l&rsquo;extensió <code>.ent</code>.</p>
+		<p><strong>Nota</strong>: en el DTD de l’XHTML la definició d’entitats generals per a caràcters es fa en fitxers auxiliars amb l’extensió <code>.ent</code>.</p>
 
-		<h2>Diferències del XHTML 1.0 estricte en relació l&rsquo;HTML5</h2>
+		<h2>Diferències del XHTML 1.0 estricte en relació l’HTML5</h2>
 
-		<p>Les diferències entre l&rsquo;XHTML 1.0 estricte l&rsquo;HTML5 són petites, i en la pràctica podem considerar aquest últim com una ampliació directa del primer. Per tant tot el que puguem dir de l&rsquo;XHMTL segueix sent aplicable, fora de petits novetats com ara:</p>
+		<p>Les diferències entre l’XHTML 1.0 estricte l’HTML5 són petites, i en la pràctica podem considerar aquest últim com una ampliació directa del primer. Per tant tot el que puguem dir de l’XHMTL segueix sent aplicable, fora de petits novetats com ara:</p>
 
 		<ul>
-			<li>La declaració <code>DOCTYPE</code> de l&rsquo;HTML5 queda substituïda per una d&rsquo;aquestes dues opcions:
+			<li>La declaració <code>DOCTYPE</code> de l’HTML5 queda substituïda per una d’aquestes dues opcions:
 				<ul>
 					<li><code>&lt;!DOCTYPE html&gt;</code></li>
 					<li><code>&lt;!DOCTYPE html SYSTEM "about:legacy-compat"&gt;</code></li>
 				</ul>
 			</li>
-			<li>No hi ha per tant DTD i no és possible (de moment) validar els documents.</li>
-			<li>La sintaxi de l&rsquo;HTML5 es presenta en dues variants: una similar a la de l&rsquo;HTML tradicional i la del XHTML5, que és XML ben format.</li>
+			<li>No hi ha per tant DTD i no és possible validar els documents (excepte amb <a href="https://github.com/validator/validator/releases">The Nu Html Checker</a>).</li>
+			<li>La sintaxi de l’HTML5 es presenta en dues variants: una similar a la de l’HTML tradicional i la del XHTML5, que és XML ben format.</li>
 			<li>La codificació de caràcters es defineix amb la construcció <code>&lt;meta charset="UTF-8"&gt;</code>.</li>
 			<li>Desapareixen els elements <code>acronym</code> i <code>tt</code>.</li>
 			<li>Apareixen nous elements, com ara <code>section</code>, <code>article</code>, <code>audio</code> i <code>video</code>.</li>
-			<li>Reapareix l&rsquo;element <code>iframe</code> i desapareix <code>frame</code>.</li>
-			<li>Es poden inserir directament els vocabularis <cite>SVG</cite> i <cite>MathML</cite> (prestació poc implementada actualment).</li>
-			<li>Hi ha moltes novetats pel que fa al <cite>JavaScript</cite>, que combinen molt visualment amb les novetats del <cite>CSS3</cite>.</li>
+			<li>Reapareix l’element <code>iframe</code>.</li>
+			<li>Es poden inserir directament els vocabularis <cite>SVG</cite> i <cite>MathML</cite>.</li>
+			<li>Hi ha moltes novetats pel que fa al <cite>JavaScript</cite>, que combinen visualment amb les novetats del <cite>CSS3</cite>.</li>
 		</ul>
 
 		<p>Si us voleu penedir per haver preguntat podeu llegir tots els detalls en el document <a href="http://www.w3.org/TR/html5-diff/">HTML5 Differences from HTML4</a>.</p>
@@ -97,10 +99,11 @@
 
 		<h2>Enllaços recomanats</h2>
 		<ul>
-			<li><a href="http://manual-xhtml.blogspot.com.es/">Tutorial d&rsquo;XHTML</a></li>
+			<li><a href="http://manual-xhtml.blogspot.com.es/">Tutorial d’XHTML</a></li>
 			<li><a href="http://es.wikipedia.org/wiki/XHTML">Wikipedia: XHTML</a></li>
 			<li><a href="http://es.wikipedia.org/wiki/HTML_4.0">Wikipedia: HTML 4.0</a></li>
 			<li><a href="http://www.w3.org/wiki/Common_HTML_entities_used_for_typography">Common HTML entities used for typography</a></li>
+			<li><a href="http://www.xmlplease.com/xhtml/xhtml5polyglot/">Benefits of polyglot XHTML5</a></li>
 			<!--
 			<li><a href="http://www.w3.org/TR/html401/">HTML 4.01 Specification</a></li>
 			<li><a href="http://www.w3.org/TR/xhtml1/">XHTML™ 1.0 The Extensible HyperText Markup Language</a></li>
@@ -112,9 +115,9 @@
 			<li>Practica els tutorials citats en els enllaços recomanats.</li>
 			<li>Per fer servir al llarg del curs, prepara una &ldquo;plantilla&rdquo; de document XHTML prenent com a model el document bàsic presentat més amunt, amb codificació UTF-8 i ben comentat.</li>
 			<li>Per tenirles a ma, afegeix al document les entitats generals més importants (mira els fitxers amb extensió <code>.ent</code> del DTD).</li>
-			<li>Explora les prestacions de l&rsquo;accessori del Gnome <cite>Character Map</cite> per facilitar el treball amb caràcters no presents al teclat.</li>
+			<li>Explora les prestacions de l’accessori del Gnome <cite>Character Map</cite> per facilitar el treball amb caràcters no presents al teclat.</li>
 			<li>Si no ho has fet abans, instal·la el paquet <code>xhtml1-dtds</code>.</li>
-			<li>Cerca dins del DTD de l&rsquo;XHTML estricte les declaracions dels principals elements HTML.</li>
+			<li>Cerca dins del DTD de l’XHTML estricte les declaracions dels principals elements HTML.</li>
 		</ul>
 
 	</body>

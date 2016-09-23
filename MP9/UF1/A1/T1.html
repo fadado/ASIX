@@ -1,21 +1,21 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ca" lang="ca">
 	<head>
-		<title>Configurar l&rsquo;entorn de desenvolupament</title>
+		<title>Configurar l’entorn de desenvolupament</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<style type="text/css">body{font-family: sans-serif;}</style>
 	</head>
 	<body>
 		<!-- title -->
-		<h1>Configurar l&rsquo;entorn de desenvolupament</h1>
+		<h1>Configurar l’entorn de desenvolupament</h1>
 		<p>MP9UF1A1T1</p>	<!-- id -->
 		<!-- description -->
-		<p>Instal·lació d&rsquo;Apache HTTPD</p>
+		<p>Instal·lació d’Apache HTTPD</p>
 
 		<!-- body -->
 
 		<h2>Apache HTTPD</h2>
-		<p>El servidor Web <a href="http://httpd.apache.org/">Apache httpd</a> és el primer i més popular dels projectes acollits en la <a href="http://apache.org/">Apache Software Foundation</a>, però no l&rsquo;únic. Els projectes ja són més de 100!</p>
+		<p>El servidor Web <a href="http://httpd.apache.org/">Apache httpd</a> és el primer i més popular dels projectes acollits en la <a href="http://apache.org/">Apache Software Foundation</a>, però no l’únic. Els projectes ja són més de 100!</p>
 
 		<h2>Enllaços recomanats</h2>
 		<ul>
@@ -26,7 +26,7 @@
 		</ul>
 
 		<h2>Pràctiques</h2>
-		<p>Quan sigui necessari, però no sempre, les pràctiques s&rsquo;han de realitzar usant el compte d&rsquo;administrador del sistema.</p>
+		<p>Quan sigui necessari, però no sempre, les pràctiques s’han de realitzar usant el compte d’administrador del sistema.</p>
 
 		<ul>
 			<li>Instal·la aquests paquets de Fedora:
@@ -39,13 +39,13 @@
 			</li>
 			<li>Verifica que pots consultar la pàgina local <a href="file:///usr/share/httpd/manual/index.html">file:///usr/share/httpd/manual/manual/index.html</a>. Més endavant la visitarem fent peticions al servidor.</li>
 			<li>Configura en el fitxer <code>/etc/httpd/conf/httpd.conf</code> la directiva <code>ServerName</code>: posa un nom de host definit a <code>/etc/hosts</code> per la IP principal de la teva màquina.</li>
-			<li>Configura el servei <code>httpd</code> amb l&rsquo;ordre; <code>chkconfig</code>(8) i arrenca el servei amb <code>service</code>(8). Alternativament pots usar l&rsquo;odre més moderna <code>systemctl</code>(1).</li>
+			<li>Configura el servei <code>httpd</code> amb l’ordre; <code>chkconfig</code>(8) i arrenca el servei amb <code>service</code>(8). Alternativament pots usar l’odre més moderna <code>systemctl</code>(1).</li>
 			<li>Verifica que pots consultar les pàgines <a href="http://localhost/">http://localhost/</a> i <a href="http://localhost/manual/">http://localhost/manual/</a>.</li>
-			<li>Per poder afegir pàgines sense usar el compte de l&rsquo;administrador fes aquestes adaptacions:
+			<li>Per poder afegir pàgines sense usar el compte de l’administrador fes aquestes adaptacions:
 				<ul>
-					<li>Crea un grup d&rsquo;usuaris de nom <code>webmaster</code> i fes-te membre del mateix (has de fer <i>login</i> de nou per adquirir les noves credencials).</li>
+					<li>Crea un grup d’usuaris de nom <code>webmaster</code> i fes-te membre del mateix (has de fer <i>login</i> de nou per adquirir les noves credencials).</li>
 					<li>Fes que els directoris <code>/var/www/html</code> i <code>/var/www/cgi-bin</code> pertanyin a aquest grup i que el grup tingui permís per escriure-hi. Pot ser bona idea fer <code>chmod g+w,g+s cgi-bin</code>.</li>
-					<li>Sota el teu compte d&rsquo;usuari, crea una pàgina HTML de nom <code>/var/www/html/index.html</code> i visita de nou <a href="http://localhost/">http://localhost/</a>: ha canviat? Exemple de document XHTML bàsic (elements i atributs sempre en minúscules):
+					<li>Sota el teu compte d’usuari, crea una pàgina HTML de nom <code>/var/www/html/index.html</code> i visita de nou <a href="http://localhost/">http://localhost/</a>: ha canviat? Exemple de document XHTML bàsic (elements i atributs sempre en minúscules):
 				<pre><code>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;
 &lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ca" lang="ca"&gt;
   &lt;head&gt;&lt;title&gt;Salutacions&lt;/title&gt;&lt;/head&gt;
@@ -57,10 +57,10 @@
 					</li>
 				</ul>
 			</li>
-			<li>Per verificar l&rsquo;execució d&rsquo;scripts fes aquests exercicis:
+			<li>Per verificar l’execució d’scripts fes aquests exercicis:
 				<ul>
-					<li>Sota el teu compte d&rsquo;usuari còpia el fitxer executable <a href="aux/dump.sh">dump.sh</a> en el directori <code>/var/www/cgi-bin</code> i visita&rsquo;l en l&rsquo;adreça <a href="http://localhost/cgi-bin/dump.sh">http://localhost/cgi-bin/dump.sh</a>.</li>
-					<li>Estudia el contingut d&rsquo;aquest fitxer executable.</li>
+					<li>Sota el teu compte d’usuari còpia el fitxer executable <a href="aux/dump.sh">dump.sh</a> en el directori <code>/var/www/cgi-bin</code> i visita’l en l’adreça <a href="http://localhost/cgi-bin/dump.sh">http://localhost/cgi-bin/dump.sh</a>.</li>
+					<li>Estudia el contingut d’aquest fitxer executable.</li>
 					<li>Fes el mateix amb el fitxer executable <a href="aux/dump.py">dump.py</a> (<a href="http://localhost/cgi-bin/dump.py">http://localhost/cgi-bin/dump.py</a>).</li>
 				</ul>
 			</li>

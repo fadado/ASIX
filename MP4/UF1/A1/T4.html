@@ -16,35 +16,35 @@
 
 		<h2>Entitats de caràcter (o numèriques)</h2>
 		<ul>
-			<li>Les entitats de caràcter permeten inserir en el document el codi numèric de qualsevol caràcter Unicode, com ara l&rsquo;euro: &amp;#8364; (&#8364;).</li>
+			<li>Les entitats de caràcter permeten inserir en el document el codi numèric de qualsevol caràcter Unicode, com ara l’euro: &amp;#8364; (&#8364;).</li>
 			<li>El codi del caràcter es pot escriure en base decimal o hexadecimal.</li>
 		</ul>
 
 		<h2>Entitats generals internes i externes</h2>
 		<p>Les entitats generals proporcionen un simple mecanisme de substitució de text a utilitzar dins dels documents XML.</p>
 		<ul>
-			<li>La declaració de tipus de document (<code>&lt;!DOCTYPE&hellip;</code>) conté les declaracions d&rsquo;entitat.</li>
-			<li>Les entitats generals internes es <strong>defineixen</strong> (<code>&lt;ENTITY&hellip;&gt;</code>) dins de les claus <code>[&hellip;]</code> del DTD o en un fitxer separat (cosa que de moment no farem), i s&rsquo;utilitzen (es <strong>referèncien</strong> ) en el document XML (no dins del DTD, que encara no hem estudiat).</li>
-			<li>Les entitats generals externes es defineixen com les internes però afegint la paraula reservada <code>SYSTEM</code>, i permeten incloure un fragment de document (escrit en un fitxer separat) dins d&rsquo;un altre document XML.</li>
+			<li>La declaració de tipus de document (<code>&lt;!DOCTYPE&hellip;</code>) conté les declaracions d’entitat.</li>
+			<li>Les entitats generals internes es <strong>defineixen</strong> (<code>&lt;ENTITY&hellip;&gt;</code>) dins de les claus <code>[&hellip;]</code> del DTD o en un fitxer separat (cosa que de moment no farem), i s’utilitzen (es <strong>referèncien</strong> ) en el document XML (no dins del DTD, que encara no hem estudiat).</li>
+			<li>Les entitats generals externes es defineixen com les internes però afegint la paraula reservada <code>SYSTEM</code>, i permeten incloure un fragment de document (escrit en un fitxer separat) dins d’un altre document XML.</li>
 			<li>Les entitats generals (ja siguin internes o externes) es referèncien dins del document amb la sintaxi <code>&amp;NOM;</code>.</li>
 			<li>En aquesta activitat encara no treballarem amb les entitats de paràmetre.</li>
 		</ul>
-		<p>L&rsquo;ordre <code>xmllint</code>(1) por ser usada per expandir les entitats generals d&rsquo;un document XML.</p>
+		<p>L’ordre <code>xmllint</code>(1) por ser usada per expandir les entitats generals d’un document XML.</p>
 
 		<h2>Enllaços recomanats</h2>
 		<ul>
-			<li><a href="http://www.w3schools.com/dtd/dtd_entities.asp">DTD Tutorial</a></li>
+			<li><a href="http://www.w3schools.com/xml/xml_dtd.asp">DTD Tutorial</a></li>
 			<li><a href="http://www.w3schools.com/xml/cd_catalog.xml">W3schools: CD Catalog</a></li>
 		</ul>
 
 		<h2>Pràctiques</h2>
 		<ul>
-			<li>Prenent com a base el catàleg de CDs del tutorial d&rsquo;XML, prepara un document XML que utilitzi entitats generals internes i externes (sempre declarades en el subconjunt intern del DTD).</li>
+			<li>Prenent com a base el catàleg de CDs del tutorial d’XML, prepara un document XML que utilitzi entitats generals internes i externes (sempre declarades en el subconjunt intern del DTD).</li>
 			<li>En el document declara entitats generals internes per 5 caràcters que no apareguin en el teclat, com ara el €.</li>
-			<li>En el fitxer associat a una entitat general externa posa, per exemple, el text de la descripció d&rsquo;un CD.</li>
-			<li>Expandeix el document fent servir l&rsquo;ordre <code>xmllint</code>(1) (opcions: <code>--noent --encode utf8 --loaddtd</code>).</li>
-			<!--<li>Modifica la declaració <cite>DOCTYPE</cite> del document per no fer servir declaracions dins les claus <code>[&hellip;]</code>, i posa les declaracions d&rsquo;entitat en un fitxer separat (amb extensió <code>.dtd</code>)</li>-->
-			<!--<li>Compara en l&rsquo;anterior document els resultats d&rsquo;assignar el valor <i>yes</i> o <i>no</i> al valor <i>standalone</i> de la declaració XML</li>-->
+			<li>En el fitxer associat a una entitat general externa posa, per exemple, el text de la descripció d’un CD.</li>
+			<li>Expandeix el document fent servir l’ordre <code>xmllint</code>(1) (opcions: <code>--noent --encode utf8 --loaddtd</code>).</li>
+			<!--<li>Modifica la declaració <cite>DOCTYPE</cite> del document per no fer servir declaracions dins les claus <code>[&hellip;]</code>, i posa les declaracions d’entitat en un fitxer separat (amb extensió <code>.dtd</code>)</li>-->
+			<!--<li>Compara en l’anterior document els resultats d’assignar el valor <i>yes</i> o <i>no</i> al valor <i>standalone</i> de la declaració XML</li>-->
 		</ul>
 
 	</body>

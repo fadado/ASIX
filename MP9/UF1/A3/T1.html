@@ -15,7 +15,7 @@
 		<!-- body -->
 
 		<h2>Persistència de dades amb <cite>Python</cite></h2>
-		<p>La forma més senzilla amb Python de desar qualsevol tipus d&rsquo;objecte en disc, a fi de recuperar les dades en futures execucions del mateix programa, és amb el mòdul <code>shelve</code>. De forma &ldquo;màgica&rdquo; podem desar cadenes, nombres, llistes, diccionaris&hellip; i tractar les dades en disc com si es tractés d&rsquo;un simple diccionari en memòria RAM. Aquest és un exemple de com usar aquest peculiar tipus de diccionari:</p>
+		<p>La forma més senzilla amb Python de desar qualsevol tipus d’objecte en disc, a fi de recuperar les dades en futures execucions del mateix programa, és amb el mòdul <code>shelve</code>. De forma &ldquo;màgica&rdquo; podem desar cadenes, nombres, llistes, diccionaris&hellip; i tractar les dades en disc com si es tractés d’un simple diccionari en memòria RAM. Aquest és un exemple de com usar aquest peculiar tipus de diccionari:</p>
 		<pre>
 &gt;&gt;&gt; d = shelve.open("/var/tmp/d.db", writeback=True)
 &gt;&gt;&gt; d["a"]=range(10)
@@ -31,17 +31,17 @@
 		<p>Recentment Fedora ha incorporat el concepte de <cite>directoris temporals privats</cite>, el que provoca que per defecte alguns serveix no usin els directoris temporals habituals. Per fer que el servidor Web recuperi els directoris tradicional cal fer això:</p>
 		<ul>
 			<li>Copiar <code>/usr/lib/systemd/system/httpd.service</code> a <code>/etc/systemd/system</code>.</li>
-			<li>Editar <code>/etc/systemd/system/httpd.service</code> deixan&rsquo;t la directiva <code>PrivateTmp=false</code> com aquí es mostra.</li>
+			<li>Editar <code>/etc/systemd/system/httpd.service</code> deixan’t la directiva <code>PrivateTmp=false</code> com aquí es mostra.</li>
 			<li>Executar les ordres:
 			<pre>
 	# systemctl --system daemon-reload
 	# systemctl restart httpd.service</pre>
 			</li>
 		</ul>
-		<p>Alternativament podriem no usar <code>/var/tmp</code> i substituir en tot el codi aquesta ruta per una diferent, d&rsquo;un directori creat per nosaltres amb permisos apropiats per l&rsquo;usuari <code>apache</code>.</p>
+		<p>Alternativament podriem no usar <code>/var/tmp</code> i substituir en tot el codi aquesta ruta per una diferent, d’un directori creat per nosaltres amb permisos apropiats per l’usuari <code>apache</code>.</p>
 
 		<h2>Sessions</h2>
-		<p>Una de les aplicacions més comuns de les bases de dades en disc és ajudar a implementar el concepte de <i>sessió</i>. El protocol HTTP es diu que és <i>stateless</i> (sense estat): això vol dir que no hi ha cap forma de relacionar una petició amb altres peticions anteriors, ni compartir per tant dades entre diferents pàgines. Combinant les galetes amb una base de dades és possible superar aquesta limitació, permetent compartir dades entre diferents pàgines. L&rsquo;objectiu és fer això de la forma més transparent possible, i per això hem creat en una nova versió del mòdul <a href="aux/session.py">session.py</a> la funció <code>load</code>, de la que copiem a continuació un fragment:</p>
+		<p>Una de les aplicacions més comuns de les bases de dades en disc és ajudar a implementar el concepte de <i>sessió</i>. El protocol HTTP es diu que és <i>stateless</i> (sense estat): això vol dir que no hi ha cap forma de relacionar una petició amb altres peticions anteriors, ni compartir per tant dades entre diferents pàgines. Combinant les galetes amb una base de dades és possible superar aquesta limitació, permetent compartir dades entre diferents pàgines. L’objectiu és fer això de la forma més transparent possible, i per això hem creat en una nova versió del mòdul <a href="aux/session.py">session.py</a> la funció <code>load</code>, de la que copiem a continuació un fragment:</p>
 
 		<pre>_SESSIONS = "/var/tmp/sessions"
 def load():
@@ -60,7 +60,7 @@ def load():
     data["SID"] = sid
     return data</pre>
 
-		<p>Aquesta funció retorna un diccionari <i>màgic</i>, que cada vegada que es torni a executar l&rsquo;script, pel mateix usuari i navegador, estarà disponible pel seus us. En el moment en que l&rsquo;usuari tanqui totes les finestres del navegador el diccionari deixarà d&rsquo;estar disponible. Tens un exemple de com fer servir aquest mòdul en l&rsquo;script <a href="aux/session-pages.py">session-pages.py</a>.</p>
+		<p>Aquesta funció retorna un diccionari <i>màgic</i>, que cada vegada que es torni a executar l’script, pel mateix usuari i navegador, estarà disponible pel seus us. En el moment en que l’usuari tanqui totes les finestres del navegador el diccionari deixarà d’estar disponible. Tens un exemple de com fer servir aquest mòdul en l’script <a href="aux/session-pages.py">session-pages.py</a>.</p>
 
 		<h2>Enllaços recomanats</h2>
 		<ul>
@@ -70,9 +70,9 @@ def load():
 		<h2>Pràctiques</h2>
 		<ul>
 			<li>Prova el CGI <a href="aux/session-pages.py">session-pages.py</a>.</li>
-			<li>Fes un script CGI que conservi la data d&rsquo;inici de la sessió i la de la darrera visita.</li>
-			<li>Amb una galeta de nom <code>PID</code> implementa una base de dades per conservar dades d&rsquo;un usuari entre diferents sessions (per exemple, per 3 mesos).</li>
-			<li>Fes un script del shell per executar amb <code>cron</code> que faci net de les sessions caducades (sense us en un cert temps). Fes això sense que calgui usar el compte de l&rsquo;administrador.</li>
+			<li>Fes un script CGI que conservi la data d’inici de la sessió i la de la darrera visita.</li>
+			<li>Amb una galeta de nom <code>PID</code> implementa una base de dades per conservar dades d’un usuari entre diferents sessions (per exemple, per 3 mesos).</li>
+			<li>Fes un script del shell per executar amb <code>cron</code> que faci net de les sessions caducades (sense us en un cert temps). Fes això sense que calgui usar el compte de l’administrador.</li>
 		</ul>
 
 	</body>

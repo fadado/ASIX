@@ -17,8 +17,8 @@
 		<h2>Tècniques modulars i de depuració</h2>
 		<p>A continuació es mencionen algunes de les tècniques disponibles amb <cite>Python</cite> per fer les transformacions més robustes i mantenibles.</p>
 		<ul>
-			<li><b>Funcions</b>: en detectar codi potencialment reusable l&rsquo;hem de separar en una funció independent.</li>
-			<li><b>Mòduls</b>: les funcions de propòsit general, reusables en diferents mòduls, s&rsquo;han de posar en fitxers separats.</li>
+			<li><b>Funcions</b>: en detectar codi potencialment reusable l’hem de separar en una funció independent.</li>
+			<li><b>Mòduls</b>: les funcions de propòsit general, reusables en diferents mòduls, s’han de posar en fitxers separats.</li>
 			<li><b>docstrings</b>: tant les funcions com els mòduls han de començar amb una cadena contenint la seva descripció.</li>
 			<li><b>Assercions</b>: per afirmar les nostres conviccions usem assercions.</li>
 		</ul>
@@ -30,8 +30,8 @@
 			<li>Declaració de noms exportats (<code>__all__</code>).</li>
 			<li><i>docstring</i> pel cada funció.</li>
 			<li>Codi de prova.</li>
-			<li>Us d&rsquo;assercions.</li>
-			<li>Directives per l&rsquo;editor <cite>Vim</cite>.</li>
+			<li>Us d’assercions.</li>
+			<li>Directives per l’editor <cite>Vim</cite>.</li>
 		</ul>
 
 <pre>"""Utilities for ElementTree.
@@ -71,7 +71,7 @@ if __name__ == "__main__":
 # vim:sw=4:ts=4:ai
 </pre>
 
-		<p>Prova aquest mòdul, tant executant-lo com important-lo en l&rsquo;interpret de <cite>Python</cite> i un altre programa.</p>
+		<p>Prova aquest mòdul, tant executant-lo com important-lo en l’interpret de <cite>Python</cite> i un altre programa.</p>
 
 		<h2>Enllaços recomanats</h2>
 		<ul>
@@ -79,15 +79,16 @@ if __name__ == "__main__":
 		</ul>
 
 		<h2>Pràctiques</h2>
-		<p>En un mòdul auxiliar, fes funcions que rebent un arbre XML com argument (no un element!) retornin els valors demanats:</p>
+		<p>En un mòdul auxiliar, fes funcions que rebent un element XML com argument (no un arbre!) retornin els valors demanats:</p>
 		<ul>
-			<li>Nombre de caràcters de text continguts en l&rsquo;arbre.</li>
-			<li>Nombre d&rsquo;elements continguts en l&rsquo;arbre.</li>
-			<li>Nombre d&rsquo;atributs continguts en l&rsquo;arbre.</li>
-			<li>Nombre d&rsquo;elements fills de l&rsquo;element arrel.</li>
-			<li>Nombre d&rsquo;elements sense fills (sense altres elements dins seu).</li>
-			<li>Nombre d&rsquo;elements que tenen fills (no son elements &ldquo;terminals&rdquo;).</li>
+			<li>Nombre de caràcters de text continguts en l’element.</li>
+			<li>Nombre d’elements continguts en l’element.</li>
+			<li>Nombre d’atributs continguts en l’element.</li>
+			<li>Nombre d’elements fills de l’element arrel.</li>
+			<li>Nombre d’elements sense fills (sense altres elements dins seu).</li>
+			<li>Nombre d’elements que tenen fills (no son elements &ldquo;terminals&rdquo;).</li>
 		</ul>
+		<p>Ara modifica les funcions per que acceptin com a argument arbres o elements indistintament.</p>
 		<p>No oblidis crear codi de prova per totes les funcions.</p>
 		<p><strong>Important</strong>: per construir arbres (objectes de tipus <code>ElementTree</code>) tens la funció <code>parse</code>, el constructor <code>ElementTree</code>, el mètode <code>parse</code> dels objectes de tipus <code>ElementTree</code>&hellip; Vigila de no confondre la funció <code>parse</code> amb el mètode del mateix nom, o el mòdul de nom <code>ElementTree</code> amb la classe del mateix nom!</p>
 

@@ -14,19 +14,19 @@
 
 		<!-- body -->
 
-		<h2>CSS amb vocabularis diferents de l&rsquo;HTML</h2>
+		<h2>CSS amb vocabularis diferents de l’HTML</h2>
 		<p>És possible utilitzar CSS amb qualsevol vocabulari XML, tenint en compte aquests aspectes:</p>
 		<ul>
-			<li>La vinculació entre document i full d&rsquo;estil es fa amb una instrucció  de processament, com per exemple:<br/><code>&lt;?xml-stylesheet type="text/css" href="http://you.com/rss.css"?&gt;</code>.</li>
-			<li>No ha hi full d&rsquo;estil per defecte, i cal per tant definir sempre i sistemàticament la propietat <code>display</code> per tots els elements.</li>
-			<li>En el cas dels navegadors actuals, és possible que sí disposin d&rsquo;un full d&rsquo;estil per defecte per alguns vocabularis importants, com RSS.</li>
+			<li>La vinculació entre document i full d’estil es fa amb una instrucció  de processament, com per exemple:<br/><code>&lt;?xml-stylesheet type="text/css" href="http://you.com/rss.css"?&gt;</code>.</li>
+			<li>No ha hi full d’estil per defecte, i cal per tant definir sempre i sistemàticament la propietat <code>display</code> per tots els elements.</li>
+			<li>En el cas dels navegadors actuals, és possible que sí disposin d’un full d’estil per defecte per alguns vocabularis importants, com RSS.</li>
 		</ul>
 
 		<h2>Espais de noms</h2>
 		<p>Encara que no tots els navegadors suporten la declaració d’espais de noms en els fulls d’estil CSS, val la pena explorar el seu funcionament en donar estil a documents RSS.</p>
 		<ul>
-			<li>El principal tipus de selector CSS és el nom d&rsquo;element, i si aquest està en un espai de noms el seu nom complet està format pel prefix, els dos punts i el nom de l&rsquo;element.</li>
-			<li>Com que els dos punt formen part de la definició de les regles de CSS, apareix un problema que el W3C ha solucionat d&rsquo;aquesta forma
+			<li>El principal tipus de selector CSS és el nom d’element, i si aquest està en un espai de noms el seu nom complet està format pel prefix, els dos punts i el nom de l’element.</li>
+			<li>Com que els dos punt formen part de la definició de les regles de CSS, apareix un problema que el W3C ha solucionat d’aquesta forma
 				<ul>
 					<li>Cal declarar en els fitxers CSS els espais de noms amb la sentència, per exemple,&nbsp;<code>@namespace rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#";</code>.</li>
 					<li>Com és evident, en cada declaració hem de triar el prefix i usar la URL apropiada al cas.</li>
@@ -48,10 +48,10 @@
 		<h2>Pràctiques</h2>
 		<ul>
 			<li>Busca amb Google la cadena &ldquo;<i>pretty Atom CSS</i>&rdquo; i consulta els primers documents recuperats.</li>
-			<li>Aplica el full d&rsquo;estil situat en el <a href="aux/atom.css">repositori local</a> al canal Atom fet en dies anteriors.</li>
-			<li>Modifica el full d&rsquo;estil situat en el <a href="aux/atom.css">repositori local</a> per personalitzar-lo al teu gust.</li>
+			<li>Aplica el full d’estil situat en el <a href="aux/atom.css">repositori local</a> al canal Atom fet en dies anteriors.</li>
+			<li>Modifica el full d’estil situat en el <a href="aux/atom.css">repositori local</a> per personalitzar-lo al teu gust.</li>
 		<li>Descarrega el canal de <a href="http://barrapunto.com/index.rss">Barrapunto</a>, edita  i adapta una còpia del full d’estil situat en el <a href="aux/atom.css">repositori local</a> i fes-lo servir per aplicar estil al canal.</li>
-		<li>Tradueix per escrit les declaracions d&rsquo;espais de noms del fitxer descarregat de <a href="http://barrapunto.com/index.rss">Barrapunto</a> a les mateixes declaracions fetes dins d&rsquo;un fitxers CSS.</li>
+		<li>Tradueix per escrit les declaracions d’espais de noms del fitxer descarregat de <a href="http://barrapunto.com/index.rss">Barrapunto</a> a les mateixes declaracions fetes dins d’un fitxers CSS.</li>
 		</ul>
 
 	</body>

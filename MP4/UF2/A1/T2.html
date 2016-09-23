@@ -18,11 +18,11 @@
 		<p>Existeixen diferents <a href="aux/crono-rss.jpg">versions</a> de RSS, sense comptar el vocabulari <cite>Atom</cite>, que podem agrupar en dos branques (RDF &ndash;o RSS 1.*&ndash; i RSS 2.*). </p>
 		<ul>
 			<li>Vocabularis de la branca RDF: RSS 0.90 (<cite>RDF Site Summary</cite>, creat per<cite> Netscape</cite>), RSS 1.0 (encara <cite>RDF Site Summary</cite>), RSS 1.1 (pensat per substituir RSS 1.0).</li>
-			<li>Vocabularis de la branca RSS 2.*: RSS 0.91 (<cite>Rich Site Summary</cite>, creat per Netscape), RSS 0.92, 0.93 i 0.94 (variacions de l&rsquo;anterior), RSS 2.0.1 (<cite>Really Simple Sindication</cite>).</li>
+			<li>Vocabularis de la branca RSS 2.*: RSS 0.91 (<cite>Rich Site Summary</cite>, creat per Netscape), RSS 0.92, 0.93 i 0.94 (variacions de l’anterior), RSS 2.0.1 (<cite>Really Simple Sindication</cite>).</li>
 			<li>Vocabulari <cite>Atom</cite>: pensat per substituir tots els anteriors. Ben dissenyat, però amb dificultats per imposar-se i eliminar el caos existent.</li>
 		</ul>
 
-		<p>Un dels participants en la definició del RSS 1.0, amb tan sols 14 anys d&rsquo;edat, va ser <a href="https://en.wikipedia.org/wiki/Aaron_Swartz#Life_and_works">Aaron Swartz</a>, famós hacker i <a href="http://www.aaronsw.com/">activista</a> per les llibertats a Internet.</p>
+		<p>Un dels participants en la definició del RSS 1.0, amb tan sols 14 anys d’edat, va ser <a href="https://en.wikipedia.org/wiki/Aaron_Swartz#Life_and_works">Aaron Swartz</a>, famós hacker i <a href="http://www.aaronsw.com/">activista</a> per les llibertats a Internet.</p>
 
 		<h2>Validar documents RSS</h2>
 		<p>Donada la varietat de vocabularis RSS, la forma més convenient de validar documents RSS és utilitzar el servei de validació del W3C.</p>
@@ -55,7 +55,7 @@
 			<li><code>uuidgen -t | sed 's/^/urn:uuid:/'</code></li>
 			<li><code>date -u --rfc-3339=seconds | sed 's/ /T/;s/+00:00$/Z/'</code></li>
 		</ul>
-		<p>Per calcular una data determinada passa a l&rsquo;ordre <code>date</code> (seguint l&rsquo;exemple anterior) un argument extra amb la forma <code>[MMDDhhmm[[CC]YY][.ss]]</code>.</p>
+		<p>Per calcular una data determinada passa a l’ordre <code>date</code> (seguint l’exemple anterior) un argument extra amb la forma <code>[MMDDhhmm[[CC]YY][.ss]]</code>.</p>
 
 		<pre>&lt;?xml version="1.0" encoding="utf-8"?&gt;
 &lt;feed xmlns="http://www.w3.org/2005/Atom"&gt;

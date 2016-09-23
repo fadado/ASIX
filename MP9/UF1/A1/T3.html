@@ -16,15 +16,15 @@
 
 		<h2>Creació de scripts <cite>CGI</cite></h2>
 		
-		<p><strong>Guia d&rsquo;estil per <cite>Python</cite></strong>. Utilitzarem <cite>Python</cite> per estudiar el protocol CGI, i és necessari que segueixin les normes habituals en escriure codi. Si et vols estalviar estudiar el <a href="https://www.python.org/dev/peps/pep-0008/">PEP8</a> per aplicar l&rsquo;estil recomanat en escriure codi de <cite>Python</cite> tens una solució perfecte en el <a href="http://www.ninja-ide.org/">Ninja-IDE</a>. Tan sols et cal executar <code>yum install ninja-ide -y</code> i sempre escriuras <cite>Python</cite> com els professionals.  </p>
-		<p>Sempre has de treballar sota el teu compte d&rsquo;usuari, i situar els scripts i pàgines a les carpetes apropiades sota el directori <code>/var/www</code>.</p>
-		<p>A banda de estudiar la documentació, pensa que l&rsquo;script <a href="aux/dump.py">dump.py</a> et mostra on es troben les dades els scripts <cite>CGI</cite>.</p>
+		<p><strong>Guia d’estil per <cite>Python</cite></strong>. Utilitzarem <cite>Python</cite> per estudiar el protocol CGI, i és necessari que segueixin les normes habituals en escriure codi. Si et vols estalviar estudiar el <a href="https://www.python.org/dev/peps/pep-0008/">PEP8</a> per aplicar l’estil recomanat en escriure codi de <cite>Python</cite> tens una solució perfecte en el <a href="http://www.ninja-ide.org/">Ninja-IDE</a>. Tan sols et cal executar <code>yum install ninja-ide -y</code> i sempre escriuras <cite>Python</cite> com els professionals.  </p>
+		<p>Sempre has de treballar sota el teu compte d’usuari, i situar els scripts i pàgines a les carpetes apropiades sota el directori <code>/var/www</code>.</p>
+		<p>A banda de estudiar la documentació, pensa que l’script <a href="aux/dump.py">dump.py</a> et mostra on es troben les dades els scripts <cite>CGI</cite>.</p>
 
 		<h2>Enllaços recomanats</h2>
-		<p>Els presentats en l&rsquo;activitat dedicada a l&rsquo;organització de la documentació.</p>
+		<p>Els presentats en l’activitat dedicada a l’organització de la documentació.</p>
 
 		<h2>Pràctiques</h2>
-		<p>Crea un script per cada un dels següents exemples, amb identificadors i títols apropiats, i documenta amb comentaris l&rsquo;script de forma apropiada.</p>
+		<p>Crea un script per cada un dels següents exemples, amb identificadors i títols apropiats, i documenta amb comentaris l’script de forma apropiada.</p>
 
 		<p><strong>Avís</strong>: pots probar els scripts en un terminal usant aquesta tècnica del <cite>Shell</cite>: <code>$ REQUEST_METHOD=GET QUERY_STRING='...' ./script.py</code>. </p>
 
@@ -71,14 +71,14 @@ user_agent = os.environ.get("HTTP_USER_AGENT", "A bad client!")
 write("User-Agent:" + user_agent + '\n')
 
 if "HTTP_REFERER" in os.environ:
-    http_referer  = os.environ["HTTP_REFERER" ]:
+    http_referer  = os.environ["HTTP_REFERER" ]
     write("Referer: " + http_referer + '\n')
 
 if os.environ.has_key("HTTP_ACCEPT_LANGUAGE"):
-    write("Accept-Language: " + os.environ["HTTP_ACCEPT_LANGUAGE"] + '\n)</pre>
+    write("Accept-Language: " + os.environ["HTTP_ACCEPT_LANGUAGE"] + '\n')</pre>
 			</li>
 			<li>Consulta la documentació de la funció <code>urllib.unquote_plus</code>.</li>
-			<li>Estudia amb tota atenció l&rsquo;script <a href="aux/dump.py">dump.py</a> (<a href="http://localhost/cgi-bin/dump.py">http://localhost/cgi-bin/dump.py</a>).</li>
+			<li>Estudia amb tota atenció l’script <a href="aux/dump.py">dump.py</a> (<a href="http://localhost/cgi-bin/dump.py">http://localhost/cgi-bin/dump.py</a>).</li>
 			<li>Implementa partint de zero una funció de nom <code>decode</code> equivalent a <code>urllib.unquote_plus</code>.</li>
 		</ol>
 

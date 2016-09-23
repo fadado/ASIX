@@ -16,7 +16,7 @@
 
 		<h2>Pàgines dinàmiques</h2>
 		<p>Implementarem el concepte de <cite>pàgines dinàmiques</cite>, és a dir, una pàgina Web que decideix el seu contingut en el moment de ser visitada, en
-		base a un script i una plantilla. D&rsquo;aquesta forma direm que <b>pàgina dinàmica = script + plantilla</b>. Els scripts tindran sempre un contingut bàsic similar a aquest:</p>
+		base a un script i una plantilla. D’aquesta forma direm que <b>pàgina dinàmica = script + plantilla</b>. Els scripts tindran sempre un contingut bàsic similar a aquest:</p>
 
 		<pre>
 import os, sys
@@ -70,10 +70,10 @@ sys.exit(0) </pre>
 		<p>Recomanem aquestes tècniques de treball:</p>
 		<ul>
 			<li>Situar scripts a <code>/var/www/cgi-bin</code> (obligatori).</li>
-			<li>Situar plantilles en un directori no <i>navegable</i>, com ara <code>/opt/templates</code> (crea&rsquo;l amb els permisos apropiats).</li>
+			<li>Situar plantilles en un directori no <i>navegable</i>, com ara <code>/opt/templates</code> (crea’l amb els permisos apropiats).</li>
 			<li>Els directoris anteriors han de permetre treballar sense ser <code>root</code>, usant la tècnica del grup <code>webmaster</code> treballada amb anterioritat.</li>
 			<li>Els scripts no han de tenir extensió.</li>
-			<li>Les plantilles no han de tenir permisos d&rsquo;execució i poden tenir qualsevol extensió.</li>
+			<li>Les plantilles no han de tenir permisos d’execució i poden tenir qualsevol extensió.</li>
 		</ul>
 
 		<h2>Pràctiques I</h2>
@@ -85,15 +85,15 @@ sys.exit(0) </pre>
 		<hr/>
 
 		<h2>Galetes (<i>cookies</i>)</h2>
-		<p>Reescriptura d&rsquo;URLs, camps amagats en formularis i galetes són les tres formes de mantenir l&rsquo;estat entre la visita d&rsquo;un mateix usuari a diferents pàgines d&rsquo;un mateix lloc web. Les galetes funcionen bàsicament d&rsquo;aquesta forma:</p>
+		<p>Reescriptura d’URLs, camps amagats en formularis i galetes són les tres formes de mantenir l’estat entre la visita d’un mateix usuari a diferents pàgines d’un mateix lloc web. Les galetes funcionen bàsicament d’aquesta forma:</p>
 
 		<ol>
 			<li>El servidor afegeix a la seva resposta una capçalera HTTP amb aquesta sintaxi:<pre>Set-Cookie: <i>NAME</i>=<i>VALUE</i>; expires=<i>DATE</i>; path=<i>PATH</i>; domain=<i>DOMAIN_NAME</i>; secure</pre> on tan sols <i>NAME=VALUE</i> és obligatori (tots els exemples que veurem usaran aquesta simple forma).</li>
 			<li>Cada vegada que el navegador visita una pàgina del mateix lloc web del que ha rebut la galeta afegeix una capçalera HTTP a la seva petició amb aquesta sintaxi<pre>Cookie: <i>NAME1</i>=<i>VALUE1</i>; <i>NAME2</i>=<i>VALUE2</i> ...</pre> on retorna al servidor els valors rebuts en les seves respostes anteriors.</li>
-			<li>En absència de l&rsquo;atribut <i>expires</i> la galeta desapareix quan l&rsquo;usuari tanca el seu navegador.</li>
+			<li>En absència de l’atribut <i>expires</i> la galeta desapareix quan l’usuari tanca el seu navegador.</li>
 		</ol>
 
-		<p>Per gestionar les galetes amb comoditat farem servir el mòdul <a href="aux/session.py">session.py</a>. Estudia atentament aquest mòdul (i el scrip de prova <a href="aux/last-visit.py">last-visit.py</a>) fins entendre el funcionament de les funcions <code>request_cookies</code> i <code>response_cookie</code>. Pots executar el mòdul en el shell, per estudiar-lo, d&rsquo;aquestes formes:</p>
+		<p>Per gestionar les galetes amb comoditat farem servir el mòdul <a href="aux/session.py">session.py</a>. Estudia atentament aquest mòdul (i el scrip de prova <a href="aux/last-visit.py">last-visit.py</a>) fins entendre el funcionament de les funcions <code>request_cookies</code> i <code>response_cookie</code>. Pots executar el mòdul en el shell, per estudiar-lo, d’aquestes formes:</p>
 		<ul>
 			<li><code>python ./session.py</code>.</li>
 			<li><code>HTTP_COOKIE="SID=lala; PID=lele" python ./session.py</code>.</li>
@@ -113,7 +113,7 @@ sys.stdout.write(session.response_cookie(cookie_name, cookie_value))
 sys.stdout.write("Content-Type: ...
 ...</pre>
 
-		<p>Per usar el mòdul des del programa principal, si ens cal gestionar més d&rsquo;una galeta, usarem codi com aquest:</p>
+		<p>Per usar el mòdul des del programa principal, si ens cal gestionar més d’una galeta, usarem codi com aquest:</p>
 		<pre>import session
 ...
 cookies = session.request_cookies())
@@ -136,20 +136,20 @@ sys.stdout.write("Content-Type: ...
 		</ul>
 
 		<h2>Pràctiques II</h2>
-		<p>Les pràctiques giren al voltant del concepte de sessió utilitzant galetes, i s&rsquo;han d&rsquo;implementar combinant plantilles i scripts. Tria noms apropiats per galetes, plantilles, scripts, variables, etc.</p>
-		<p><strong>Important</strong>: pensa que ara la <i>URL d&rsquo;entrada</i> és el script CGI (que no te per que tenir extensió): mai has de visitar la plantilla directament amb el navegador! Pensa que els visitants de la pàgina dinàmica no han de saber que existeix cap plantilla!</p>
-		<p>En algunes d&rsquo;aquestes pràctiques cal de generar <cite>CSS</cite> dinàmicament: fes-ho sempre amb l&rsquo;atribut <code>style</code> i no amb l&rsquo;element equivalent.</p>
+		<p>Les pràctiques giren al voltant del concepte de sessió utilitzant galetes, i s’han d’implementar combinant plantilles i scripts. Tria noms apropiats per galetes, plantilles, scripts, variables, etc.</p>
+		<p><strong>Important</strong>: pensa que ara la <i>URL d’entrada</i> és el script CGI (que no te per que tenir extensió): mai has de visitar la plantilla directament amb el navegador! Pensa que els visitants de la pàgina dinàmica no han de saber que existeix cap plantilla!</p>
+		<p>En algunes d’aquestes pràctiques cal de generar <cite>CSS</cite> dinàmicament: fes-ho sempre amb l’atribut <code>style</code> i no amb l’element equivalent.</p>
 
 		<ol>
-			<li style="margin-bottom: 1ex;">Fes una pàgina que cada vegada que es visiti faci servir un color de fons a triar a l&rsquo;atzar entre <i>aqua</i>, <i>black</i>, <i>blue</i>, <i>fuchsia</i>, <i>gray</i>, <i>green</i>, <i>lime</i>, <i>maroon</i>, <i>navy</i>, <i>olive</i>, <i>purple</i>, <i>red</i>, <i>silver</i>, <i>teal</i>, <i>white</i>, i <i>yellow</i>. En totes les pràctiques per generar dinàmicament el valor de l&rsquo;atribut <code>style</code> usa sempre la directiva <code>py:attr</code>.</li>
+			<li style="margin-bottom: 1ex;">Fes una pàgina que cada vegada que es visiti faci servir un color de fons a triar a l’atzar entre <i>aqua</i>, <i>black</i>, <i>blue</i>, <i>fuchsia</i>, <i>gray</i>, <i>green</i>, <i>lime</i>, <i>maroon</i>, <i>navy</i>, <i>olive</i>, <i>purple</i>, <i>red</i>, <i>silver</i>, <i>teal</i>, <i>white</i>, i <i>yellow</i>. En totes les pràctiques per generar dinàmicament el valor de l’atribut <code>style</code> usa sempre la directiva <code>py:attr</code>.</li>
 			<li style="margin-bottom: 1ex;">Fes una pàgina que en visitar-la per primera vegada tingui el color groc de fons de pàgina, en la següent visita de color verd, i que en posteriors visites vagi alternant entre els dos colors. Pots encapsular la gestió de les galetes amb un script implementat segons aquest pseudocodi:
 				<ol>
 					<li>Si no hem rebut la galeta&hellip;</li>
-					<li>&hellip;afegir una galeta amb el primer color a usar a la resposta i retornar el nom d&rsquo;aquest color</li>
-					<li>i si la hem rebut triar el següent color segons el valor de la galeta rebuda, afegir-la de nou a la resposta amb el nou color i retornar el nom d&rsquo;aquest color.</li>
+					<li>&hellip;afegir una galeta amb el primer color a usar a la resposta i retornar el nom d’aquest color</li>
+					<li>i si la hem rebut triar el següent color segons el valor de la galeta rebuda, afegir-la de nou a la resposta amb el nou color i retornar el nom d’aquest color.</li>
 				</ol>
 			</li>
-			<li style="margin-bottom: 1ex;">Fes una pàgina que en visitar-la per primera vegada retorni un missatge publicitari, amb un enllaç o botó a la mateixa pàgina. En clicar-lo s&rsquo;ha de mostra la pàgina definitiva i no el missatge de propaganda. Pots encapsular la gestió de les galetes amb un script implementat segons aquest pseudocodi:
+			<li style="margin-bottom: 1ex;">Fes una pàgina que en visitar-la per primera vegada retorni un missatge publicitari, amb un enllaç o botó a la mateixa pàgina. En clicar-lo s’ha de mostra la pàgina definitiva i no el missatge de propaganda. Pots encapsular la gestió de les galetes amb un script implementat segons aquest pseudocodi:
 				<ol>
 					<li>Si no hem rebut la galeta&hellip;</li>
 					<li>&hellip;afegir una galeta a la resposta (el valor no importa) i retornar <code>True</code></li>
@@ -166,7 +166,7 @@ sys.stdout.write("Content-Type: ...
 			</li>
 	 	</ol>
 
-		<p><strong>Important</strong>: per provocar l&rsquo;expiració de les galetes simplement tancarem totes les finestres del navegador.</p>
+		<p><strong>Important</strong>: per provocar l’expiració de les galetes simplement tancarem totes les finestres del navegador.</p>
 
 	</body>
 </html>
